@@ -13,16 +13,12 @@ import java.util.Optional;
 public class LoginUserRepository {
     private final LoginUserMapper loginUserMapper;
 
-    public List<LoginUserDetails> selectAll() {
+    public List<LoginUser> selectAll() {
         return loginUserMapper.selectAll();
     }
 
-    public LoginUserDetails findByUsername(String username) {
+    public LoginUser findByUsername(String username) {
         return loginUserMapper.findByUsername(username);
     }
 
-    public Optional<LoginUser> findByUsernameWithRoles(String username) {
-        LoginUser loginUser = loginUserMapper.findByUsernameWithRoles(username);
-        return Optional.ofNullable(loginUser);
-    }
 }

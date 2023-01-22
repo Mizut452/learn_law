@@ -33,7 +33,7 @@ public class LoginController {
 
     @PostMapping("/createaccount/roles")
     public String createRoles(@ModelAttribute LoginUser loginUser) {
-        loginUser.setRoleList(Collections.singletonList("ROLE_GENERAL"));
+
 
         return "Login/Complete";
     }

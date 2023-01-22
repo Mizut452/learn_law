@@ -12,14 +12,14 @@ import java.util.List;
 @Mapper
 public interface LoginUserMapper {
     @Select("SELECT * FROM userList")
-    List<LoginUserDetails> selectAll();
+    List<LoginUser> selectAll();
+
+    @Select("SELECT username FROM userList WHERE username = #{username}")
+    LoginUser selectUsername(String username);
 
     @Select("SELECT * FROM userList WHERE username = #{username}")
-    LoginUserDetails findByUsername(@Param("username") String username);
+    LoginUser findByUsername(@Param("username") String username);
 
-    @Select("SELECT u.username, u.password, r.name AS role_name FROM userList u JOIN user_role ur ON u.userId = ur.user_id JOIN roles r ON ur.role_id = r.id WHERE u.username = #{username}")
-    LoginUser findByUsernameWithRoles(@Param("username") String username);
-
-    @Insert("INSERT INTO userList (email, username, password) VALUES(#{email}, #{username}, #{password})")
+    @Insert("INSERT INTO userList (mailAddress, username, password, roleName) VALUES(#{mailAddress}, #{username}, #{password}, 'ROLE_GENERAL')")
     void create(LoginUser loginUser);
 }

@@ -14,17 +14,16 @@ import java.util.Optional;
 @Service
 public class LoginUserDetailsService implements UserDetailsService {
 
-    private LoginUserRepository loginUserRepository;
+    private LoginUserMapper loginUserMapper;
 
-    public LoginUserDetailsService(LoginUserRepository loginUserRepository) {
-        this.loginUserRepository = loginUserRepository;
+    public LoginUserDetailsService(LoginUserMapper loginUserMapper) {
+        this.loginUserMapper = loginUserMapper;
     }
 
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<LoginUser> loginUserOptional = loginUserRepository.findByUsernameWithRoles(username);
-        return loginUserOptional.map(loginUser -> new LoginUserDetails(loginUser))
-                .orElseThrow(() -> new UsernameNotFoundException("not found"));
+        LoginUser loginUser = loginUserMapper.findByUsername(username);
+        return loginUserMapper.findByUsername(username);
     }
 }
