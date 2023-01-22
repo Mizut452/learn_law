@@ -16,7 +16,7 @@ public class LoginUserRepository {
         return loginUserMapper.selectAll();
     }
 
-    public LoginUser findByUsername(String username) {
+    public List<LoginUser> findByUsername(String username) {
         return loginUserMapper.findByUsername(username);
     }
 }
