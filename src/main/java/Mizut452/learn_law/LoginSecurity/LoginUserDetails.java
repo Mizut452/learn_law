@@ -19,10 +19,6 @@ public class LoginUserDetails implements UserDetails {
                 .toList();
     }
 
-    public LoginUser getLoginUser() {
-        return loginUser;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getAuthorities();
