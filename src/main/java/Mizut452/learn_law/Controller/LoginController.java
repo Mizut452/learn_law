@@ -1,13 +1,12 @@
 package Mizut452.learn_law.Controller;
 
+import Mizut452.learn_law.Service.CreateAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import Mizut452.learn_law.Model.Entity.LoginUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Collections;
 
 @Controller
 public class LoginController {
@@ -27,14 +26,13 @@ public class LoginController {
         loginUser.setEmail(loginUser.getEmail());
         loginUser.setUsername(loginUser.getUsername());
         loginUser.setPassword(loginUser.getPassword());
+        loginUser.setRoleName(loginUser.getRoleName());
 
-        return "redirect:/createaccount/roles";
-    }
-
-    @PostMapping("/createaccount/roles")
-    public String createRoles(@ModelAttribute LoginUser loginUser) {
-
-
+        createAccountService.createAccount(loginUser);
         return "Login/Complete";
     }
+
+    @Autowired
+    private CreateAccountService createAccountService;
+
 }

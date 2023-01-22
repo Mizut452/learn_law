@@ -20,10 +20,8 @@ public class LoginUserDetailsService implements UserDetailsService {
         this.loginUserMapper = loginUserMapper;
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        LoginUser loginUser = loginUserMapper.findByUsername(username);
         return loginUserMapper.findByUsername(username);
     }
 }

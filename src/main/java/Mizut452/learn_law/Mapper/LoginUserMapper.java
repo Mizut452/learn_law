@@ -20,6 +20,6 @@ public interface LoginUserMapper {
     @Select("SELECT * FROM userList WHERE username = #{username}")
     LoginUser findByUsername(@Param("username") String username);
 
-    @Insert("INSERT INTO userList (mailAddress, username, password, roleName) VALUES(#{mailAddress}, #{username}, #{password}, 'ROLE_GENERAL')")
+    @Insert("INSERT INTO userList (email, username, password, roleName) VALUES(#{email}, #{username}, #{password}, 'ROLE_GENERAL')")
     void create(LoginUser loginUser);
 }

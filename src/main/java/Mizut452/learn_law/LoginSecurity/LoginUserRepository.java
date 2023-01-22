@@ -20,5 +20,4 @@ public class LoginUserRepository {
     public LoginUser findByUsername(String username) {
         return loginUserMapper.findByUsername(username);
     }
-
 }
