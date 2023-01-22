@@ -12,11 +12,11 @@ import java.util.List;
 public class LoginUserRepository {
     private final LoginUserMapper loginUserMapper;
 
-    public List<LoginUser> selectAll() {
+    public List<LoginUserDetails> selectAll() {
         return loginUserMapper.selectAll();
     }
 
-    public List<LoginUser> findByUsername(String username) {
+    public LoginUserDetails findByUsername(String username) {
         return loginUserMapper.findByUsername(username);
     }
 }

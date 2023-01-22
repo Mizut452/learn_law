@@ -2,13 +2,11 @@ package Mizut452.learn_law.LoginSecurity;
 
 
 import Mizut452.learn_law.Mapper.LoginUserMapper;
-import Mizut452.learn_law.Model.Entity.LoginUser;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class LoginUserDetailsService implements UserDetailsService {
@@ -22,7 +20,7 @@ public class LoginUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        LoginUser loginUser = loginUserMapper.findByUsername(username);
+        LoginUserDetails loginUserDetails = loginUserMapper.findByUsername(username);
         return loginUserMapper.findByUsername(username);
     }
 }
