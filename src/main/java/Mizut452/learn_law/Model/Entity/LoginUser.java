@@ -11,7 +11,6 @@ import java.util.List;
 @Data
 public class LoginUser implements UserDetails {
 
-
     private int userId;
     private String email;
     private String username;

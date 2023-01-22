@@ -17,16 +17,15 @@ CREATE TABLE IF NOT EXISTS userList (
         password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE roles(
+CREATE TABLE IF NOT EXISTS roles(
         id INTEGER PRIMARY KEY,
         name VARCHAR(32) NOT NULL
 );
 
-CREATE TABLE user_role(
+CREATE TABLE IF NOT EXISTS user_role(
         user_id INTEGER,
         role_id INTEGER,
         CONSTRAINT pk_user_role PRIMARY KEY (user_id, role_id),
-        CONSTRAINT fk_user_role_user_id FOREIGN KEY (user_id) REFERENCES login_user(id),
+        CONSTRAINT fk_user_role_user_id FOREIGN KEY (user_id) REFERENCES userList(userId),
         CONSTRAINT fk_user_role_role_id FOREIGN KEY (role_id) REFERENCES roles(id)
 );
-

@@ -20,16 +20,17 @@ public class SecurityConfig {
         http.formLogin(login -> login
                 .loginProcessingUrl("/login")
                 .loginPage("/login")
-                .defaultSuccessUrl("/quiz")
+                .defaultSuccessUrl("/")
                 .failureUrl("/login?error")
                 .permitAll()
         ).logout(logout -> logout
-                .logoutSuccessUrl("/quiz")
+                .logoutSuccessUrl("/")
         ).authorizeHttpRequests(authz -> authz
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .requestMatchers("/").permitAll()
                 .anyRequest().permitAll()
         );
+        http.csrf().disable();
         return http.build();
     }
 
