@@ -1,11 +1,6 @@
 package Mizut452.learn_law.Model.Entity;
 
 import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
 import java.util.List;
 
 @Data
