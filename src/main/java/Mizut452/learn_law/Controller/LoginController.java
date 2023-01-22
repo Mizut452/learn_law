@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Collections;
+
 @Controller
 public class LoginController {
 
@@ -31,7 +33,7 @@ public class LoginController {
 
     @PostMapping("/createaccount/roles")
     public String createRoles(@ModelAttribute LoginUser loginUser) {
-        loginUser.setRoleList(loginUser.getRoleList());
+        loginUser.setRoleList(Collections.singletonList("ROLE_GENERAL"));
 
         return "Login/Complete";
     }

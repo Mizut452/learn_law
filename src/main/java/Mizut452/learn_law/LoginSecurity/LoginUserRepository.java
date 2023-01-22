@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -18,5 +19,10 @@ public class LoginUserRepository {
 
     public LoginUserDetails findByUsername(String username) {
         return loginUserMapper.findByUsername(username);
+    }
+
+    public Optional<LoginUser> findByUsernameWithRoles(String username) {
+        LoginUser loginUser = loginUserMapper.findByUsernameWithRoles(username);
+        return Optional.ofNullable(loginUser);
     }
 }
