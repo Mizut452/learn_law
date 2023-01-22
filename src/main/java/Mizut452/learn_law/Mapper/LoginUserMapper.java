@@ -1,6 +1,5 @@
 package Mizut452.learn_law.Mapper;
 
-import Mizut452.learn_law.LoginSecurity.LoginUserDetails;
 import Mizut452.learn_law.Model.Entity.LoginUser;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -11,12 +10,6 @@ import java.util.List;
 
 @Mapper
 public interface LoginUserMapper {
-    @Select("SELECT * FROM userList")
-    List<LoginUser> selectAll();
-
-    @Select("SELECT username FROM userList WHERE username = #{username}")
-    LoginUser selectUsername(String username);
-
     @Select("SELECT * FROM userList WHERE username = #{username}")
     LoginUser findByUsername(@Param("username") String username);
 

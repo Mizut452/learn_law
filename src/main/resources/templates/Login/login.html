@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>ログイン</title>
 </head>
+<header>
+    <a th:href="@{/logout}">ログアウト</a>
+</header>
 <body>
     <h2>ログイン</h2>
     <form action="/" th:action="@{/login}" th:method="@{post}">
