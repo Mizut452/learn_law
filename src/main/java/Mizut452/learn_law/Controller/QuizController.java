@@ -74,8 +74,6 @@ public class QuizController {
                 if (count == 0) {
                     listQuestionId.add(randomInt);
                     i++;
-                } else {
-
                 }
             }
         }
@@ -92,13 +90,12 @@ public class QuizController {
         List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
         Quiz quizList = quizAllByQuizId.get(0);
         String quizSentence = quizList.getQuizQuestionSent();
-        System.out.println(quizId +"= {quizId}");
 
         //クイズの問題がなくなったとき。
         if (questionNumber + 1 == questionLength) {
             if (loginUser != null) {
 
-               UserQuizHistory usersHistory = userQuizHistoryMapper.quizHistoryMapperList(loginUser.getUsername());
+               UserQuizHistory usersHistory = userQuizHistoryMapper.quizHistoryMapperList(loginUser.getUserId());
 
                 //プレイヤーが挑戦した問題数と正解数を足す
                 int pointAll = usersHistory.getPointAll();
