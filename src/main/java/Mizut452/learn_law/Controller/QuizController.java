@@ -19,13 +19,20 @@ public class QuizController {
     QuizMapper quizMapper;
 
     private List<Integer> listQuestionId = new ArrayList<>();
+    //問題数
     private int questionLength = 0;
+    //問題番号
     private int questionNumber = 0;
     private int quizId = 0;
+    //ユーザーの正解数
     private int userPoint = 0;
+    //ユーザーの民法問題正解数
     private int userCivilPoint = 0;
+    //ユーザーの刑法問題正解数
     private int userCriminalPoint = 0;
+    //挑戦した民法問題数
     private int civilQuestionNo = 0;
+    //挑戦した刑法問題数
     private int criminalQuestionNo = 0;
 
 
@@ -86,11 +93,15 @@ public class QuizController {
                 //プレイヤーが挑戦した問題数と正解数を足す
                 int pointAll = loginUser.getPointAll();
                 int questionAll = loginUser.getQuestionAll();
+                int questionCivilAll = loginUser.getCivilQuestionAll();
+                int questionCriminalAll = loginUser.getCriminalQuestionAll();
                 int pointCivilLaw = loginUser.getPointCivilLaw();
                 int pointCriminalLaw = loginUser.getPointCriminalLaw();
 
                 pointAll += userPoint;
                 questionAll += questionNumber;
+                questionCivilAll += civilQuestionNo;
+                questionCriminalAll += criminalQuestionNo;
                 pointCivilLaw += userCivilPoint;
                 pointCriminalLaw += userCriminalPoint;
             }
