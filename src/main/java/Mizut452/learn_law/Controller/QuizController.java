@@ -56,6 +56,7 @@ public class QuizController {
         Random random = new Random();
         questionLength = 10;
         int quizIdAll = quizMapper.selectQuizIdAll().size();
+
         //for文によってquestionLength個の乱数を生成する。
         for (int i = 0; i < questionLength;) {
             //1~10が乱数
@@ -74,7 +75,7 @@ public class QuizController {
                     listQuestionId.add(randomInt);
                     i++;
                 } else {
-                    System.out.println("www");
+
                 }
             }
         }

@@ -16,3 +16,16 @@ CREATE TABLE IF NOT EXISTS userList (
         password VARCHAR(255) NOT NULL,
         roleName VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS userQuizHistory (
+        userId INTEGER,
+        username VARCHAR(255),
+        questionAll INTEGER,
+        civilQuestionAll INTEGER,
+        criminalQuestionAll INTEGER,
+        pointAll INTEGER,
+        pointCivilLaw INTEGER,
+        pointCriminalLaw INTEGER,
+        CONSTRAINT fk_userId FOREIGN KEY (userId) REFERENCES userList (userId),
+        CONSTRAINT fk_username FOREIGN KEY (username) REFERENCES userList (username)
+);
