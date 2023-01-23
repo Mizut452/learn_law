@@ -1,8 +1,10 @@
 package Mizut452.learn_law.Controller;
 
 import Mizut452.learn_law.Mapper.QuizMapper;
+import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Model.Entity.LoginUser;
 import Mizut452.learn_law.Model.Entity.Quiz;
+import Mizut452.learn_law.Model.Entity.UserQuizHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,9 @@ import java.util.Random;
 public class QuizController {
     @Autowired
     QuizMapper quizMapper;
+
+    @Autowired
+    UserQuizHistoryMapper userQuizHistoryMapper;
 
     private List<Integer> listQuestionId = new ArrayList<>();
     //問題数
@@ -81,6 +86,7 @@ public class QuizController {
     @GetMapping("/quiz/question/{quizId}/")
     public String quizQuestion(@PathVariable int quizId,
                                @AuthenticationPrincipal LoginUser loginUser,
+                               @ModelAttribute UserQuizHistory userQuizHistory,
                                Model model) {
         List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
         Quiz quizList = quizAllByQuizId.get(0);
@@ -90,20 +96,23 @@ public class QuizController {
         //クイズの問題がなくなったとき。
         if (questionNumber + 1 == questionLength) {
             if (loginUser != null) {
-                //プレイヤーが挑戦した問題数と正解数を足す
-                int pointAll = loginUser.getPointAll();
-                int questionAll = loginUser.getQuestionAll();
-                int questionCivilAll = loginUser.getCivilQuestionAll();
-                int questionCriminalAll = loginUser.getCriminalQuestionAll();
-                int pointCivilLaw = loginUser.getPointCivilLaw();
-                int pointCriminalLaw = loginUser.getPointCriminalLaw();
 
-                pointAll += userPoint;
-                questionAll += questionNumber;
-                questionCivilAll += civilQuestionNo;
-                questionCriminalAll += criminalQuestionNo;
-                pointCivilLaw += userCivilPoint;
-                pointCriminalLaw += userCriminalPoint;
+               UserQuizHistory usersHistory = userQuizHistoryMapper.quizHistoryMapperList(loginUser.getUsername());
+
+                //プレイヤーが挑戦した問題数と正解数を足す
+                int pointAll = usersHistory.getPointAll();
+                int questionAll = usersHistory.getQuestionAll();
+                int questionCivilAll = usersHistory.getCivilQuestionAll();
+                int questionCriminalAll = usersHistory.getCriminalQuestionAll();
+                int pointCivilLaw = usersHistory.getPointCivilLaw();
+                int pointCriminalLaw = usersHistory.getPointCriminalLaw();
+
+                usersHistory.setPointAll(pointAll + userPoint);
+                usersHistory.setQuestionAll(questionAll + questionNumber);
+                usersHistory.setCivilQuestionAll(questionCivilAll + civilQuestionNo);
+                usersHistory.setCriminalQuestionAll(questionCriminalAll + criminalQuestionNo);
+                usersHistory.setPointCivilLaw(pointCivilLaw + userCivilPoint);
+                usersHistory.setPointCriminalLaw(pointCriminalLaw + userCriminalPoint);
             }
             model.addAttribute("QuestionNumber", questionNumber + 1);
             model.addAttribute("userPoint", userPoint + 1);
