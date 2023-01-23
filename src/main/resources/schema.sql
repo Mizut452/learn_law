@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS userQuizHistory;
 DROP TABLE IF EXISTS quiz;
 DROP TABLE IF EXISTS userList;
 
