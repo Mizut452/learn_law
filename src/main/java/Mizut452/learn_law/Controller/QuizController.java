@@ -82,7 +82,18 @@ public class QuizController {
 
         //クイズの問題がなくなったとき。
         if (questionNumber + 1 == questionLength) {
+            if (loginUser != null) {
+                //プレイヤーが挑戦した問題数と正解数を足す
+                int pointAll = loginUser.getPointAll();
+                int questionAll = loginUser.getQuestionAll();
+                int pointCivilLaw = loginUser.getPointCivilLaw();
+                int pointCriminalLaw = loginUser.getPointCriminalLaw();
 
+                pointAll += userPoint;
+                questionAll += questionNumber;
+                pointCivilLaw += userCivilPoint;
+                pointCriminalLaw += userCriminalPoint;
+            }
             model.addAttribute("QuestionNumber", questionNumber + 1);
             model.addAttribute("userPoint", userPoint + 1);
             return "Quiz/quizResult";
