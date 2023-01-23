@@ -16,6 +16,7 @@ public class CreateAccountService {
     @Autowired
     PasswordEncoder encoder;
 
+    //パスワードをハッシュ化して、SQLにデータを入れる。
     public void createAccount(LoginUser loginUser) {
         loginUser.setPassword(encoder.encode(loginUser.getPassword()));
         loginUserMapper.create(loginUser);

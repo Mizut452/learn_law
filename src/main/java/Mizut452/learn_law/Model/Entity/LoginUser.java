@@ -3,11 +3,9 @@ package Mizut452.learn_law.Model.Entity;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 
 @Data
 public class LoginUser implements UserDetails {
@@ -17,6 +15,8 @@ public class LoginUser implements UserDetails {
     private String username;
     private String password;
     private String roleName;
+    private int pointCivilLaw;
+    private int pointCriminalLaw;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

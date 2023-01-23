@@ -3,6 +3,7 @@ package Mizut452.learn_law.Mapper;
 
 import Mizut452.learn_law.Model.Entity.Quiz;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -15,6 +16,9 @@ public interface QuizMapper {
 
     @Select("SELECT quizId FROM quiz")
     List<Quiz> selectQuizIdAll();
+
+    @Select("SELECT category FROM quiz WHERE quizId = #{quizId}")
+    String selectCategory(@Param("quizId") int quizId);
 
     @Select("SELECT quizRightOrBad FROM quiz")
     List<Quiz> selectQuizRightOrBadAll();

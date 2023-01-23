@@ -1,8 +1,10 @@
 package Mizut452.learn_law.Controller;
 
 import Mizut452.learn_law.Mapper.QuizMapper;
+import Mizut452.learn_law.Model.Entity.LoginUser;
 import Mizut452.learn_law.Model.Entity.Quiz;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,10 @@ public class QuizController {
     private int questionNumber = 0;
     private int quizId = 0;
     private int userPoint = 0;
+    private int userCivilPoint = 0;
+    private int userCriminalPoint = 0;
+    private int civilQuestionNo = 0;
+    private int criminalQuestionNo = 0;
 
 
     @RequestMapping("/quiz")
@@ -67,13 +73,16 @@ public class QuizController {
 
     @GetMapping("/quiz/question/{quizId}/")
     public String quizQuestion(@PathVariable int quizId,
+                               @AuthenticationPrincipal LoginUser loginUser,
                                Model model) {
         List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
         Quiz quizList = quizAllByQuizId.get(0);
         String quizSentence = quizList.getQuizQuestionSent();
         System.out.println(quizId +"= {quizId}");
 
+        //クイズの問題がなくなったとき。
         if (questionNumber + 1 == questionLength) {
+
             model.addAttribute("QuestionNumber", questionNumber + 1);
             model.addAttribute("userPoint", userPoint + 1);
             return "Quiz/quizResult";
@@ -90,7 +99,8 @@ public class QuizController {
     @PutMapping("/quiz/question/{quizId}/judge/")
     public String quizJudge(Model model,
                             @PathVariable int quizId,
-                            @ModelAttribute Quiz quiz) {
+                            @ModelAttribute Quiz quiz,
+                            @AuthenticationPrincipal LoginUser loginUser) {
         //クイズの〇、×の確認
         //quizId = listQuestionId.get(questionNumber);
         List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
@@ -111,13 +121,43 @@ public class QuizController {
         int nextQuizId = listQuestionId.get(questionNumber);
         model.addAttribute("quizId", quizId);
         model.addAttribute("nextQuizId", nextQuizId);
+
+        //正解の場合
         if (questionAnswer == rightOrBad) {
-            userPoint++;
-            return "Quiz/quizRightPage";
+            //正解ポイント、民法問題ポイント、民法正解ポイントを増やす
+            if(quizMapper.selectCategory(quizId) == "civil"){
+                userPoint++;
+                userCivilPoint++;
+                civilQuestionNo++;
+
+                return "Quiz/quizRightPage";
+            }
+            //正解ポイント、刑法問題ポイント、刑法正解ポイントを増やす
+            if(quizMapper.selectCategory(quizId) == "criminal") {
+                userPoint++;
+                userCriminalPoint++;
+                criminalQuestionNo++;
+
+                return "Quiz/quizBadPage";
+            }
         }
+
+        //不正解の場合
         else {
-            return "Quiz/quizBadPage";
+            //正解ポイントは加算せず、民法問題ポイントのみを加算
+            if(quizMapper.selectCategory(quizId) == "civil"){
+                civilQuestionNo++;
+
+                return "Quiz/quizRightPage";
+            }
+            //正解ポイントは加算せず、刑法問題ポイントのみを加算
+            if(quizMapper.selectCategory(quizId) == "criminal") {
+                criminalQuestionNo++;
+
+                return "Quiz/quizBadPage";
+            }
         }
+        return null;
     }
 
     @GetMapping("/quiz/question/{quizId}/{answer}")
