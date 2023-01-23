@@ -10,4 +10,5 @@ public class Quiz {
     private int quizRightOrBad;
     private String quizCommentary;
     private int quizUsersAnswer;
+    private String quizCategory;
 }

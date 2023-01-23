@@ -6,18 +6,18 @@ INSERT INTO userList(userId, email, username, password, roleName) VALUES (2, 'se
 INSERT INTO userList(userId, email, username, password, roleName) VALUES(3, 'ssvror444@gmail.com', 'Mizut452', '$2a$10$4dqctMrn.ivlJrYtnpR8B.62omHi4Ptw47N6HTUmdbHKOV4f87vbm', 'ROLE_ADMIN');
 
 --クイスの問題文と答え
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (1, 'パンはパンでも食べられないパンはフライパンである。', 1, 'これは有名ななぞなぞ問題である。パンという食べられるものであっても、その前にフライという文字がくっつくと料理で使うフライパンとなり、食べられないものになる。');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (2, '４つの岩を持っている生き物とはガンジーである。', 2, '岩４（いわし）とのダジャレである。');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (3, '手のひらをくっつける文房具ではない「のり」とは、ノリノリである', 2, 'ノリノリの時、必ずしも手のひらをくっつけるものではない。答えはいのりである。');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (4, 'Javaにおいて繰り返しの処理ができるのは、「for文」だけではない', 1, 'for, while文などがある。');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (5, 'Javaにおいて条件分岐の処理ができるのは、「if文」だけである', 2, 'if文、switch文,がある。');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (6, 'たぬき、きつね、ねこ、この中で仲間はずれなのはきつねである。', 2, 'ここに上げられるたぬき、きつね、ねこは三者ともに動物であり、仲間外れといえない');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (7, '残暑　この感じの読みは「ざんしょ」である。', 1, '正解、のこりなつではない');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (8, '2022年紅白歌合戦でVaundyがうたった歌とは、しわあわせではない。', 1, '怪獣の花唄である');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (9, 'Money この単語の意味は「ロックオン」である。', 2, 'お金');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (10, 'キャベツは野菜である', 1, 'レタス同様にキャベツは野菜である。');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (11, 'DXはでらっくすと読む', 2, 'DXはデジタルトランスフォーメーションの略である。');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (12, 'SQLはWebページのデザインを作るものである', 2, 'ＳＱＬはデータベースを操作する言語である・');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (13, 'JavaScriptはJavaのフレームワークの１つである。', 2, 'JavaScriptとJavaは異なる言語である。');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (14, '拡張子、txtは画像ファイルである。', 2, 'テキストファイルである');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (15, '拡張子、csvファイルはJavaScriptのファイルでない', 1, 'CSVファイルとは、値や項目を,で区切って書いたテキストファイル・データである。');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (1, '信義則は民法の基本である。', 1, '民法の基本の原則である', 'civil');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (2, '類推適用の原則は民法の基本の原則であある。', 2, '民法の基本ではない', 'civil');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (3, '類推適用の原則とは、刑罰には時効を適用させなければならないという原則である。', 2, '類推適用の原則とは、刑法の条文を拡大解釈などをしてはならないという原則です。例えば殺人罪の成立要件は「人を殺す」ことであるが、それを拡大解釈して猿を殺したときにも殺人罪を適用させるのは類推適用になる。', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (4, '刑法199条とは殺人罪である', 1, 'その通りであり、刑法199条は殺人罪について規定した法律である。', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (5, 'ショッピングセンターの客が忘れた荷物は、刑法上、その荷物は持ち主なしになる', 2, 'その荷物はショッピングセンターの荷物になる。', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (6, '横領は窃盗罪の中の１つである。', 2, '横領罪と窃盗罪はまったく異なる罪である。', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (7, '刑法上、遺言　この感じの読みは「いごん」である。', 1, 'いごんである。ゆいごんではない。', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (8, '刑法上、一月　この漢字の読みは「いちげつ」である。', 1, 'いちげつと読む。いっかげつ、いちがつではない。', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (9, '刑法を英語で書くとcivil lawである', 2, 'criminal lawである。', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (10, '親が子を助けなかったら犯罪になる。', 1, 'その通り', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (11, '見知らぬ人が溺れていた時、その人を助けなければ犯罪となる。', 2, '犯罪とならない。', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (12, '外出時、人が忘れた物を盗むとそれは窃盗罪である。', 2, '遺失物横領罪となる', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (13, 'Ａさんの家にＢさんが荷物を忘れた。その荷物をＣさんが盗んでも犯罪とはならない。', 2, '大犯罪者である。', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (14, '成立要件とは、起訴が行われる要件の事である', 2, '犯罪が成立する要件の事である。', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (15, '人を殴って血が出ると傷害罪である。', 1, 'その通り！', 'criminal');
