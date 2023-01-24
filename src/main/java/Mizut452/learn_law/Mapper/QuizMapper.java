@@ -17,7 +17,7 @@ public interface QuizMapper {
     @Select("SELECT quizId FROM quiz")
     List<Quiz> selectQuizIdAll();
 
-    @Select("SELECT category FROM quiz WHERE quizId = #{quizId}")
+    @Select("SELECT quizCategory FROM quiz WHERE quizId = #{quizId}")
     String selectCategory(@Param("quizId") int quizId);
 
     @Select("SELECT quizRightOrBad FROM quiz")

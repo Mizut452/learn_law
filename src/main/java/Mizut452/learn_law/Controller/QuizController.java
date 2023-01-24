@@ -125,7 +125,7 @@ public class QuizController {
 
     }
 
-    @PutMapping("/quiz/question/{quizId}/judge/")
+    @PostMapping("/quiz/question/{quizId}/judge/")
     public String quizJudge(Model model,
                             @PathVariable int quizId,
                             @ModelAttribute Quiz quiz,
@@ -145,6 +145,7 @@ public class QuizController {
         quiz.setQuizUsersAnswer(quiz.getQuizUsersAnswer());
         quizList.setQuizUsersAnswer(quizList.getQuizUsersAnswer());
         int rightOrBad = quiz.getQuizUsersAnswer();
+        System.out.println(rightOrBad);
 
         questionNumber++;
         int nextQuizId = listQuestionId.get(questionNumber);
@@ -154,7 +155,7 @@ public class QuizController {
         //正解の場合
         if (questionAnswer == rightOrBad) {
             //正解ポイント、民法問題ポイント、民法正解ポイントを増やす
-            if(quizMapper.selectCategory(quizId) == "civil"){
+            if(quizMapper.selectCategory(quizId).equals("civil")){
                 userPoint++;
                 userCivilPoint++;
                 civilQuestionNo++;
@@ -162,31 +163,31 @@ public class QuizController {
                 return "Quiz/quizRightPage";
             }
             //正解ポイント、刑法問題ポイント、刑法正解ポイントを増やす
-            if(quizMapper.selectCategory(quizId) == "criminal") {
+            if(quizMapper.selectCategory(quizId).equals("criminal")) {
                 userPoint++;
                 userCriminalPoint++;
                 criminalQuestionNo++;
 
-                return "Quiz/quizBadPage";
+                return "Quiz/quizRightPage";
             }
         }
 
         //不正解の場合
         else {
             //正解ポイントは加算せず、民法問題ポイントのみを加算
-            if(quizMapper.selectCategory(quizId) == "civil"){
+            if(quizMapper.selectCategory(quizId).equals("civil")) {
                 civilQuestionNo++;
 
-                return "Quiz/quizRightPage";
+                return "Quiz/quizBadPage";
             }
             //正解ポイントは加算せず、刑法問題ポイントのみを加算
-            if(quizMapper.selectCategory(quizId) == "criminal") {
+            if(quizMapper.selectCategory(quizId).equals("criminal")) {
                 criminalQuestionNo++;
 
                 return "Quiz/quizBadPage";
             }
         }
-        return null;
+        return "error";
     }
 
     @GetMapping("/quiz/question/{quizId}/{answer}")
@@ -201,7 +202,6 @@ public class QuizController {
         List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
         Quiz quizList = quizAllByQuizId.get(questionNumber);
         String quizCommentary = quizList.getQuizCommentary();
-
 
         model.addAttribute("QuestionCommentary", quizCommentary);
 

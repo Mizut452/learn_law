@@ -7,7 +7,7 @@ INSERT INTO userList(userId, email, username, password, roleName) VALUES(3, 'ssv
 
 --クイスの問題文と答え
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (1, '信義則は民法の基本である。', 1, '民法の基本の原則である', 'civil');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (2, '類推適用の原則は民法の基本の原則であある。', 2, '民法の基本ではない', 'civil');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (2, '類推適用の原則は民法の基本の原則である。', 2, '民法の基本ではない', 'civil');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (3, '類推適用の原則とは、刑罰には時効を適用させなければならないという原則である。', 2, '類推適用の原則とは、刑法の条文を拡大解釈などをしてはならないという原則です。例えば殺人罪の成立要件は「人を殺す」ことであるが、それを拡大解釈して猿を殺したときにも殺人罪を適用させるのは類推適用になる。', 'criminal');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (4, '刑法199条とは殺人罪である', 1, 'その通りであり、刑法199条は殺人罪について規定した法律である。', 'criminal');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (5, 'ショッピングセンターの客が忘れた荷物は、刑法上、その荷物は持ち主なしになる', 2, 'その荷物はショッピングセンターの荷物になる。', 'criminal');
