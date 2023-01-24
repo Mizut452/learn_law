@@ -2,6 +2,7 @@ package Mizut452.learn_law.Controller;
 
 import Mizut452.learn_law.Mapper.LoginUserMapper;
 import Mizut452.learn_law.Mapper.QuizMapper;
+import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Model.Entity.LoginUser;
 import Mizut452.learn_law.Model.Entity.Quiz;
 import Mizut452.learn_law.Model.Entity.UserQuizHistory;
@@ -19,7 +20,7 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    QuizMapper quizMapper;
+    UserQuizHistoryMapper userQuizHistoryMapper;
 
     @Autowired
     LoginUserMapper loginUserMapper;
@@ -29,14 +30,14 @@ public class HomeController {
         return "Home/home";
     }
 
-    @GetMapping("/mypage/{userId}")
+    @GetMapping("/mypage/{history_userId}")
     public String myPage(Model model,
-                         @PathVariable int userId,
+                         @PathVariable int history_userId,
                          @AuthenticationPrincipal LoginUser loginUser) {
-        LoginUser findByUserId = loginUserMapper.findByUserId(userId);
+        LoginUser findByUserId = loginUserMapper.findByUserId(history_userId);
         String username = findByUserId.getUsername();
 
-        UserQuizHistory userQuizHistory = quizMapper.usersQuizHistoryList(userId);
+        UserQuizHistory userQuizHistory = userQuizHistoryMapper.usersQuizHistoryList(history_userId);
         int pointAll = userQuizHistory.getPointAll();
         int questionAll = userQuizHistory.getQuestionAll();
         int civilQuestionAll = userQuizHistory.getCivilQuestionAll();

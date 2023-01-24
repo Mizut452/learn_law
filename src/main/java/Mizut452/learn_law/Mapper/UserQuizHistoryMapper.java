@@ -10,6 +10,9 @@ import java.util.List;
 @Mapper
 public interface UserQuizHistoryMapper {
 
-    @Select("SELECT * FROM userQuizHistory WHERE userId = #{userId}")
-    UserQuizHistory quizHistoryMapperList(@Param("userId") int userId);
+    @Select("SELECT * FROM userQuizHistory WHERE history_userId = #{history_userId}")
+    UserQuizHistory quizHistoryMapperList(@Param("history_userId") int history_userId);
+
+    @Select("SELECT * FROM userQuizHistory WHERE history_userId = #{history_userId}")
+    UserQuizHistory usersQuizHistoryList(@Param("history_userId") int history_userId);
 }
