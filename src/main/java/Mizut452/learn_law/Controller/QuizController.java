@@ -111,6 +111,9 @@ public class QuizController {
                 usersHistory.setCriminalQuestionAll(questionCriminalAll + criminalQuestionNo);
                 usersHistory.setPointCivilLaw(pointCivilLaw + userCivilPoint);
                 usersHistory.setPointCriminalLaw(pointCriminalLaw + userCriminalPoint);
+
+                //insert文
+                userQuizHistoryMapper.insertUserQuizHistory(usersHistory);
             }
             model.addAttribute("QuestionNumber", questionNumber + 1);
             model.addAttribute("userPoint", userPoint + 1);
@@ -145,7 +148,6 @@ public class QuizController {
         quiz.setQuizUsersAnswer(quiz.getQuizUsersAnswer());
         quizList.setQuizUsersAnswer(quizList.getQuizUsersAnswer());
         int rightOrBad = quiz.getQuizUsersAnswer();
-        System.out.println(rightOrBad);
 
         questionNumber++;
         int nextQuizId = listQuestionId.get(questionNumber);

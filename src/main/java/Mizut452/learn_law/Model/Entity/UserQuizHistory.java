@@ -18,5 +18,4 @@ public class UserQuizHistory {
     private int pointCivilLaw;
     //正解した刑法問題
     private int pointCriminalLaw;
-
 }
