@@ -13,6 +13,9 @@ public interface LoginUserMapper {
     @Select("SELECT * FROM userList WHERE username = #{username}")
     LoginUser findByUsername(@Param("username") String username);
 
+    @Select("SELECT * FROM userList WHERE userId = #{userId}")
+    LoginUser findByUserId(@Param("userId") int userId);
+
     @Insert("INSERT INTO userList (email, username, password, roleName) VALUES(#{email}, #{username}, #{password}, 'ROLE_GENERAL')")
     void create(LoginUser loginUser);
 }

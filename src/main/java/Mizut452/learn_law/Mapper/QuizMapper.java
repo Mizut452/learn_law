@@ -2,6 +2,7 @@ package Mizut452.learn_law.Mapper;
 
 
 import Mizut452.learn_law.Model.Entity.Quiz;
+import Mizut452.learn_law.Model.Entity.UserQuizHistory;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -20,15 +21,6 @@ public interface QuizMapper {
     @Select("SELECT quizCategory FROM quiz WHERE quizId = #{quizId}")
     String selectCategory(@Param("quizId") int quizId);
 
-    @Select("SELECT quizRightOrBad FROM quiz")
-    List<Quiz> selectQuizRightOrBadAll();
-
-    @Select("SELECT quizCommentary FROM quiz")
-    List<Quiz> selectQuizCommentaryAll();
-
-    @Select("SELECT quizQuestionSent FROM quiz where quizId = #{quizId}")
-    List<Quiz> selectQuestionAll(int randomInt);
-
-    @Select("SELECT * FROM quiz where quizId = #{quizId}")
-    List<Quiz> selectRandomQuizAll();
+    @Select("SELECT * FROM userQuizHistory WHERE quizId = #{quizId}")
+    UserQuizHistory usersQuizHistoryList(@Param("quizId") int quizId);
 }

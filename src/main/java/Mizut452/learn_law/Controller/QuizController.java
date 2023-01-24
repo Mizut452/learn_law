@@ -190,12 +190,6 @@ public class QuizController {
         return "error";
     }
 
-    @GetMapping("/quiz/question/{quizId}/{answer}")
-    public String sendQuizAnswer(@PathVariable int quizId, String answer) {
-
-        return "redirect:/quiz/question/" + quizId + "/judge/";
-    }
-
     @GetMapping("/quiz/question/good")
     public String quizRight(Model model) {
         quizId = listQuestionId.get(questionNumber);
