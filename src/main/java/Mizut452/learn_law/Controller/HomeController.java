@@ -54,7 +54,7 @@ public class HomeController {
 
 
 
-        if (loginUser == null) {
+        if (loginUser != null) {
 
             return "Home/myPage";
         } else {
