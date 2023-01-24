@@ -13,11 +13,10 @@
 <div class="layoutMain">
   <main class="center">
     <div class="quizTitle">マイページ</div>
+    <div th:text="${username}"></div>さんようこそ！
 
-
-    <div class="quizStartButton">
-      <a th:href="@{/quiz/question}">はじめる</a>
-    </div>
+    <div th:text="${username}"></div>さんの成績
+    <div th:text="${questionAll}"></div>問中<span th:text="${pointAll}"></span>問正解!
   </main>
 
   <div class="left-side">
