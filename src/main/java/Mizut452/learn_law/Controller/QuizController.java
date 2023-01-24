@@ -85,7 +85,6 @@ public class QuizController {
     @GetMapping("/quiz/question/{quizId}/")
     public String quizQuestion(@PathVariable int quizId,
                                @AuthenticationPrincipal LoginUser loginUser,
-                               @ModelAttribute UserQuizHistory userQuizHistory,
                                Model model) {
         List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
         Quiz quizList = quizAllByQuizId.get(0);
@@ -95,25 +94,25 @@ public class QuizController {
         if (questionNumber + 1 == questionLength) {
             if (loginUser != null) {
 
-               UserQuizHistory usersHistory = userQuizHistoryMapper.quizHistoryMapperList(loginUser.getUserId());
+                UserQuizHistory userQuizHistory = userQuizHistoryMapper.quizHistoryMapperList(loginUser.getUserId());
 
                 //プレイヤーが挑戦した問題数と正解数を足す
-                int pointAll = usersHistory.getPointAll();
-                int questionAll = usersHistory.getQuestionAll();
-                int questionCivilAll = usersHistory.getCivilQuestionAll();
-                int questionCriminalAll = usersHistory.getCriminalQuestionAll();
-                int pointCivilLaw = usersHistory.getPointCivilLaw();
-                int pointCriminalLaw = usersHistory.getPointCriminalLaw();
+                int pointAll = userQuizHistory.getPointAll();
+                int questionAll = userQuizHistory.getQuestionAll();
+                int questionCivilAll = userQuizHistory.getCivilQuestionAll();
+                int questionCriminalAll = userQuizHistory.getCriminalQuestionAll();
+                int pointCivilLaw = userQuizHistory.getPointCivilLaw();
+                int pointCriminalLaw = userQuizHistory.getPointCriminalLaw();
 
-                usersHistory.setPointAll(pointAll + userPoint);
-                usersHistory.setQuestionAll(questionAll + questionNumber);
-                usersHistory.setCivilQuestionAll(questionCivilAll + civilQuestionNo);
-                usersHistory.setCriminalQuestionAll(questionCriminalAll + criminalQuestionNo);
-                usersHistory.setPointCivilLaw(pointCivilLaw + userCivilPoint);
-                usersHistory.setPointCriminalLaw(pointCriminalLaw + userCriminalPoint);
+                userQuizHistory.setPointAll(pointAll + userPoint + 1);
+                userQuizHistory.setQuestionAll(questionAll + questionNumber + 1);
+                userQuizHistory.setCivilQuestionAll(questionCivilAll + civilQuestionNo + 1);
+                userQuizHistory.setCriminalQuestionAll(questionCriminalAll + criminalQuestionNo + 1);
+                userQuizHistory.setPointCivilLaw(pointCivilLaw + userCivilPoint + 1);
+                userQuizHistory.setPointCriminalLaw(pointCriminalLaw + userCriminalPoint + 1);
 
                 //insert文
-                userQuizHistoryMapper.insertUserQuizHistory(usersHistory);
+                userQuizHistoryMapper.updateUserQuizHistory(userQuizHistory);
             }
             model.addAttribute("QuestionNumber", questionNumber + 1);
             model.addAttribute("userPoint", userPoint + 1);
