@@ -37,12 +37,6 @@ public class LoginController {
         return "Login/Complete";
     }
 
-    @PostMapping("/createaccount/createhistory")
-    public String createHistoryMethod() {
-
-        return "Login/Complete";
-    }
-
 
     @Autowired
     private CreateAccountService createAccountService;
