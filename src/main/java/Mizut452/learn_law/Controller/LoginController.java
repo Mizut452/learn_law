@@ -1,5 +1,7 @@
 package Mizut452.learn_law.Controller;
 
+import Mizut452.learn_law.Mapper.LoginUserMapper;
+import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Service.CreateAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import Mizut452.learn_law.Model.Entity.LoginUser;
@@ -29,10 +31,26 @@ public class LoginController {
         loginUser.setRoleName(loginUser.getRoleName());
 
         createAccountService.createAccount(loginUser);
+         LoginUser loginUser1 = loginUserMapper.findByUsername(loginUser.getUsername());
+        userQuizHistoryMapper.insertNewUserQuizHistory(loginUser1.getUserId());
+
+        return "redirect:/createaccount/createhistory";
+    }
+
+    @PostMapping("/createaccount/createhistory")
+    public String createHistoryMethod() {
+
         return "Login/Complete";
     }
 
+
     @Autowired
     private CreateAccountService createAccountService;
+
+    @Autowired
+    private LoginUserMapper loginUserMapper;
+
+    @Autowired
+    private UserQuizHistoryMapper userQuizHistoryMapper;
 
 }
