@@ -12,7 +12,7 @@
 	<artifactId>learn_law</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Learn_Law</name>
-	<description>楽しく法律を学ぶことのできるサイトです</description>
+	<description>楽しく法律を学ぶことのできるサイトです。</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
