@@ -25,13 +25,16 @@ public class LoginController {
 
     @PostMapping("/createaccount/create")
     public String createMethod(@ModelAttribute LoginUser loginUser) {
+        //SQLに登録
         loginUser.setEmail(loginUser.getEmail());
         loginUser.setUsername(loginUser.getUsername());
         loginUser.setPassword(loginUser.getPassword());
         loginUser.setRoleName(loginUser.getRoleName());
 
         createAccountService.createAccount(loginUser);
-         loginUser = loginUserMapper.findByUsername(loginUser.getUsername());
+
+        //成績用のSQL登録
+        loginUser = loginUserMapper.findByUsername(loginUser.getUsername());
         userQuizHistoryMapper.insertNewUserQuizHistory(loginUser.getUserId());
 
         return "Login/Complete";

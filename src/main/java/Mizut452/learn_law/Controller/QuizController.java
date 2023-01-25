@@ -51,7 +51,13 @@ public class QuizController {
         //初期化
         listQuestionId = new ArrayList<>();
         questionNumber = 0;
+        userPoint = 0;
+        userCriminalPoint = 0;
+        userCivilPoint = 0;
+        civilQuestionNo = 0;
+        criminalQuestionNo = 0;
         quizId = 0;
+
         //出題する問題を選ぶ（questionIdを生成する）
         Random random = new Random();
         questionLength = 10;
@@ -189,28 +195,5 @@ public class QuizController {
             }
         }
         return "error";
-    }
-
-    @GetMapping("/quiz/question/good")
-    public String quizRight(Model model) {
-        quizId = listQuestionId.get(questionNumber);
-        List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
-        Quiz quizList = quizAllByQuizId.get(questionNumber);
-        String quizCommentary = quizList.getQuizCommentary();
-
-        model.addAttribute("QuestionCommentary", quizCommentary);
-
-        return "redirect:/quiz/question/" + quizId;
-    }
-
-    @GetMapping("/quiz/question/bad")
-    public String quizBad(Model model) {
-        quizId = listQuestionId.get(questionNumber);
-        List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
-        Quiz quizList = quizAllByQuizId.get(questionNumber);
-        String quizCommentary = quizList.getQuizCommentary();
-        model.addAttribute("QuestionCommentary", quizCommentary);
-
-        return "redirect:/quiz/question/" + quizId;
     }
 }

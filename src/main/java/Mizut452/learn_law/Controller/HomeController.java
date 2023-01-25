@@ -34,9 +34,11 @@ public class HomeController {
     public String myPage(Model model,
                          @PathVariable int history_userId,
                          @AuthenticationPrincipal LoginUser loginUser) {
+        //ユーザーの検索
         LoginUser findByUserId = loginUserMapper.findByUserId(history_userId);
         String username = findByUserId.getUsername();
 
+        //成績の反映
         UserQuizHistory userQuizHistory = userQuizHistoryMapper.usersQuizHistoryList(history_userId);
         int pointAll = userQuizHistory.getPointAll();
         int questionAll = userQuizHistory.getQuestionAll();
@@ -53,13 +55,6 @@ public class HomeController {
         model.addAttribute("pointCriminal", pointCriminal);
         model.addAttribute("pointCivil", pointCivil);
 
-
-
-        if (loginUser != null) {
-
-            return "Home/myPage";
-        } else {
-            return "Home/myPage";
-        }
+        return "Home/myPage";
     }
 }
