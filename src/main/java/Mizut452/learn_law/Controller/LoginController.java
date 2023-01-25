@@ -31,10 +31,10 @@ public class LoginController {
         loginUser.setRoleName(loginUser.getRoleName());
 
         createAccountService.createAccount(loginUser);
-         LoginUser loginUser1 = loginUserMapper.findByUsername(loginUser.getUsername());
-        userQuizHistoryMapper.insertNewUserQuizHistory(loginUser1.getUserId());
+         loginUser = loginUserMapper.findByUsername(loginUser.getUsername());
+        userQuizHistoryMapper.insertNewUserQuizHistory(loginUser.getUserId());
 
-        return "redirect:/createaccount/createhistory";
+        return "Login/Complete";
     }
 
     @PostMapping("/createaccount/createhistory")
