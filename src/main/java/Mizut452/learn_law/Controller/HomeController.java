@@ -1,10 +1,8 @@
 package Mizut452.learn_law.Controller;
 
 import Mizut452.learn_law.Mapper.LoginUserMapper;
-import Mizut452.learn_law.Mapper.QuizMapper;
 import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Model.Entity.LoginUser;
-import Mizut452.learn_law.Model.Entity.Quiz;
 import Mizut452.learn_law.Model.Entity.UserQuizHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
 
 @Controller
 public class HomeController {

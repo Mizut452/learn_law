@@ -42,12 +42,12 @@ public class LoginController {
 
 
     @Autowired
-    private CreateAccountService createAccountService;
+    CreateAccountService createAccountService;
 
     @Autowired
-    private LoginUserMapper loginUserMapper;
+    LoginUserMapper loginUserMapper;
 
     @Autowired
-    private UserQuizHistoryMapper userQuizHistoryMapper;
+    UserQuizHistoryMapper userQuizHistoryMapper;
 
 }
