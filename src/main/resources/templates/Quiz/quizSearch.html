@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>quiz</title>
+    <link rel="stylesheet" th:href="@{css/quizLayout.css}">
+</head>
+
+<body>
+<header>
+</header>
+
+<div class="layoutMain">
+    <main class="center">
+        <div class="quizTitle">クイズ一覧</div>
+        <span>クイズを検索する：</span><input type="text" name="quizSentence"><button type="submit">検索</button><a>詳細検索</a>
+
+        <table border="1">
+            <thead>
+            <tr>
+                <th>問題文</th>
+                <th>〇/×</th>
+                <th>解説</th>
+                <th>ジャンル</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="quizList : ${QuizList}">
+                <td th:text="${quizList.quizSentence}"></td>
+                <td th:text="${quizList.quizTrueOrFalse}"></td>
+                <td th:text="${quizList.quizCommentary}"></td>
+                <td th:text="${quizList.quizGenre}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </main>
+
+    <div class="left-side">
+        this is right side!
+    </div>
+
+    <aside class="right-side">
+        this is right side!
+    </aside>
+</div>
+</body>
+
+</html>
