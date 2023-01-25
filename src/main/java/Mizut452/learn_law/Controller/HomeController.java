@@ -32,8 +32,13 @@ public class HomeController {
                          @AuthenticationPrincipal LoginUser loginUser) {
         //ユーザーの検索
         LoginUser findByUserId = loginUserMapper.findByUserId(history_userId);
-        String username = findByUserId.getUsername();
 
+        //存在しないユーザーIDが入力された場合の処理
+        if(findByUserId == null) {
+            return "Home/error";
+        }
+
+        String username = findByUserId.getUsername();
         //成績の反映
         UserQuizHistory userQuizHistory = userQuizHistoryMapper.usersQuizHistoryList(history_userId);
         int pointAll = userQuizHistory.getPointAll();
