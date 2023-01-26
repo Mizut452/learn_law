@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>quiz</title>
+    <link rel="stylesheet" th:href="@{css/quizLayout.css}">
+</head>
+
+<body>
+<header>
+    <a th:href="@{/logout}">ログアウト</a>
+</header>
+
+<div class="layoutMain">
+    <main class="center">
+        判例とは過去の裁判の結果が書かれたもので、その中には事件がどのように起きたか、両者の主張、それに対する裁判官等の意見と裁判の結果が書かれたものです。
+        判例を読んでいくと、法律の定義、つまり法律がどのように解釈されているのか、境界線、例えば窃盗罪と横領罪の違いなどを理解することができます。
+        しかし、判例というものはとても長く、文章的にも読みづらいです。このページではそのような判例をわかりやすく紹介するものになっています。
+    </main>
+
+    <div class="left-side">
+        this is left side!
+    </div>
+
+    <aside class="right-side">
+        this is right side!
+    </aside>
+</div>
+</body>
+
+</html>
