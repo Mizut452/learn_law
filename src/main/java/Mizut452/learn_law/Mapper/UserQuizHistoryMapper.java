@@ -21,9 +21,6 @@ public interface UserQuizHistoryMapper {
     @Insert("INSERT INTO userQuizHistory(history_userId, history_username) VALUES(#{history_userId}, #{history_username})")
     void insertNewUserQuizHistory(@Param("history_userId") int history_userId, @Param("history_username") String history_username);
 
-    @Insert("INSERT INTO userQuizHistory(history_username) VALUES(#{history_username})")
-    void insertNewUsernameQuizHistory(@Param("history_username") String history_username);
-
     @Update("UPDATE userQuizHistory SET questionAll = #{questionAll}, civilQuestionAll = #{civilQuestionAll}, criminalQuestionAll = #{criminalQuestionAll}, pointAll = #{pointAll}, pointCivilLaw = #{pointCivilLaw}, pointCriminalLaw = #{pointCriminalLaw} WHERE history_userId = #{history_userId}")
     void updateUserQuizHistory(UserQuizHistory usersHistory);
 }
