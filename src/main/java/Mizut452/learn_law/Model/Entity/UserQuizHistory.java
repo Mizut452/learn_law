@@ -6,6 +6,7 @@ import lombok.Data;
 public class UserQuizHistory {
     //LoginUserから取得
     private int history_userId;
+    private String history_username;
     //挑戦した問題数
     private int questionAll;
     //挑戦した民法問題数

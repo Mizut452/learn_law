@@ -5,15 +5,14 @@ import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Model.Entity.LoginUser;
 import Mizut452.learn_law.Model.Entity.Quiz;
 import Mizut452.learn_law.Model.Entity.UserQuizHistory;
+import Mizut452.learn_law.Model.Entity.UserRank;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 public class QuizController {
@@ -45,19 +44,27 @@ public class QuizController {
     public String quizHome(Model model) {
         //クイズランキング上位5位の取得
         List<UserQuizHistory> usersQuizRankList = userQuizHistoryMapper.usersQuizRank();
-        UserQuizHistory userFirstRank = usersQuizRankList.get(0);
-        UserQuizHistory userSecondRank = usersQuizRankList.get(1);
-        UserQuizHistory userThirdRank = usersQuizRankList.get(2);
-        UserQuizHistory userForthRank = usersQuizRankList.get(3);
-        UserQuizHistory userFifthRank = usersQuizRankList.get(4);
+        UserRank userRank = new UserRank();
 
-        int firstPoint = userFirstRank.getPointAll();
-        int secondPoint = userSecondRank.getPointAll();
-        int thirdPoint = userThirdRank.getPointAll();
-        int forthPoint = userForthRank.getPointAll();
-        int fifthPoint = userFifthRank.getPointAll();
+        if(usersQuizRankList != null) {
+            userRank.setRank("１位");
 
-        model.addAttribute("QuizRank", userQuizHistoryMapper.usersQuizRank());
+            /*UserQuizHistory userFirstRank = usersQuizRankList.get(0);
+            UserQuizHistory userSecondRank = usersQuizRankList.get(1);
+            UserQuizHistory userThirdRank = usersQuizRankList.get(2);
+            UserQuizHistory userForthRank = usersQuizRankList.get(3);
+            UserQuizHistory userFifthRank = usersQuizRankList.get(4);*/
+
+
+
+            /*int firstPoint = userFirstRank.getPointAll();
+            int secondPoint = userSecondRank.getPointAll();
+            int thirdPoint = userThirdRank.getPointAll();
+            int forthPoint = userForthRank.getPointAll();
+            int fifthPoint = userFifthRank.getPointAll();*/
+
+            model.addAttribute("QuizRank", userQuizHistoryMapper.usersQuizRank());
+        }
         return "Quiz/quizStartPage";
     }
 
