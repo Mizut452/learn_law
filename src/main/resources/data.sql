@@ -5,9 +5,9 @@ INSERT INTO userList(userId, email, username, password, roleName) VALUES (2, 'se
 --SECRET
 INSERT INTO userList(userId, email, username, password, roleName) VALUES(3, 'ssvror444@gmail.com', 'Mizut452', '$2a$10$4dqctMrn.ivlJrYtnpR8B.62omHi4Ptw47N6HTUmdbHKOV4f87vbm', 'ROLE_ADMIN');
 
-INSERT INTO userQuizHistory(history_userId, history_username, questionAll, civilQuestionAll, criminalQuestionAll, pointAll, pointCivilLaw, pointCriminalLaw) VALUES(1, 'top', 0, 0, 0, 0, 0, 0);
-INSERT INTO userQuizHistory(history_userId, history_username, questionAll, civilQuestionAll, criminalQuestionAll, pointAll, pointCivilLaw, pointCriminalLaw) VALUES(2, 'second', 0, 0, 0, 0, 0, 0);
-INSERT INTO userQuizHistory(history_userId, history_username, questionAll, civilQuestionAll, criminalQuestionAll, pointAll, pointCivilLaw, pointCriminalLaw) VALUES(3, 'Mizut452', 0, 0, 0, 0, 0, 0);
+INSERT INTO userQuizHistory(history_userId, history_username, questionAll, civilQuestionAll, criminalQuestionAll, pointAll, pointCivilLaw, pointCriminalLaw) VALUES(1, 'top', 30, 8, 22, 23, 5, 18);
+INSERT INTO userQuizHistory(history_userId, history_username, questionAll, civilQuestionAll, criminalQuestionAll, pointAll, pointCivilLaw, pointCriminalLaw) VALUES(2, 'second', 20, 2, 18, 11, 2, 9);
+INSERT INTO userQuizHistory(history_userId, history_username, questionAll, civilQuestionAll, criminalQuestionAll, pointAll, pointCivilLaw, pointCriminalLaw) VALUES(3, 'Mizut452', 5, 1, 4, 3, 1, 2);
 
 --クイスの問題文と答え
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (1, '信義則は民法の基本である。', 1, '民法の基本の原則である', 'civil');

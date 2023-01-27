@@ -15,11 +15,11 @@ public interface UserQuizHistoryMapper {
     @Select("SELECT * FROM userQuizHistory WHERE history_userId = #{history_userId}")
     UserQuizHistory usersQuizHistoryList(@Param("history_userId") int history_userId);
 
-    @Select("SELECT history_username, pointAll FROM userQuizHistory ORDER BY pointAll DESC LIMIT 0, 5")
+    @Select("SELECT history_username, pointAll FROM userQuizHistory WHERE pointAll > 0 ORDER BY pointAll DESC LIMIT 0, 5")
     List<UserQuizHistory> usersQuizRank();
 
-    @Insert("INSERT INTO userQuizHistory(history_userId) VALUES(#{history_userId})")
-    void insertNewUserQuizHistory(@Param("history_userId") int history_userId);
+    @Insert("INSERT INTO userQuizHistory(history_userId, history_username) VALUES(#{history_userId}, #{history_username})")
+    void insertNewUserQuizHistory(@Param("history_userId") int history_userId, @Param("history_username") String history_username);
 
     @Insert("INSERT INTO userQuizHistory(history_username) VALUES(#{history_username})")
     void insertNewUsernameQuizHistory(@Param("history_username") String history_username);

@@ -35,8 +35,8 @@ public class LoginController {
 
         //成績用のSQL登録
         loginUser = loginUserMapper.findByUsername(loginUser.getUsername());
-        userQuizHistoryMapper.insertNewUserQuizHistory(loginUser.getUserId());
-        userQuizHistoryMapper.insertNewUsernameQuizHistory(loginUser.getUsername());
+        userQuizHistoryMapper.insertNewUserQuizHistory(loginUser.getUserId(), loginUser.getUsername());
+        //userQuizHistoryMapper.insertNewUsernameQuizHistory(loginUser.getUsername(), loginUser.getUserId());
 
 
         return "Login/Complete";

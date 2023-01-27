@@ -46,27 +46,17 @@ public class QuizController {
         List<UserQuizHistory> usersQuizRankList = userQuizHistoryMapper.usersQuizRank();
         UserRank userRank = new UserRank();
 
-        if(usersQuizRankList != null) {
-            userRank.setRank("１位");
+        /*for (int i = 0; i <usersQuizRankList.size(); i++) {
+            if(usersQuizRankList.get(i) != null) {
 
-            /*UserQuizHistory userFirstRank = usersQuizRankList.get(0);
-            UserQuizHistory userSecondRank = usersQuizRankList.get(1);
-            UserQuizHistory userThirdRank = usersQuizRankList.get(2);
-            UserQuizHistory userForthRank = usersQuizRankList.get(3);
-            UserQuizHistory userFifthRank = usersQuizRankList.get(4);*/
+                model.addAttribute("QuizRank", userQuizHistoryMapper.usersQuizRank());
 
-
-
-            /*int firstPoint = userFirstRank.getPointAll();
-            int secondPoint = userSecondRank.getPointAll();
-            int thirdPoint = userThirdRank.getPointAll();
-            int forthPoint = userForthRank.getPointAll();
-            int fifthPoint = userFifthRank.getPointAll();*/
-
+            }*/
             model.addAttribute("QuizRank", userQuizHistoryMapper.usersQuizRank());
-        }
-        return "Quiz/quizStartPage";
-    }
+                return "Quiz/quizStartPage";
+            }
+
+
 
     @GetMapping("/quiz/question")
     public String quizQuestionPrepare(Model model) {
