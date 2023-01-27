@@ -5,7 +5,10 @@ import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Service.CreateAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import Mizut452.learn_law.Model.Entity.LoginUser;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,14 @@ public class LoginController {
     @RequestMapping("/login")
     public String Login() {
         return "Login/login";
+    }
+
+    @GetMapping("/userlist")
+    public String userListPage(Model model,
+                               @AuthenticationPrincipal LoginUser loginUser) {
+        model.addAttribute("UserList", loginUserMapper.selectAll());
+        model.addAttribute("UserId", loginUser.getUserId());
+        return "Login/userList";
     }
 
     @RequestMapping("/createaccount")

@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface LoginUserMapper {
     @Select("SELECT * FROM userList WHERE username = #{username}")
@@ -13,6 +15,9 @@ public interface LoginUserMapper {
 
     @Select("SELECT * FROM userList WHERE userId = #{userId}")
     LoginUser findByUserId(@Param("userId") int userId);
+
+    @Select("SELECT * FROM userList")
+    List<LoginUser> selectAll();
 
     @Insert("INSERT INTO userList (email, username, password, roleName) VALUES(#{email}, #{username}, #{password}, 'ROLE_GENERAL')")
     void create(LoginUser loginUser);

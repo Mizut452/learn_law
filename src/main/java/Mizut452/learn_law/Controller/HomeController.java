@@ -22,7 +22,11 @@ public class HomeController {
     LoginUserMapper loginUserMapper;
 
     @RequestMapping("/")
-    public String homePage() {
+    public String homePage(Model model,
+                           @AuthenticationPrincipal LoginUser loginUser) {
+        if(loginUser != null) {
+            model.addAttribute("UserId", loginUser.getUserId());
+        }
         return "Home/home";
     }
 
