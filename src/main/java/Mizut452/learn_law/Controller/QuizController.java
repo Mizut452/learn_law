@@ -42,7 +42,22 @@ public class QuizController {
 
 
     @RequestMapping("/quiz")
-    public String quizHome() {
+    public String quizHome(Model model) {
+        //クイズランキング上位5位の取得
+        List<UserQuizHistory> usersQuizRankList = userQuizHistoryMapper.usersQuizRank();
+        UserQuizHistory userFirstRank = usersQuizRankList.get(0);
+        UserQuizHistory userSecondRank = usersQuizRankList.get(1);
+        UserQuizHistory userThirdRank = usersQuizRankList.get(2);
+        UserQuizHistory userForthRank = usersQuizRankList.get(3);
+        UserQuizHistory userFifthRank = usersQuizRankList.get(4);
+
+        int firstPoint = userFirstRank.getPointAll();
+        int secondPoint = userSecondRank.getPointAll();
+        int thirdPoint = userThirdRank.getPointAll();
+        int forthPoint = userForthRank.getPointAll();
+        int fifthPoint = userFifthRank.getPointAll();
+
+        model.addAttribute("QuizRank", userQuizHistoryMapper.usersQuizRank());
         return "Quiz/quizStartPage";
     }
 

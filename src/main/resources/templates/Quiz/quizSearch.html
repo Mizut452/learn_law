@@ -38,7 +38,44 @@
     </main>
 
     <div class="left-side">
-        this is right side!
+        <div>クイズランキング</div>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>順位</th>
+                    <th>ユーザー名</th>
+                    <th>正解数</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="quizRank : ${QuizRank}">
+                <td>１位</td>
+                <td th:text="${quizRank.history_username}">該当者なし</td>
+                <td th:text="${quizRank.pointAll}">該当者なし</td>
+            <tr>
+                <td>２位</td>
+                <td th:text="${quizRank.history_username}">該当者なし</td>
+                <td th:text="${quizRank.pointAll}">該当者なし</td>
+            </tr>
+            <tr>
+                <td>３位</td>
+                <td th:text="${quizRank.history_username}">該当者なし</td>
+                <td th:text="${quizRank.pointAll}">該当者なし</td>
+            </tr>
+            <tr>
+                <td>４位</td>
+                <td th:text="${quizRank.history_username}">該当者なし</td>
+                <td th:text="${quizRank.pointAll}">該当者なし</td>
+            </tr>
+            <tr>
+                <td>５位</td>
+                <td th:text="${quizRank.history_username}">該当者なし</td>
+                <td th:text="${quizRank.pointAll}">該当者なし</td>
+            </tr>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
     <aside class="right-side">

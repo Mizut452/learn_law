@@ -20,11 +20,13 @@ CREATE TABLE IF NOT EXISTS userList (
 
 CREATE TABLE IF NOT EXISTS userQuizHistory (
         history_userId INTEGER,
+        history_username VARCHAR(255) NOT NULL,
         questionAll INTEGER default 0,
         civilQuestionAll INTEGER default 0,
         criminalQuestionAll INTEGER default 0,
         pointAll INTEGER default 0,
         pointCivilLaw INTEGER default 0,
         pointCriminalLaw INTEGER default 0,
-        CONSTRAINT fk_userId FOREIGN KEY (history_userId) REFERENCES userList (userId)
+        CONSTRAINT fk_userId FOREIGN KEY (history_userId) REFERENCES userList (userId),
+        CONSTRAINT fk_username FOREIGN KEY (history_username) REFERENCES userList(username)
 );
