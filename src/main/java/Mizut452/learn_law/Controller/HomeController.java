@@ -30,7 +30,7 @@ public class HomeController {
         return "Home/home";
     }
 
-    @GetMapping("/mypage/{history_userId}")
+    @GetMapping("/mypage/{history_userId}/")
     public String myPage(Model model,
                          @PathVariable int history_userId,
                          @AuthenticationPrincipal LoginUser loginUser) {
