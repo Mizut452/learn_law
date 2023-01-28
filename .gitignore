@@ -12,13 +12,14 @@ target/
 .settings
 .springBeans
 .sts4-cache
-
+.properties
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
+*.properties
 
 ### NetBeans ###
 /nbproject/private/
@@ -29,6 +30,8 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+**/sec/main/java/Mizut452/learn_law/Service/ab.java
+**/sec/main/resource/application.properties
 
 ### VS Code ###
 .vscode/
