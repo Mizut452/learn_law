@@ -24,7 +24,8 @@ public class HomeController {
     @RequestMapping("/")
     public String homePage(Model model,
                            @AuthenticationPrincipal LoginUser loginUser) {
-        if(loginUser != null) {
+        if (loginUser != null) {
+            //ログイン中は別のメニューが表示される
             model.addAttribute("UserId", loginUser.getUserId());
         }
         return "Home/home";
