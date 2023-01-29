@@ -25,3 +25,14 @@ INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizC
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (13, 'Ａさんの家にＢさんが荷物を忘れた。その荷物をＣさんが盗んでも犯罪とはならない。', 2, '大犯罪者である。', 'criminal');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (14, '成立要件とは、起訴が行われる要件の事である', 2, '犯罪が成立する要件の事である。', 'criminal');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (15, '人を殴って血が出ると傷害罪である。', 1, 'その通り！', 'criminal');
+
+--判例
+INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number
+                      precedent_subtitle, precedent_overview, precedent_plClaim
+                      , precedent_deClaim, precedent_judgement)
+                      VALUES(1, '窃盗事件？遺失物横領事件？', 'criminal', '昭和３５（う）９２７号'
+                             , '窃盗罪が成立する条件とは？',
+                             '',
+                             '',
+                             '',
+                             '');
