@@ -28,8 +28,8 @@ INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizC
 
 --判例
 INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number,
-                      precedent_subtitle, precedent_overview, precedent_plClaim,
-                       precedent_deClaim, precedent_judgement)
+                      precedent_subtitle, precedent_overview,
+                       precedent_claim, precedent_judgement)
                       VALUES(1, '窃盗事件？遺失物横領事件？', 'criminal', '昭和３５（う）９２７号'
                              , '窃盗罪が成立する条件とは？',
                              '',
@@ -37,8 +37,8 @@ INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precede
                              '',
                              '');
 INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number,
-                      precedent_subtitle, precedent_overview, precedent_plClaim,
-                      precedent_deClaim, precedent_judgement)
+                      precedent_subtitle, precedent_overview,
+                      precedent_claim, precedent_judgement)
                       VALUES(2, '民法', 'civil', '昭和３５（う）９２７号'
                              , '民法が成立する条件とは？',
                              '',
@@ -46,8 +46,8 @@ INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precede
                              '',
                              '');
 INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number,
-                      precedent_subtitle, precedent_overview, precedent_plClaim,
-                       precedent_deClaim, precedent_judgement)
+                      precedent_subtitle, precedent_overview,
+                       precedent_claim, precedent_judgement)
                       VALUES(3, '著作権？', 'copyright', '昭和３５（う）９２７号'
                              , '著作権が成立する条件とは？',
                              '',
@@ -55,10 +55,10 @@ INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precede
                              '',
                              '');
 INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number,
-                      precedent_subtitle, precedent_overview, precedent_plClaim, precedent_deClaim, precedent_judgement)
-                      VALUES(4, 'keihou？遺失物横領事件w？', 'criminal', '昭和３５（う）９２７号'
-                             , '刑法が成立する条件とはw',
-                             '',
+                      precedent_subtitle, precedent_overview, precedent_claim, precedent_judgement)
+                      VALUES(4, 'ASKA事件', 'criminal', '平２９（ワ）２７３７４号'
+                             , 'アーティストがまだ公表していない曲を他人が勝手に公表してしまったら？',
+                             '　被告Xさんは出演していたテレビの放送番組内において、アーティストであるASKAさんの捜索した未発表の楽曲の一部をASKAさんの許可なく番組内で再生した。これに対して、ASKAさんは、Ｘさんが著作権と公表権を侵害したとして損害賠償金3307万円を請求した。',
                              '',
                              '',
                              '');
