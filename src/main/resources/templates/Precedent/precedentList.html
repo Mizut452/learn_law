@@ -27,11 +27,11 @@
 
       <tbody>
           <tr th:each="precedent : ${PrecedentList}">
-            <td th:text="${precedent.}"></td>
-            <td th:text="${precedent.}"></td>
-            <td th:text="${precedent.}"></td>
-            <td th:text="${precedent.}"></td>
-            <td th:text="${precedent.}"></td>
+            <td th:text="${precedent.precedent_id}"></td>
+            <td th:text="${precedent.precedent_title}"></td>
+            <td th:text="${precedent.precedent_subtitle}"></td>
+            <td th:text="${precedent.precedent_number}"></td>
+            <td th:text="${precedent.precedent_category}"></td>
           </tr>
       </tbody>
     </table>

@@ -18,6 +18,9 @@ public interface PrecedentMapper {
     @Select("SELECT * FROM precedent WHERE category = copyright")
     List<Precedent> precedentCopyrightList();
 
+    @Select("SELECT precedent_id, precedent_title, precedent_subtitle, precedent_number, precedent_category")
+    List<Precedent> precedentList();
+
     @Insert("INSERT INTO precedent(precedent_title, precedent_category, precedent_number, " +
             "precedent_subtitle, precedent_overview," +
             " precedent_plClaim, precedent_deClaim, precedent_judgement) " +
