@@ -36,3 +36,30 @@ INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precede
                              '',
                              '',
                              '');
+INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number
+                      precedent_subtitle, precedent_overview, precedent_plClaim
+                      , precedent_deClaim, precedent_judgement)
+                      VALUES(2, '窃盗事件？遺失物横領事件？', 'civil', '昭和３５（う）９２７号'
+                             , '窃盗罪が成立する条件とは？',
+                             '',
+                             '',
+                             '',
+                             '');
+INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number
+                      precedent_subtitle, precedent_overview, precedent_plClaim
+                      , precedent_deClaim, precedent_judgement)
+                      VALUES(3, '窃盗事件？遺失物横領事件？', 'copyright', '昭和３５（う）９２７号'
+                             , '窃盗罪が成立する条件とは？',
+                             '',
+                             '',
+                             '',
+                             '');
+INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number
+                      precedent_subtitle, precedent_overview, precedent_plClaim
+                      , precedent_deClaim, precedent_judgement)
+                      VALUES(4, '窃盗事件？遺失物横領事件w？', 'criminal', '昭和３５（う）９２７号'
+                             , '窃盗罪が成立する条件とはw',
+                             '',
+                             '',
+                             '',
+                             '');
