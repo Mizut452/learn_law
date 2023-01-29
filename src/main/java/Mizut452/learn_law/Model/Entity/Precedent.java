@@ -5,10 +5,11 @@ import lombok.Data;
 @Data
 public class Precedent {
     private int precedent_id;
-    //法律のカテゴリー
-    private String precedent_category;
     //事件名
     private String precedent_title;
+    //法律のカテゴリー
+    private String precedent_category;
+    private String precedent_number;
     //小タイトル
     private String precedent_subtitle;
     //事実の概要

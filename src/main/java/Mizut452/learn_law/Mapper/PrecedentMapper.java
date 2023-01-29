@@ -1,6 +1,7 @@
 package Mizut452.learn_law.Mapper;
 
 import Mizut452.learn_law.Model.Entity.Precedent;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -16,4 +17,12 @@ public interface PrecedentMapper {
 
     @Select("SELECT * FROM precedent WHERE category = copyright")
     List<Precedent> precedentCopyrightList();
+
+    @Insert("INSERT INTO precedent(precedent_title, precedent_category, precedent_number, " +
+            "precedent_subtitle, precedent_overview," +
+            " precedent_plClaim, precedent_deClaim, precedent_judgement) " +
+            "VALUES(#{precedent_title}, #{precedent_category}, #{precedent_number}, " +
+            "#{precedent_subtitle}, #{precedent_overview}, #{precedent_plClaim}," +
+            " #{precedent_deClaim}, #{precedent_judgement})")
+    void createPrecedent(Precedent precedent);
 }

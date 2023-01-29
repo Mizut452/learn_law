@@ -29,3 +29,15 @@ CREATE TABLE IF NOT EXISTS userQuizHistory (
         pointCriminalLaw INTEGER default 0,
         CONSTRAINT fk_userId FOREIGN KEY (history_userId) REFERENCES userList (userId)
 );
+
+CREATE TABLE IF NOT EXISTS precedent (
+        precedent_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        precedent_category VARCHAR(40),
+        precedent_title VARCHAR(120),
+        precedent_number VARCHAR(120),
+        precedent_subtitle VARCHAR(120),
+        precedent_overview VARCHAR(1000),
+        precedent_plClaim VARCHAR(1000),
+        precedent_deClaim VARCHAR(1000),
+        precedent_judgement VARCHAR(1000)
+);

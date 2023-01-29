@@ -45,8 +45,8 @@
 
       <tbody>
       <tr th:each="user : ${UserList}">
-        <td th:text="${user.id}"></td>
-        <td th:text="${user.mailAddress}"></td>
+        <td th:text="${user.userId}"></td>
+        <td th:text="${user.email}"></td>
         <td th:text="${user.username}"></td>
         <td th:text="${user.password}"></td>
         <td th:text="${user.roleName}"></td>
