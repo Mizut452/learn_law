@@ -1,4 +1,4 @@
-package Mizut452.learn_law.Model.Entity;
+package Mizut452.learn_law.Model.Entity.Login;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

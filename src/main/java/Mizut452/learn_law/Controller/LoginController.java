@@ -4,7 +4,7 @@ import Mizut452.learn_law.Mapper.LoginUserMapper;
 import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Service.CreateAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import Mizut452.learn_law.Model.Entity.LoginUser;
+import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

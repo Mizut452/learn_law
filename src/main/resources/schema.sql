@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS precedent (
         precedent_title VARCHAR(120),
         precedent_number VARCHAR(120),
         precedent_subtitle VARCHAR(120),
-        precedent_overview VARCHAR(1000),
-        precedent_claim VARCHAR(1000),
-        precedent_judgement VARCHAR(1000)
+        precedent_overview TEXT,
+        precedent_claim TEXT,
+        precedent_judgement TEXT
 );

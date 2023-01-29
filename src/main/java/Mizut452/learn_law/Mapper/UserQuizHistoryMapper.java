@@ -1,8 +1,7 @@
 package Mizut452.learn_law.Mapper;
 
-import Mizut452.learn_law.Model.Entity.UserQuizHistory;
+import Mizut452.learn_law.Model.Entity.Quiz.UserQuizHistory;
 import org.apache.ibatis.annotations.*;
-import org.springframework.security.core.userdetails.User;
 
 import java.util.List;
 

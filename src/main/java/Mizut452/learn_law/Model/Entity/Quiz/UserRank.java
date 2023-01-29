@@ -1,4 +1,4 @@
-package Mizut452.learn_law.Model.Entity;
+package Mizut452.learn_law.Model.Entity.Quiz;
 
 import lombok.Data;
 

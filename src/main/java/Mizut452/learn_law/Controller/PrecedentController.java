@@ -1,7 +1,7 @@
 package Mizut452.learn_law.Controller;
 
 import Mizut452.learn_law.Mapper.PrecedentMapper;
-import Mizut452.learn_law.Model.Entity.Precedent;
+import Mizut452.learn_law.Model.Entity.Precedent.Precedent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,8 +66,7 @@ public class PrecedentController {
         precedent.setPrecedent_number(precedent.getPrecedent_number());
         precedent.setPrecedent_subtitle(precedent.getPrecedent_subtitle());
         precedent.setPrecedent_overview(precedent.getPrecedent_overview());
-        precedent.setPrecedent_plClaim(precedent.getPrecedent_plClaim());
-        precedent.setPrecedent_deClaim(precedent.getPrecedent_deClaim());
+        precedent.setPrecedent_claim(precedent.getPrecedent_claim());
         precedent.setPrecedent_judgement(precedent.getPrecedent_judgement());
 
         precedentMapper.createPrecedent(precedent);

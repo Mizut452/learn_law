@@ -1,6 +1,6 @@
 package Mizut452.learn_law.Mapper;
 
-import Mizut452.learn_law.Model.Entity.LoginUser;
+import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
