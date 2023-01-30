@@ -47,7 +47,24 @@
 
 <div class="layoutMain">
   <main class="center">
+      ゆるく掲示板
+    <table border="1">
+      <thead>
+        <tr>
+            <th>名前</th>
+            <th>カテゴリー</th>
+            <th>最終更新</th>
+        </tr>
+      </thead>
 
+      <tbody>
+        <tr th:each="lawboard :${LawBoard}">
+            <td th:text="${lawboard.}"></td>
+            <td th:text="${lawboard.}"></td>
+            <td th:text="${lawboard.}"></td>
+        </tr>
+      </tbody>
+    </table>
   </main>
 
   <div class="left-side">

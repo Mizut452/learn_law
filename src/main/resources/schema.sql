@@ -41,3 +41,13 @@ CREATE TABLE IF NOT EXISTS precedent (
         precedent_claim TEXT,
         precedent_judgement TEXT
 );
+
+CREATE TABLE IF NOT EXISTS LawBoard (
+        lawBoard_id INTEGER PRIMARY KEY AUTO_INCREMENT,
+        lawBoard_username VARCHAR(20),
+        lawBoard_category VARCHAR(5),
+        lawBoard_title VARCHAR(20),
+        lawBoard_mainComment VARCHAR(300),
+        lawBoard_comment VARCHAR(300),
+        lawBoard_time VARCHAR(30)
+);

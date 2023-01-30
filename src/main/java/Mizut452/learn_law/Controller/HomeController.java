@@ -60,6 +60,7 @@ public class HomeController {
         model.addAttribute("criminalQuestionAll", criminalQuestionAll);
         model.addAttribute("pointCriminal", pointCriminal);
         model.addAttribute("pointCivil", pointCivil);
+        model.addAttribute("UserId", loginUser.getUserId());
 
         return "Home/myPage";
     }

@@ -1,8 +1,10 @@
 package Mizut452.learn_law.Controller;
 
 import Mizut452.learn_law.Mapper.PrecedentMapper;
+import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import Mizut452.learn_law.Model.Entity.Precedent.Precedent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +32,12 @@ public class PrecedentController {
 
     @GetMapping("/precedent/{category}/{precedent_id}/")
     public String precedentCivil(@PathVariable int precedent_id,
+                                 @AuthenticationPrincipal LoginUser loginUser,
                                  Model model) {
+        if (loginUser != null) {
+            //ログイン中は別のメニューが表示される
+            model.addAttribute("UserId", loginUser.getUserId());
+        }
         Precedent precedent = precedentMapper.findByPrecedentId(precedent_id);
 
         model.addAttribute("Pre_title", precedent.getPrecedent_title());
@@ -45,7 +52,12 @@ public class PrecedentController {
     }
 
     @GetMapping("/precedent/copyright/top")
-    public String precedentCopyrightTop() {
+    public String precedentCopyrightTop(@AuthenticationPrincipal LoginUser loginUser,
+                                        Model model) {
+        if (loginUser != null) {
+            //ログイン中は別のメニューが表示される
+            model.addAttribute("UserId", loginUser.getUserId());
+        }
         return "Precedent/precedent";
     }
 
@@ -55,20 +67,21 @@ public class PrecedentController {
     }
 
     @GetMapping("/precedent/all")
-    public String precedentList(Model model) {
+    public String precedentList(@AuthenticationPrincipal LoginUser loginUser,
+                                Model model) {
+        if (loginUser != null) {
+            //ログイン中は別のメニューが表示される
+            model.addAttribute("UserId", loginUser.getUserId());
+        }
         model.addAttribute("PrecedentList", precedentMapper.precedentList());
         return "Precedent/precedentList";
     }
 
-    @GetMapping("/precedent/ex")
-    public String exPage(Model model) {
-        model.addAttribute("ex", precedentMapper.didi());
-        return "Precedent/didi";
-    }
-
-
     @GetMapping("/precedent/writeprecedent")
-    public String writePrecedentPage() {
+    public String writePrecedentPage(@AuthenticationPrincipal LoginUser loginUser,
+                                     Model model) {
+        model.addAttribute("UserId", loginUser.getUserId());
+
         return "Precedent/writePrecedent";
     }
 

@@ -40,7 +40,12 @@ public class QuizController {
 
 
     @RequestMapping("/quiz")
-    public String quizHome(Model model) {
+    public String quizHome(@AuthenticationPrincipal LoginUser loginUser,
+                           Model model) {
+        if (loginUser != null) {
+            //ログイン中は別のメニューが表示される
+            model.addAttribute("UserId", loginUser.getUserId());
+        }
         //クイズランキング上位5位の取得
         model.addAttribute("QuizRank", userQuizHistoryMapper.usersQuizRank());
                 return "Quiz/quizStartPage";
@@ -94,6 +99,11 @@ public class QuizController {
     public String quizQuestion(@PathVariable int quizId,
                                @AuthenticationPrincipal LoginUser loginUser,
                                Model model) {
+        if (loginUser != null) {
+            //ログイン中は別のメニューが表示される
+            model.addAttribute("UserId", loginUser.getUserId());
+        }
+
         List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
         Quiz quizList = quizAllByQuizId.get(0);
         String quizSentence = quizList.getQuizQuestionSent();
@@ -140,6 +150,10 @@ public class QuizController {
                             @PathVariable int quizId,
                             @ModelAttribute Quiz quiz,
                             @AuthenticationPrincipal LoginUser loginUser) {
+        if (loginUser != null) {
+            //ログイン中は別のメニューが表示される
+            model.addAttribute("UserId", loginUser.getUserId());
+        }
         //クイズの〇、×の確認
         //quizId = listQuestionId.get(questionNumber);
         List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
