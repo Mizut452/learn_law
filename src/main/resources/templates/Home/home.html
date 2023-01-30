@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>quiz</title>
-    <link rel="stylesheet" th:href="@{css/quizLayout.css}">
+    <link rel="stylesheet" th:href="@{css/Home/homeLayout.css}">
 </head>
 
 <body>
@@ -12,7 +12,7 @@
 
     <nav>
         <span sec:authorize="isAnonymous()">
-            <a th:href="@{/login}">ログイン</a>
+            <a th:href="@{/login}">ログイン</a>　　
             <a th:href="@{/createaccount}">新規登録</a>
         </span>
 
@@ -26,25 +26,45 @@
             <a th:href="@{/userlist}">ユーザーリスト</a>
         </span>
     </nav>
+
+    <div>
+        <ul class="menu">
+            <li class="menu-list">
+                <a th:href="@{/}" class="menuList-content">ホーム</a>
+            </li>
+            <li class="menu-list">
+                <a th:href="@{/quiz}" class="menuList-content">クイズ</a>
+            </li>
+            <li class="menu-list">
+                <a th:href="@{/precedent}" class="menuList-content">判例</a>
+            </li>
+            <li>
+                <a th:href="@{/lawboard}">掲示板</a>
+            </li>
+        </ul>
+    </div>
 </header>
 
 <div class="layoutMain">
     <main class="center">
-        このサイトはゆるく法律、刑法について学ぶことができます。
-        クイズでは刑法についてのクイズをすることができます。
-        クイズは申請フォームから申請をし、それが承認されるとあなたが作成したクイズがこのクイズに登場します。
-        おもしろ・有名判例では、少しおかしな、または有名な判例をあげていきます。
-        法律一覧においては気になる法律を調べることができます。
-
+        <strong>～ゆるく法をまなぶサイトについて～</strong><br><br>
+        <span id="main-sentence">
+        このサイトは<u>ゆるく法律について学ぶこと</u>ができます。今は民法、刑法、著作権法の３種類だけですが、この先色々な法律の情報を増やしていきます。<br>
+        クイズでは刑法についての<u>〇×クイズ</u>をすることができます。
+        クイズは申請フォームから申請をし、それが承認されるとあなたが作成したクイズがこのクイズに登場します。<br>
+        判例では、有名な判例などをわかりやすくを解説していきます。
+        掲示板においては雑談、質問など法律について自由に話すことができます。
+        <br><br>
         お堅い法律をこのサイトでゆるく学びましょう！
+        </span>
     </main>
 
     <div class="left-side">
-        this is left side!
+
     </div>
 
     <aside class="right-side">
-        this is right side!
+
     </aside>
 </div>
 </body>
