@@ -3,10 +3,7 @@ package Mizut452.learn_law.Mapper;
 import Mizut452.learn_law.Model.Entity.Precedent.Precedent;
 import Mizut452.learn_law.Model.Entity.Precedent.PrecedentUpdate;
 import Mizut452.learn_law.Model.Entity.Precedent.SubLongPrecedent;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -22,7 +19,10 @@ public interface PrecedentMapper {
     List<Precedent> precedentCopyrightList();
 
     @Select("SELECT * FROM precedent WHERE precedent_id = #{precedent_id}")
-    List<Precedent> findByPrecedentId();
+    Precedent findByPrecedentId(@Param("precedent_id") int precedent_id);
+
+    @Select("SELECT precedent_judgement FROM precedent WHERE precedent_id = 4")
+    String didi();
 
     @Select("SELECT precedent_id, precedent_title, precedent_subtitle, precedent_number, precedent_category FROM precedent")
     List<Precedent> precedentList();

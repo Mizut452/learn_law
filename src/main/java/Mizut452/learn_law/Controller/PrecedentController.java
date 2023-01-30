@@ -23,18 +23,24 @@ public class PrecedentController {
         return "Precedent/precedent";
     }
 
-    @GetMapping("/precedent/criminal/{pre_number}/")
-    public String precedentCriminal(@PathVariable int pre_number) {
-        return "Precedent/precedent";
-    }
-
     @GetMapping("/precedent/civil/top")
     public String precedentCivilTop() {
         return "Precedent/precedent";
     }
 
-    @GetMapping("/precedent/civil/{pre_number}/")
-    public String precedentCivil(@PathVariable int pre_number) {
+    @GetMapping("/precedent/{category}/{precedent_id}/")
+    public String precedentCivil(@PathVariable int precedent_id,
+                                 Model model) {
+        Precedent precedent = precedentMapper.findByPrecedentId(precedent_id);
+
+        model.addAttribute("Pre_title", precedent.getPrecedent_title());
+        model.addAttribute("Pre_category", precedent.getPrecedent_category());
+        model.addAttribute("Pre_number", precedent.getPrecedent_number());
+        model.addAttribute("Pre_subtitle", precedent.getPrecedent_subtitle());
+        model.addAttribute("Pre_overview", precedent.getPrecedent_overview());
+        model.addAttribute("Pre_claim", precedent.getPrecedent_claim());
+        model.addAttribute("Pre_judgement", precedent.getPrecedent_judgement());
+
         return "Precedent/precedent";
     }
 
@@ -53,6 +59,13 @@ public class PrecedentController {
         model.addAttribute("PrecedentList", precedentMapper.precedentList());
         return "Precedent/precedentList";
     }
+
+    @GetMapping("/precedent/ex")
+    public String exPage(Model model) {
+        model.addAttribute("ex", precedentMapper.didi());
+        return "Precedent/didi";
+    }
+
 
     @GetMapping("/precedent/writeprecedent")
     public String writePrecedentPage() {
