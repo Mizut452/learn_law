@@ -8,7 +8,41 @@
 
 <body>
 <header>
-  <a th:href="@{/logout}">ログアウト</a>
+  <span id="Learn_Law"><a th:href="@{/}"><img id="title_pic" th:src="@{images/title.png}"></a></span>
+
+  <nav>
+        <span sec:authorize="isAnonymous()">
+            <a th:href="@{/login}">ログイン</a>　　
+            <a th:href="@{/createaccount}">新規登録</a>
+        </span>
+
+    <span sec:authorize="hasRole('GENERAL')">
+            <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
+            <a th:href="@{/logout}">ログアウト</a>
+        </span>
+    <span sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
+            <a th:href="@{/logout}">ログアウト</a>
+            <a th:href="@{/userlist}">ユーザーリスト</a>
+        </span>
+  </nav>
+
+  <div>
+    <ul class="menu">
+      <li class="menu-list">
+        <a th:href="@{/}" class="menuList-content">ホーム</a>
+      </li>
+      <li class="menu-list">
+        <a th:href="@{/quiz}" class="menuList-content">クイズ</a>
+      </li>
+      <li class="menu-list">
+        <a th:href="@{/precedent}" class="menuList-content">判例</a>
+      </li>
+      <li>
+        <a th:href="@{/lawboard}">掲示板</a>
+      </li>
+    </ul>
+  </div>
 </header>
 
 <div class="layoutMain">
