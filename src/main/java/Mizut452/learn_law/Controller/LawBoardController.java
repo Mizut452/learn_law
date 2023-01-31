@@ -1,6 +1,9 @@
 package Mizut452.learn_law.Controller;
 
+import Mizut452.learn_law.Mapper.LawBoardMapper;
+import Mizut452.learn_law.Model.Entity.LawBoard.LawBoard;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +21,9 @@ public class LawBoardController {
             model.addAttribute("UserId", loginUser.getUserId());
         }
 
+        LawBoard lawBoard = lawBoardMapper.lawBoardAll();
 
+        model.addAttribute("LawBoard", lawBoard);
 
         return "LawBoard/lawboard";
     }
@@ -33,4 +38,7 @@ public class LawBoardController {
 
         return "LawBoard/lawboard_thread";
     }
+
+    @Autowired
+    LawBoardMapper lawBoardMapper;
 }

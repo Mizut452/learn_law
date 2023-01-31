@@ -51,3 +51,10 @@ CREATE TABLE IF NOT EXISTS LawBoard (
         lawBoard_comment VARCHAR(300),
         lawBoard_time VARCHAR(30)
 );
+
+CREATE TABLE IF NOT EXISTS LawBoard_comment (
+        boardParent_id INTEGER,
+        comment_id INTEGER AUTO_INCREMENT,
+        comment VARCHAR(300),
+        comment_time VARCHAR(30)
+);

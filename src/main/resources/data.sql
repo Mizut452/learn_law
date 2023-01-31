@@ -26,6 +26,9 @@ INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizC
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (14, '成立要件とは、起訴が行われる要件の事である', 2, '犯罪が成立する要件の事である。', 'criminal');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (15, '人を殴って血が出ると傷害罪である。', 1, 'その通り！', 'criminal');
 
+--掲示板
+INSERT INTO LawBoard(lawBoard_id, lawBoard_username, lawBoard_category, lawBoard_title, lawBoard_mainComment, lawBoard_comment, lawBoard_time) VALUES (1, 'top', 'criminal', '類推適用禁止について教えてください！', '類推適用について教えていただきたいです！', '', CURRENT_TIMESTAMP);
+
 --判例
 INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number,
                       precedent_subtitle, precedent_overview,
