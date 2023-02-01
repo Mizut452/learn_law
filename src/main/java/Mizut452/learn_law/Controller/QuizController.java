@@ -82,26 +82,9 @@ public class QuizController {
                             @ModelAttribute Quiz quiz,
                             @AuthenticationPrincipal LoginUser loginUser) {
         quizQuestionService.addLoginUserMenu(loginUser, model);
-        //クイズの〇、×の確認
-        //quizId = listQuestionId.get(questionNumber);
-        List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
+        quizQuestionService.verificationAnswer(quizId, model, quiz);
 
-        Quiz quizList = quizAllByQuizId.get(0);
-        int questionAnswer = quizList.getQuizRightOrBad();
 
-        //クイズの解説文の取り出し
-        String questionCommentary = quizList.getQuizCommentary();
-        model.addAttribute("QuestionCommentary", questionCommentary);
-
-        //送信された〇、×の確認
-        quiz.setQuizUsersAnswer(quiz.getQuizUsersAnswer());
-        quizList.setQuizUsersAnswer(quizList.getQuizUsersAnswer());
-        int rightOrBad = quiz.getQuizUsersAnswer();
-
-        questionNumber++;
-        int nextQuizId = listQuestionId.get(questionNumber);
-        model.addAttribute("quizId", quizId);
-        model.addAttribute("nextQuizId", nextQuizId);
 
         //正解の場合
         if (questionAnswer == rightOrBad) {

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,8 @@ public class QuizQuestionService {
     private int civilQuestionNo = 0;
     //挑戦した刑法問題数
     private int criminalQuestionNo = 0;
+    private int questionAnswer = 0;
+    private int rightOrBad = 0;
 
     public void addLoginUserMenu(@AuthenticationPrincipal LoginUser loginUser,
                                  Model model) {
@@ -133,34 +136,37 @@ public class QuizQuestionService {
         model.addAttribute("userPoint", userPoint+1);
     }
 
-    public void quizQuestion(@AuthenticationPrincipal LoginUser loginUser,
-                             Model model) {
-        //クイズの問題がなくなったとき。
-        if (questionNumber + 1 == questionLength) {
-            if (loginUser != null) {
+    public void verificationAnswer(int quizId,
+                                   Model model,
+                                   @ModelAttribute Quiz quiz) {
+        //クイズの答えの確認
+        List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
 
-                UserQuizHistory userQuizHistory = userQuizHistoryMapper.quizHistoryMapperList(loginUser.getUserId());
+        Quiz quizList = quizAllByQuizId.get(0);
+        questionAnswer = quizList.getQuizRightOrBad();
 
-                //プレイヤーが挑戦した問題数と正解数を足す
-                int pointAll = userQuizHistory.getPointAll();
-                int questionAll = userQuizHistory.getQuestionAll();
-                int questionCivilAll = userQuizHistory.getCivilQuestionAll();
-                int questionCriminalAll = userQuizHistory.getCriminalQuestionAll();
-                int pointCivilLaw = userQuizHistory.getPointCivilLaw();
-                int pointCriminalLaw = userQuizHistory.getPointCriminalLaw();
+        //クイズの解説文の取り出し
+        String questionCommentary = quizList.getQuizCommentary();
+        model.addAttribute("QuestionCommentary", questionCommentary);
 
-                userQuizHistory.setPointAll(pointAll + userPoint + 1);
-                userQuizHistory.setQuestionAll(questionAll + questionNumber + 1);
-                userQuizHistory.setCivilQuestionAll(questionCivilAll + civilQuestionNo + 1);
-                userQuizHistory.setCriminalQuestionAll(questionCriminalAll + criminalQuestionNo + 1);
-                userQuizHistory.setPointCivilLaw(pointCivilLaw + userCivilPoint + 1);
-                userQuizHistory.setPointCriminalLaw(pointCriminalLaw + userCriminalPoint + 1);
+        //送信された〇、×の確認
+        quiz.setQuizUsersAnswer(quiz.getQuizUsersAnswer());
+        quizList.setQuizUsersAnswer(quizList.getQuizUsersAnswer());
+        rightOrBad = quiz.getQuizUsersAnswer();
 
-                //insert文
-                userQuizHistoryMapper.updateUserQuizHistory(userQuizHistory);
+        questionNumber++;
+        int nextQuizId = listQuestionId.get(questionNumber);
+        model.addAttribute("quizId", quizId);
+        model.addAttribute("nextQuizId", nextQuizId);
+    }
+
+    public void TrueOrFalseCivil() {
+        if(questionAnswer == rightOrBad) {
+            if(quizMapper.selectCategory(quizId).equals("民法")) {
+                userPoint++;
+                userCivilPoint++;
+                civilQuestionNo++;
             }
-            model.addAttribute("QuestionNumber", questionNumber + 1);
-            model.addAttribute("userPoint", userPoint + 1);
         }
     }
 }
