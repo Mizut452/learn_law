@@ -1,0 +1,15 @@
+#explain {
+    font-size: 30px;
+}
+
+#preMenu a {
+    text-decoration: none;
+    color: gray;
+    font-size: 18px;
+}
+
+#preMenu a:hover {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
