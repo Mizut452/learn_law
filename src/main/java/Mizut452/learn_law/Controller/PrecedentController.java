@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -102,7 +99,7 @@ public class PrecedentController {
     }
 
     @PostMapping("/precedent/create")
-    public String precedentCreate() {
+    public String precedentCreate(@ModelAttribute Precedent precedent) {
         precedent.setPrecedent_title(precedent.getPrecedent_title());
         precedent.setPrecedent_category(precedent.getPrecedent_category());
         precedent.setPrecedent_number(precedent.getPrecedent_number());

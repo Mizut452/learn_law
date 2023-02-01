@@ -47,8 +47,8 @@
 
 <div class="layoutMain">
   <main class="center">
-    <div>判例を書く</div>
-    <form th:action="@{/precedent/create}" th:method="@{post}">
+    <h3>判例を書く</h3>
+      <form th:action="@{/precedent/create}" th:method="@{post}">
       <label>事件名：</label>
       <input type="text" name="precedent_title"><br>
       <label>カテゴリー：</label>
@@ -60,7 +60,7 @@
       <label>事件番号</label>
       <input type="text" name="precedent_number" placeholder="令和〇(〇)0000"><br>
       <label>小タイトル</label>
-      <input type="text" name="precedent_subtitle" />
+      <input type="text" name="precedent_subtitle" /><br>
       <label>事実の概要：</label>
       <textarea name="precedent_overview"></textarea><br>
       <label>両者の主張：</label>
@@ -74,13 +74,13 @@
 
   <div class="left-side">
     <a th:href="@{/precedent}">判例とは？</a><br>
-    <a href="@{/precedent/all}">判例一覧</a><br>
+    <a th:href="@{/precedent/all}">判例一覧</a><br>
     <div>刑法</div>
     <a th:href="@{/precedent/criminal/top}">刑法の判例を読む</a>
     <div>民法</div>
     <a th:href="@{/precedent/civil/top}">民法の判例を読む</a>
     <div>著作権法</div>
-    <a th:href="@{/precedent/copyright/top}">著作権についての判例を読む</a><br>
+    <a th:href="@{/precedent/copyright/top}">著作権法の判例を読む</a><br>
 
 
     <div sec:authorize="hasRole('ADMIN')">

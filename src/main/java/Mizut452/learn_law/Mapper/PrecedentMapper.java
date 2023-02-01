@@ -37,8 +37,7 @@ public interface PrecedentMapper {
             "precedent_subtitle, precedent_overview," +
             " precedent_claim, precedent_judgement) " +
             "VALUES(#{precedent_title}, #{precedent_category}, #{precedent_number}, " +
-            "#{precedent_subtitle}, #{precedent_overview}, #{precedent_plClaim}," +
-            " #{precedent_deClaim}, #{precedent_judgement})")
+            "#{precedent_subtitle}, #{precedent_overview}, #{precedent_claim}, #{precedent_judgement})")
     void createPrecedent(Precedent precedent);
 
     @Update("UPDATE precedent SET precedent_overview = #{precedent_overview}, precedent_claim = #{precedent_claim}, precedent_judgement = #{precedent_judgement} where precedent_id = #{precedent_id}")
