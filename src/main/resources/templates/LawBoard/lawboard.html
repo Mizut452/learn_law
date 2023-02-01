@@ -52,14 +52,16 @@
       <thead>
         <tr>
             <th>名前</th>
+            <th>作成者名</th>
             <th>カテゴリー</th>
-            <th>最終更新</th>
+            <th>作成日</th>
         </tr>
       </thead>
 
       <tbody>
         <tr th:each="lawboard :${LawBoard}">
             <td><a th:href="@{/lawboard/{lawboard_id}/(lawboard_id = ${lawboard.lawBoard_id})}"><p th:text="${lawboard.lawBoard_title}"></p></a></td>
+            <td th:text="${lawboard.lawBoard_username}"></td>
             <td th:text="${lawboard.lawBoard_category}"></td>
             <td th:text="${lawboard.lawBoard_time}"></td>
             <span sec:authorize="hasRole('ADMIN')">

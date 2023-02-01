@@ -8,4 +8,5 @@ public class LawBoardComment {
     private int comment_id;
     private String comment;
     private String comment_time;
+    private String comment_username;
 }

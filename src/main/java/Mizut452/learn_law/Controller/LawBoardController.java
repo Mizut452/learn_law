@@ -8,10 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.List;
 
 @Controller
@@ -50,8 +49,26 @@ public class LawBoardController {
         model.addAttribute("LawUsername", lawBoard.getLawBoard_username());
         model.addAttribute("LawTime", lawBoard.getLawBoard_time());
         model.addAttribute("LawComment", commentList);
+        model.addAttribute("LawBoard_ID", lawboard_id);
 
         return "LawBoard/lawboard_thread";
+    }
+
+    @PostMapping("/lawboard/{lawboard_id}/createcomment/")
+    public String createComment(@PathVariable int lawboard_id,
+                                @AuthenticationPrincipal LoginUser loginUser,
+                                @ModelAttribute LawBoardComment lawBoardComment) {
+        System.out.println(loginUser.getUsername());
+        System.out.println(lawboard_id);
+
+        lawBoardComment.setBoardParent_id(lawboard_id);
+        lawBoardComment.setComment_username(loginUser.getUsername());
+        lawBoardComment.setComment(lawBoardComment.getComment());
+
+        lawBoardMapper.insertComment(lawBoardComment);
+
+
+        return "redirect:/lawboard/" + lawboard_id +"/";
     }
 
     @Autowired

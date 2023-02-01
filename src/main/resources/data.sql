@@ -30,8 +30,8 @@ INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizC
 INSERT INTO LawBoard(lawBoard_id, lawBoard_username, lawBoard_category, lawBoard_title, lawBoard_mainComment, lawBoard_time) VALUES (1, 'top', '刑法', '類推適用禁止について教えてください！', '類推適用について教えていただきたいです！', '2023-02-01 13:00');
 
 --掲示板コメント
-INSERT INTO LawBoard_comment (boardParent_id, comment_id, comment, comment_time) VALUES (1, 1, 'どういったことでお困りでしょうか？', '2023-02-01 13:06');
-INSERT INTO LawBoard_comment (boardParent_id, comment_id, comment, comment_time) VALUES (1, 2, '類推適用の禁止の範囲がわかりません。　例えば、199条の殺人罪において猿が範囲に入らないのはなぜなのでしょうか', '2023-02-01 2023-02-1 13:21');
+INSERT INTO LawBoard_comment (boardParent_id, comment_id, comment, comment_time, comment_username) VALUES (1, 1, 'どういったことでお困りでしょうか？', '2023-02-01 13:06', 'second');
+INSERT INTO LawBoard_comment (boardParent_id, comment_id, comment, comment_time, comment_username) VALUES (1, 2, '類推適用の禁止の範囲がわかりません。　例えば、199条の殺人罪において猿が範囲に入らないのはなぜなのでしょうか', '2023-02-01 2023-02-1 13:21', 'top');
 
 --判例
 INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number,

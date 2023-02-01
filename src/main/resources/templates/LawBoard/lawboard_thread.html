@@ -51,7 +51,18 @@
       ユーザー名：<span th:text="${LawUsername}"></span><br>
       <p th:text="${LawMainComment}"></p>
       <div th:each="comment : ${LawComment}">
+          <p th:text="${comment.comment_username}"></p>
+          <p th:text="${comment.comment_time}"></p>
           <p th:text="${comment.comment}"></p>
+      </div>
+
+      <div sec:authorize="hasRole('ADMIN') or hasRole('GENERAL')">
+      コメントを書く
+          <form th:action="@{/lawboard/{lawboard_id}/createcomment/(lawboard_id = ${LawBoard_ID})}" th:method=@{post}>
+            <label>コメント内容</label>
+              <textarea name="comment" placeholder="300文字以内でお願いします"></textarea>
+              <button type="submit">送信</button>
+          </form>
       </div>
   </main>
 

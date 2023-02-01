@@ -58,5 +58,6 @@ CREATE TABLE IF NOT EXISTS LawBoard_comment (
         boardParent_id INTEGER,
         comment_id INTEGER AUTO_INCREMENT PRIMARY KEY,
         comment VARCHAR(300),
-        comment_time VARCHAR(30)
+        comment_time VARCHAR(30),
+        comment_username VARCHAR(20)
 );
