@@ -178,7 +178,7 @@ public class QuizController {
         //正解の場合
         if (questionAnswer == rightOrBad) {
             //正解ポイント、民法問題ポイント、民法正解ポイントを増やす
-            if(quizMapper.selectCategory(quizId).equals("civil")){
+            if(quizMapper.selectCategory(quizId).equals("民法")){
                 userPoint++;
                 userCivilPoint++;
                 civilQuestionNo++;
@@ -186,7 +186,7 @@ public class QuizController {
                 return "Quiz/quizRightPage";
             }
             //正解ポイント、刑法問題ポイント、刑法正解ポイントを増やす
-            if(quizMapper.selectCategory(quizId).equals("criminal")) {
+            if(quizMapper.selectCategory(quizId).equals("刑法")) {
                 userPoint++;
                 userCriminalPoint++;
                 criminalQuestionNo++;
@@ -198,13 +198,13 @@ public class QuizController {
         //不正解の場合
         else {
             //正解ポイントは加算せず、民法問題ポイントのみを加算
-            if(quizMapper.selectCategory(quizId).equals("civil")) {
+            if(quizMapper.selectCategory(quizId).equals("民法")) {
                 civilQuestionNo++;
 
                 return "Quiz/quizBadPage";
             }
             //正解ポイントは加算せず、刑法問題ポイントのみを加算
-            if(quizMapper.selectCategory(quizId).equals("criminal")) {
+            if(quizMapper.selectCategory(quizId).equals("刑法")) {
                 criminalQuestionNo++;
 
                 return "Quiz/quizBadPage";
