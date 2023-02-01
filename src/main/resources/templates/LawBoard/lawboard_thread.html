@@ -47,7 +47,10 @@
 
 <div class="layoutMain">
   <main class="center">
-
+        スレッド
+      <div th:each="comment : ${LawComment}">
+        <p th:text="${comment.comment}"></p>
+      </div>
   </main>
 
   <div class="left-side">

@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS LawBoard_comment;
+DROP TABLE IF EXISTS LawBoard;
 DROP TABLE IF EXISTS precedent;
 DROP TABLE IF EXISTS userQuizHistory;
 DROP TABLE IF EXISTS quiz;
@@ -33,7 +35,7 @@ CREATE TABLE IF NOT EXISTS userQuizHistory (
 
 CREATE TABLE IF NOT EXISTS precedent (
         precedent_id INTEGER PRIMARY KEY AUTO_INCREMENT,
-        precedent_category VARCHAR(40),
+        precedent_category VARCHAR(255),
         precedent_title VARCHAR(120),
         precedent_number VARCHAR(120),
         precedent_subtitle VARCHAR(120),
@@ -45,8 +47,8 @@ CREATE TABLE IF NOT EXISTS precedent (
 CREATE TABLE IF NOT EXISTS LawBoard (
         lawBoard_id INTEGER PRIMARY KEY AUTO_INCREMENT,
         lawBoard_username VARCHAR(20),
-        lawBoard_category VARCHAR(5),
-        lawBoard_title VARCHAR(20),
+        lawBoard_category VARCHAR(255),
+        lawBoard_title VARCHAR(255),
         lawBoard_mainComment VARCHAR(300),
         lawBoard_comment VARCHAR(300),
         lawBoard_time VARCHAR(30)
@@ -54,7 +56,7 @@ CREATE TABLE IF NOT EXISTS LawBoard (
 
 CREATE TABLE IF NOT EXISTS LawBoard_comment (
         boardParent_id INTEGER,
-        comment_id INTEGER AUTO_INCREMENT,
+        comment_id INTEGER AUTO_INCREMENT PRIMARY KEY,
         comment VARCHAR(300),
         comment_time VARCHAR(30)
 );

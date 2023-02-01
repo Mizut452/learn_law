@@ -26,8 +26,12 @@ INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizC
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (14, '成立要件とは、起訴が行われる要件の事である', 2, '犯罪が成立する要件の事である。', 'criminal');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (15, '人を殴って血が出ると傷害罪である。', 1, 'その通り！', 'criminal');
 
---掲示板
-INSERT INTO LawBoard(lawBoard_id, lawBoard_username, lawBoard_category, lawBoard_title, lawBoard_mainComment, lawBoard_comment, lawBoard_time) VALUES (1, 'top', 'criminal', '類推適用禁止について教えてください！', '類推適用について教えていただきたいです！', '', CURRENT_TIMESTAMP);
+--掲示板表題
+INSERT INTO LawBoard(lawBoard_id, lawBoard_username, lawBoard_category, lawBoard_title, lawBoard_mainComment, lawBoard_time) VALUES (1, 'top', '刑法', '類推適用禁止について教えてください！', '類推適用について教えていただきたいです！', '2023-02-01 13:00');
+
+--掲示板コメント
+INSERT INTO LawBoard_comment (boardParent_id, comment_id, comment, comment_time) VALUES (1, 1, 'どういったことでお困りでしょうか？', '2023-02-01 13:06');
+INSERT INTO LawBoard_comment (boardParent_id, comment_id, comment, comment_time) VALUES (1, 2, '類推適用の禁止の範囲がわかりません。　例えば、199条の殺人罪において猿が範囲に入らないのはなぜなのでしょうか', '2023-02-01 2023-02-1 13:21');
 
 --判例
 INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number,
