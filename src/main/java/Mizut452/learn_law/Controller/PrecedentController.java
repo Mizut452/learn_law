@@ -82,22 +82,6 @@ public class PrecedentController {
 
         return "Precedent/precedent";
     }
-
-    @GetMapping("/precedent/copyright/top")
-    public String precedentCopyrightTop(@AuthenticationPrincipal LoginUser loginUser,
-                                        Model model) {
-        if (loginUser != null) {
-            //ログイン中は別のメニューが表示される
-            model.addAttribute("UserId", loginUser.getUserId());
-        }
-        return "Precedent/precedentCopyright";
-    }
-
-    @GetMapping("/precedent/copyright/{pre_number}/")
-    public String precedentCopyright(@PathVariable int pre_number) {
-        return "Precedent/precedent";
-    }
-
     @GetMapping("/precedent/all")
     public String precedentList(@AuthenticationPrincipal LoginUser loginUser,
                                 Model model) {

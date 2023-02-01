@@ -62,7 +62,7 @@
 
       <tbody>
           <tr th:each="precedent : ${PrecedentList}">
-            <td><a th:href="@{/precedent/{precedent_id}/(precedent_id = ${precedent.precedent_id})}"><p th:text="${lawboard.lawboard_title}"></p></a></td>
+            <td><a th:href="@{/precedent/{precedent_id}/(precedent_id = ${precedent.precedent_id})}"><p th:text="${precedent.precedent_title}"></p></a></td>
             <td th:text="${precedent.precedent_title}"></td>
             <td th:text="${precedent.precedent_subtitle}"></td>
             <td th:text="${precedent.precedent_number}"></td>
@@ -74,7 +74,7 @@
 
   <div class="left-side">
     <span>
-      <a th:href="@{/precedent}">判例とは？</a>
+      <a th:href="@{/precedent}">判例とは？</a><br>
       <p>判例一覧</p>
         <div>刑法</div>
       <a th:href="@{/precedent/criminal/top}">刑法の判例を読む</a>
@@ -83,7 +83,7 @@
           <div>著作権法</div>
       <a th:href="@{/precedent/copyright/top}">著作権についての判例を読む</a><br>
       <div sec:authorize="hasRole('ADMIN')">
-        <a th:href="@{/precedent/create}">判例を書く</a>
+        <a th:href="@{/precedent/writeprecedent}">判例を書く</a>
       </div>
     </span>
   </div>
