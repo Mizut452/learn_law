@@ -45,7 +45,8 @@ public class LawBoardController {
         }
 
         model.addAttribute("LawTitle", lawBoard.getLawBoard_title());
-        model.addAttribute("LawMainComment", lawBoard.getLawBoard_category());
+        model.addAttribute("LawCategory", lawBoard.getLawBoard_category());
+        model.addAttribute("LawMainComment", lawBoard.getLawBoard_mainComment());
         model.addAttribute("LawUsername", lawBoard.getLawBoard_username());
         model.addAttribute("LawTime", lawBoard.getLawBoard_time());
         model.addAttribute("LawComment", commentList);

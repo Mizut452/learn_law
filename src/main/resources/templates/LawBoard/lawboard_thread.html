@@ -47,9 +47,11 @@
 
 <div class="layoutMain">
   <main class="center">
-        スレッド
+      <span th:text="${LawTitle}"></span>　　カテゴリー：<span th:text="${LawCategory}"></span>　　時間：<span th:text="${LawTime}"></span><br>
+      ユーザー名：<span th:text="${LawUsername}"></span><br>
+      <p th:text="${LawMainComment}"></p>
       <div th:each="comment : ${LawComment}">
-        <p th:text="${comment.comment}"></p>
+          <p th:text="${comment.comment}"></p>
       </div>
   </main>
 
