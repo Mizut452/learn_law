@@ -1,0 +1,30 @@
+#bad {
+    color: royalblue;
+    font-size: 30px;
+}
+
+#good {
+    color: darkorange;
+    font-size: 30px;
+}
+
+#result {
+    color: crimson;
+    font-size: 30px;
+}
+
+.quizResult {
+    font-size: 20px;
+}
+
+.quizCommentaryButton a{
+    font-size: 18px;
+    color: gray;
+    text-decoration: none;
+}
+
+.quizCommentaryButton a:hover {
+    color: darkgreen;
+    text-decoration: none;
+    font-weight: bold;
+}

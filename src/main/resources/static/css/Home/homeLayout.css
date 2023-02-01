@@ -6,7 +6,8 @@
 .layoutMain {
     display: flex;
     margin: 0 auto;
-    min-height: 100%;
+    min-height: 600px;
+
 }
 
 nav {
@@ -70,18 +71,18 @@ strong {
     order: 2;
 }
 
-.left-side{
+.left-side {
   width: 200px;
   margin: 0 auto;
   padding: 10px;
   order: 1;
-  background-color: white;
+  background-color: #B0C6C3;
 }
 
-.right-side{
+.right-side {
     width: 200px;
     margin: 0 auto;
     padding: 10px;
     order: 3;
-    background-color: white;
+    background-color: #B0C6C3;
   }
