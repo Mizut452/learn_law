@@ -68,7 +68,7 @@ public class LawBoardController {
         lawBoardMapper.insertComment(lawBoardComment);
 
 
-        return "redirect:/lawboard/" + lawboard_id +"/";
+        return "redirect:/lawboard/" + lawboard_id + "/";
     }
 
     @Autowired

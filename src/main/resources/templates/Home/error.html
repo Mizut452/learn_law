@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/Home/homeLayout.css}">
 </head>
 <body>
 <header>
-    <span id="Learn_Law"><a th:href="@{/}"><img id="title_pic" th:src="@{images/title.png}"></a></span>
+    <span id="Learn_Law"><a th:href="@{/}"><img id="title_pic" th:src="@{/images/title.png}"></a></span>
 
     <nav>
         <span sec:authorize="isAnonymous()">
