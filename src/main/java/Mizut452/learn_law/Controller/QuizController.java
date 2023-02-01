@@ -5,6 +5,7 @@ import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import Mizut452.learn_law.Model.Entity.Quiz.Quiz;
 import Mizut452.learn_law.Model.Entity.Quiz.UserQuizHistory;
+import Mizut452.learn_law.Service.QuizQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,9 @@ public class QuizController {
 
     @Autowired
     UserQuizHistoryMapper userQuizHistoryMapper;
+
+    @Autowired
+    QuizQuestionService quizQuestionService;
 
     private List<Integer> listQuestionId = new ArrayList<>();
     //問題数
@@ -42,12 +46,11 @@ public class QuizController {
     @RequestMapping("/quiz")
     public String quizHome(@AuthenticationPrincipal LoginUser loginUser,
                            Model model) {
-        if (loginUser != null) {
-            //ログイン中は別のメニューが表示される
-            model.addAttribute("UserId", loginUser.getUserId());
-        }
+
+        quizQuestionService.addLoginUserMenu(loginUser, model);
+
         //クイズランキング上位5位の取得
-        model.addAttribute("QuizRank", userQuizHistoryMapper.usersQuizRank());
+        quizQuestionService.quizRanking(model);
                 return "Quiz/quizStartPage";
             }
 
@@ -55,42 +58,7 @@ public class QuizController {
 
     @GetMapping("/quiz/question")
     public String quizQuestionPrepare(Model model) {
-        //初期化
-        listQuestionId = new ArrayList<>();
-        questionNumber = 0;
-        userPoint = 0;
-        userCriminalPoint = 0;
-        userCivilPoint = 0;
-        civilQuestionNo = 0;
-        criminalQuestionNo = 0;
-        quizId = 0;
-
-        //出題する問題を選ぶ（questionIdを生成する）
-        Random random = new Random();
-        questionLength = 10;
-        int quizIdAll = quizMapper.selectQuizIdAll().size();
-
-        //for文によってquestionLength個の乱数を生成する。
-        for (int i = 0; i < questionLength;) {
-            //1~10が乱数
-            int randomInt = random.nextInt(quizIdAll) + 1;
-            if (i == 0) {
-                listQuestionId.add(randomInt);
-                i++;
-            } else {
-                int count = 0;
-                for(int c : listQuestionId) {
-                    if (c == randomInt) {
-                        count++;
-                    }
-                }
-                if (count == 0) {
-                    listQuestionId.add(randomInt);
-                    i++;
-                }
-            }
-        }
-        quizId = listQuestionId.get(questionNumber);
+        int quizId = quizQuestionService.questionPrepare();
 
         return "redirect:/quiz/question/" + quizId + "/";
     }
@@ -99,47 +67,10 @@ public class QuizController {
     public String quizQuestion(@PathVariable int quizId,
                                @AuthenticationPrincipal LoginUser loginUser,
                                Model model) {
-        if (loginUser != null) {
-            //ログイン中は別のメニューが表示される
-            model.addAttribute("UserId", loginUser.getUserId());
-        }
-
-        List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
-        Quiz quizList = quizAllByQuizId.get(0);
-        String quizSentence = quizList.getQuizQuestionSent();
-
-        //クイズの問題がなくなったとき。
-        if (questionNumber + 1 == questionLength) {
-            if (loginUser != null) {
-
-                UserQuizHistory userQuizHistory = userQuizHistoryMapper.quizHistoryMapperList(loginUser.getUserId());
-
-                //プレイヤーが挑戦した問題数と正解数を足す
-                int pointAll = userQuizHistory.getPointAll();
-                int questionAll = userQuizHistory.getQuestionAll();
-                int questionCivilAll = userQuizHistory.getCivilQuestionAll();
-                int questionCriminalAll = userQuizHistory.getCriminalQuestionAll();
-                int pointCivilLaw = userQuizHistory.getPointCivilLaw();
-                int pointCriminalLaw = userQuizHistory.getPointCriminalLaw();
-
-                userQuizHistory.setPointAll(pointAll + userPoint + 1);
-                userQuizHistory.setQuestionAll(questionAll + questionNumber + 1);
-                userQuizHistory.setCivilQuestionAll(questionCivilAll + civilQuestionNo + 1);
-                userQuizHistory.setCriminalQuestionAll(questionCriminalAll + criminalQuestionNo + 1);
-                userQuizHistory.setPointCivilLaw(pointCivilLaw + userCivilPoint + 1);
-                userQuizHistory.setPointCriminalLaw(pointCriminalLaw + userCriminalPoint + 1);
-
-                //insert文
-                userQuizHistoryMapper.updateUserQuizHistory(userQuizHistory);
-            }
-            model.addAttribute("QuestionNumber", questionNumber + 1);
-            model.addAttribute("userPoint", userPoint + 1);
-            return "Quiz/quizResult";
-        }
-
-        model.addAttribute("QuestionNumber", questionNumber + 1);
-        model.addAttribute("QuestionSentence", quizSentence);
-        model.addAttribute("quizId", quizId);
+        quizQuestionService.addLoginUserMenu(loginUser, model);
+        quizQuestionService.getQuizQuestionSent(quizId, model);
+        quizQuestionService.goFinishQuiz(loginUser);
+        quizQuestionService.plusUserPandQNumber(model);
 
         return "Quiz/quizQuestionPage";
 
@@ -150,10 +81,7 @@ public class QuizController {
                             @PathVariable int quizId,
                             @ModelAttribute Quiz quiz,
                             @AuthenticationPrincipal LoginUser loginUser) {
-        if (loginUser != null) {
-            //ログイン中は別のメニューが表示される
-            model.addAttribute("UserId", loginUser.getUserId());
-        }
+        quizQuestionService.addLoginUserMenu(loginUser, model);
         //クイズの〇、×の確認
         //quizId = listQuestionId.get(questionNumber);
         List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
