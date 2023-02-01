@@ -10,21 +10,21 @@ INSERT INTO userQuizHistory(history_userId, history_username, questionAll, civil
 INSERT INTO userQuizHistory(history_userId, history_username, questionAll, civilQuestionAll, criminalQuestionAll, pointAll, pointCivilLaw, pointCriminalLaw) VALUES(3, 'Mizut452', 5, 1, 4, 3, 1, 2);
 
 --クイスの問題文と答え
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (1, '信義則は民法の基本である。', 1, '民法の基本の原則である', 'civil');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (2, '類推適用の原則は民法の基本の原則である。', 2, '民法の基本ではない', 'civil');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (3, '類推適用の原則とは、刑罰には時効を適用させなければならないという原則である。', 2, '類推適用の原則とは、刑法の条文を拡大解釈などをしてはならないという原則です。例えば殺人罪の成立要件は「人を殺す」ことであるが、それを拡大解釈して猿を殺したときにも殺人罪を適用させるのは類推適用になる。', 'criminal');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (4, '刑法199条とは殺人罪である', 1, 'その通りであり、刑法199条は殺人罪について規定した法律である。', 'criminal');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (5, 'ショッピングセンターの客が忘れた荷物は、刑法上、その荷物は持ち主なしになる', 2, 'その荷物はショッピングセンターの荷物になる。', 'criminal');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (6, '横領は窃盗罪の中の１つである。', 2, '横領罪と窃盗罪はまったく異なる罪である。', 'criminal');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (7, '刑法上、遺言　この感じの読みは「いごん」である。', 1, 'いごんである。ゆいごんではない。', 'criminal');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (8, '刑法上、一月　この漢字の読みは「いちげつ」である。', 1, 'いちげつと読む。いっかげつ、いちがつではない。', 'criminal');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (9, '刑法を英語で書くとcivil lawである', 2, 'criminal lawである。', 'criminal');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (10, '親が子を助けなかったら犯罪になる。', 1, 'その通り', 'criminal');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (11, '見知らぬ人が溺れていた時、その人を助けなければ犯罪となる。', 2, '犯罪とならない。', 'criminal');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (12, '外出時、人が忘れた物を盗むとそれは窃盗罪である。', 2, '遺失物横領罪となる', 'criminal');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (13, 'Ａさんの家にＢさんが荷物を忘れた。その荷物をＣさんが盗んでも犯罪とはならない。', 2, '大犯罪者である。', 'criminal');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (14, '成立要件とは、起訴が行われる要件の事である', 2, '犯罪が成立する要件の事である。', 'criminal');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (15, '人を殴って血が出ると傷害罪である。', 1, 'その通り！', 'criminal');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (1, '信義則は民法の基本である。', 1, '民法の基本の原則である', '民法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (2, '類推適用の原則は民法の基本の原則である。', 2, '民法の基本ではない', '民法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (3, '類推適用の原則とは、刑罰には時効を適用させなければならないという原則である。', 2, '類推適用の原則とは、刑法の条文を拡大解釈などをしてはならないという原則です。例えば殺人罪の成立要件は「人を殺す」ことであるが、それを拡大解釈して猿を殺したときにも殺人罪を適用させるのは類推適用になる。', '刑法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (4, '刑法199条とは殺人罪である', 1, 'その通りであり、刑法199条は殺人罪について規定した法律である。', '刑法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (5, 'ショッピングセンターの客が忘れた荷物は、刑法上、その荷物は持ち主なしになる', 2, 'その荷物はショッピングセンターの荷物になる。', '刑法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (6, '横領は窃盗罪の中の１つである。', 2, '横領罪と窃盗罪はまったく異なる罪である。', '刑法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (7, '刑法上、遺言　この感じの読みは「いごん」である。', 1, 'いごんである。ゆいごんではない。', '刑法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (8, '刑法上、一月　この漢字の読みは「いちげつ」である。', 1, 'いちげつと読む。いっかげつ、いちがつではない。', '刑法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (9, '刑法を英語で書くとcivil lawである', 2, 'criminal lawである。', '刑法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (10, '親が子を助けなかったら犯罪になる。', 1, 'その通り', '刑法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (11, '見知らぬ人が溺れていた時、その人を助けなければ犯罪となる。', 2, '犯罪とならない。', '刑法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (12, '外出時、人が忘れた物を盗むとそれは窃盗罪である。', 2, '遺失物横領罪となる', '刑法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (13, 'Ａさんの家にＢさんが荷物を忘れた。その荷物をＣさんが盗んでも犯罪とはならない。', 2, '大犯罪者である。', '刑法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (14, '成立要件とは、起訴が行われる要件の事である', 2, '犯罪が成立する要件の事である。', '刑法');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory) VALUES (15, '人を殴って血が出ると傷害罪である。', 1, 'その通り！', '刑法l');
 
 --掲示板表題
 INSERT INTO LawBoard(lawBoard_id, lawBoard_username, lawBoard_category, lawBoard_title, lawBoard_mainComment, lawBoard_time) VALUES (1, 'top', '刑法', '類推適用禁止について教えてください！', '類推適用について教えていただきたいです！', '2023-02-01 13:00');
@@ -37,7 +37,7 @@ INSERT INTO LawBoard_comment (boardParent_id, comment_id, comment, comment_time,
 INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number,
                       precedent_subtitle, precedent_overview,
                        precedent_claim, precedent_judgement)
-                      VALUES(1, '窃盗事件？遺失物横領事件？', 'criminal', '昭和３５（う）９２７号'
+                      VALUES(1, '窃盗事件？遺失物横領事件？', '刑法', '昭和３５（う）９２７号'
                              , '窃盗罪が成立する条件とは？',
                              '',
                              '',
@@ -45,7 +45,7 @@ INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precede
 INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number,
                       precedent_subtitle, precedent_overview,
                       precedent_claim, precedent_judgement)
-                      VALUES(2, '民法', 'civil', '昭和３５（う）９２７号'
+                      VALUES(2, '民法', '民法', '昭和３５（う）９２７号'
                              , '民法が成立する条件とは？',
                              '',
                              '',
@@ -53,14 +53,14 @@ INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precede
 INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number,
                       precedent_subtitle, precedent_overview,
                        precedent_claim, precedent_judgement)
-                      VALUES(3, '著作権？', 'copyright', '昭和３５（う）９２７号'
+                      VALUES(3, '著作権？', '民法', '昭和３５（う）９２７号'
                              , '著作権が成立する条件とは？',
                              '',
                              '',
                              '');
 INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number,
                       precedent_subtitle, precedent_overview, precedent_claim, precedent_judgement)
-                      VALUES(4, 'ASKA事件', 'copyright', '平２９（ワ）２７３７４号'
+                      VALUES(4, 'ASKA事件', '著作権法', '平２９（ワ）２７３７４号'
                              , 'アーティストがまだ公表していない曲を他人が勝手に公表してしまったら？',
                              '被告Xさんは出演していたテレビの放送番組内において、アーティストであるASKAさんの捜索した未発表の楽曲の一部をASKAさんの許可なく番組内で再生した。これに対して、ASKAさんは、Ｘさんが著作権と公表権を侵害したとして損害賠償金3307万円を請求した。',
                              '被告Ｘたちの主張

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 public class PrecedentController {
     @RequestMapping("/precedent")
@@ -21,16 +23,45 @@ public class PrecedentController {
     }
 
     @GetMapping("/precedent/criminal/top")
-    public String precedentCriminalTop() {
-        return "Precedent/precedent";
+    public String precedentCriminalTop(@AuthenticationPrincipal LoginUser loginUser,
+                                       Model model) {
+        List<Precedent> precedentList = precedentMapper.findCriminal();
+        model.addAttribute("PrecedentList", precedentList);
+        if (loginUser != null) {
+            //ログイン中は別のメニューが表示される
+            model.addAttribute("UserId", loginUser.getUserId());
+        }
+
+        return "Precedent/precedentCriminal";
     }
 
     @GetMapping("/precedent/civil/top")
-    public String precedentCivilTop() {
-        return "Precedent/precedent";
+    public String precedentCivilTop(Model model,
+                                    @AuthenticationPrincipal LoginUser loginUser) {
+        List<Precedent> precedentList = precedentMapper.findCivil();
+        model.addAttribute("PrecedentList", precedentList);
+        if (loginUser != null) {
+            //ログイン中は別のメニューが表示される
+            model.addAttribute("UserId", loginUser.getUserId());
+        }
+
+        return "Precedent/precedentCivil";
     }
 
-    @GetMapping("/precedent/{category}/{precedent_id}/")
+    @GetMapping("/precedent/copyright/top")
+    public String precedentCopyright(@AuthenticationPrincipal LoginUser loginUser,
+                                     Model model) {
+        List<Precedent> precedentList = precedentMapper.findCopyright();
+        model.addAttribute("PrecedentList", precedentList);
+        if (loginUser != null) {
+            //ログイン中は別のメニューが表示される
+            model.addAttribute("UserId", loginUser.getUserId());
+        }
+
+        return "Precedent/precedentCopyright";
+    }
+
+    @GetMapping("/precedent/{precedent_id}/")
     public String precedentCivil(@PathVariable int precedent_id,
                                  @AuthenticationPrincipal LoginUser loginUser,
                                  Model model) {
@@ -47,6 +78,7 @@ public class PrecedentController {
         model.addAttribute("Pre_overview", precedent.getPrecedent_overview());
         model.addAttribute("Pre_claim", precedent.getPrecedent_claim());
         model.addAttribute("Pre_judgement", precedent.getPrecedent_judgement());
+        model.addAttribute("precedent_id", precedent_id);
 
         return "Precedent/precedent";
     }
@@ -58,7 +90,7 @@ public class PrecedentController {
             //ログイン中は別のメニューが表示される
             model.addAttribute("UserId", loginUser.getUserId());
         }
-        return "Precedent/precedent";
+        return "Precedent/precedentCopyright";
     }
 
     @GetMapping("/precedent/copyright/{pre_number}/")
