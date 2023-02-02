@@ -71,7 +71,7 @@ public class QuizQuestionService {
         int quizIdAll = quizMapper.selectQuizIdAll().size();
 
         //for文によって10個の乱数を生成する。＝10問の問題を出題する
-        for (int i = 0; i < 10; ) {
+        for (int i = 0; i < 11; ) {
             //Randomの仕様により0も出力されるため+1をして1~quizIdAll個出力するように
             int randomInt = random.nextInt(quizIdAll) + 1;
             //１つめは数が被ることがないため無条件でリストに格納
@@ -105,8 +105,10 @@ public class QuizQuestionService {
         model.addAttribute("QuestionSentence", quizSentence);
     }
 
-    public void goFinishQuiz(@AuthenticationPrincipal LoginUser loginUser) {
-        if (questionNumber + 1 == 10) {
+    public void goFinishQuiz(@AuthenticationPrincipal LoginUser loginUser,
+                             Model model) {
+        model.addAttribute("QuestionNumber", questionNumber);
+        model.addAttribute("userPoint", userPoint);
             if (loginUser != null) {
                 UserQuizHistory userQuizHistory = userQuizHistoryMapper.quizHistoryMapperList(loginUser.getUserId());
 
@@ -118,18 +120,16 @@ public class QuizQuestionService {
                 int pointCivilLaw = userQuizHistory.getPointCivilLaw();
                 int pointCriminalLaw = userQuizHistory.getPointCriminalLaw();
 
-                userQuizHistory.setPointAll(pointAll + userPoint + 1);
-                userQuizHistory.setQuestionAll(questionAll + questionNumber + 1);
-                userQuizHistory.setCivilQuestionAll(questionCivilAll + civilQuestionNo + 1);
-                userQuizHistory.setCriminalQuestionAll(questionCriminalAll + criminalQuestionNo + 1);
-                userQuizHistory.setPointCivilLaw(pointCivilLaw + userCivilPoint + 1);
-                userQuizHistory.setPointCriminalLaw(pointCriminalLaw + userCriminalPoint + 1);
-
+                userQuizHistory.setPointAll(pointAll + userPoint);
+                userQuizHistory.setQuestionAll(questionAll + questionNumber);
+                userQuizHistory.setCivilQuestionAll(questionCivilAll + civilQuestionNo);
+                userQuizHistory.setCriminalQuestionAll(questionCriminalAll + criminalQuestionNo);
+                userQuizHistory.setPointCivilLaw(pointCivilLaw + userCivilPoint);
+                userQuizHistory.setPointCriminalLaw(pointCriminalLaw + userCriminalPoint);
                 //insert文
                 userQuizHistoryMapper.updateUserQuizHistory(userQuizHistory);
             }
         }
-    }
 
     public void plusUserPandQNumber(Model model) {
         model.addAttribute("QuestionNumber", questionNumber+1);
@@ -160,13 +160,30 @@ public class QuizQuestionService {
         model.addAttribute("nextQuizId", nextQuizId);
     }
 
-    public void TrueOrFalseCivil() {
-        if(questionAnswer == rightOrBad) {
+    public void trueQuestion(int quizId) {
             if(quizMapper.selectCategory(quizId).equals("民法")) {
                 userPoint++;
                 userCivilPoint++;
                 civilQuestionNo++;
+                System.out.println("民ぽ"+userPoint);
+            } if (quizMapper.selectCategory(quizId).equals("刑法")) {
+                userPoint++;
+                userCriminalPoint++;
+                criminalQuestionNo++;
+                System.out.println("刑法"+userPoint);
             }
         }
+
+        public void falseQuestion(int quizId) {
+            //正解ポイントは加算せず、民法問題ポイントのみを加算
+            if(quizMapper.selectCategory(quizId).equals("民法")) {
+                civilQuestionNo++;
+            }
+            //正解ポイントは加算せず、刑法問題ポイントのみを加算
+            if(quizMapper.selectCategory(quizId).equals("刑法")) {
+                criminalQuestionNo++;
+            }
+        }
+
     }
-}
+

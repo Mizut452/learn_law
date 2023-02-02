@@ -19,4 +19,7 @@ public interface QuizMapper {
 
     @Select("SELECT quizCategory FROM quiz WHERE quizId = #{quizId}")
     String selectCategory(@Param("quizId") int quizId);
+
+    @Select("SELECT * FROM quiz WHERE quizId = #{quizId}")
+    Quiz selectQuizByQuizId(@Param("quizId") int quizId);
 }

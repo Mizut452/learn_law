@@ -41,6 +41,8 @@ public class QuizController {
     private int civilQuestionNo = 0;
     //挑戦した刑法問題数
     private int criminalQuestionNo = 0;
+    private int questionAnswer = 0;
+    private int rightOrBad = 0;
 
 
     @RequestMapping("/quiz")
@@ -58,6 +60,7 @@ public class QuizController {
 
     @GetMapping("/quiz/question")
     public String quizQuestionPrepare(Model model) {
+        questionNumber = 0;
         int quizId = quizQuestionService.questionPrepare();
 
         return "redirect:/quiz/question/" + quizId + "/";
@@ -68,8 +71,11 @@ public class QuizController {
                                @AuthenticationPrincipal LoginUser loginUser,
                                Model model) {
         quizQuestionService.addLoginUserMenu(loginUser, model);
+        if(questionNumber == 10) {
+            quizQuestionService.goFinishQuiz(loginUser, model);
+            return "Quiz/quizResult";
+        }
         quizQuestionService.getQuizQuestionSent(quizId, model);
-        quizQuestionService.goFinishQuiz(loginUser);
         quizQuestionService.plusUserPandQNumber(model);
 
         return "Quiz/quizQuestionPage";
@@ -81,46 +87,19 @@ public class QuizController {
                             @PathVariable int quizId,
                             @ModelAttribute Quiz quiz,
                             @AuthenticationPrincipal LoginUser loginUser) {
+        questionNumber++;
         quizQuestionService.addLoginUserMenu(loginUser, model);
         quizQuestionService.verificationAnswer(quizId, model, quiz);
+        rightOrBad = quiz.getQuizUsersAnswer();
+        quiz = quizMapper.selectQuizByQuizId(quizId);
+        questionAnswer = quiz.getQuizRightOrBad();
 
-
-
-        //正解の場合
-        if (questionAnswer == rightOrBad) {
-            //正解ポイント、民法問題ポイント、民法正解ポイントを増やす
-            if(quizMapper.selectCategory(quizId).equals("民法")){
-                userPoint++;
-                userCivilPoint++;
-                civilQuestionNo++;
-
-                return "Quiz/quizRightPage";
-            }
-            //正解ポイント、刑法問題ポイント、刑法正解ポイントを増やす
-            if(quizMapper.selectCategory(quizId).equals("刑法")) {
-                userPoint++;
-                userCriminalPoint++;
-                criminalQuestionNo++;
-
-                return "Quiz/quizRightPage";
-            }
+        if(questionAnswer == rightOrBad) {
+            quizQuestionService.trueQuestion(quizId);
+            return "Quiz/quizRightPage";
+        } else {
+            quizQuestionService.falseQuestion(quizId);
+            return "Quiz/quizBadPage";
         }
-
-        //不正解の場合
-        else {
-            //正解ポイントは加算せず、民法問題ポイントのみを加算
-            if(quizMapper.selectCategory(quizId).equals("民法")) {
-                civilQuestionNo++;
-
-                return "Quiz/quizBadPage";
-            }
-            //正解ポイントは加算せず、刑法問題ポイントのみを加算
-            if(quizMapper.selectCategory(quizId).equals("刑法")) {
-                criminalQuestionNo++;
-
-                return "Quiz/quizBadPage";
-            }
-        }
-        return "error";
     }
 }
