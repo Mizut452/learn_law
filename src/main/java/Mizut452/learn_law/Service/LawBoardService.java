@@ -26,7 +26,7 @@ public class LawBoardService {
     }
 
     public void LawBoardAll(Model model) {
-        LawBoard lawBoard = lawBoardMapper.lawBoardAll();
+        List<LawBoard> lawBoard = lawBoardMapper.lawBoardAll();
         model.addAttribute("LawBoard", lawBoard);
     }
 

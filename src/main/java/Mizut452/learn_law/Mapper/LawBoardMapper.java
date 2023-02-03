@@ -13,7 +13,7 @@ import java.util.List;
 public interface LawBoardMapper {
 
     @Select("SELECT * FROM LawBoard")
-    LawBoard lawBoardAll();
+    List<LawBoard> lawBoardAll();
 
     @Select("SELECT * FROM LawBoard where lawboard_id = #{lawboard_id}")
     LawBoard lawBoardById(@Param("lawboard_id") int lawboard_id);
@@ -21,6 +21,11 @@ public interface LawBoardMapper {
     @Select("SELECT * FROM LawBoard_comment WHERE boardParent_id = #{lawboard_id}")
     List<LawBoardComment> lawBoardCommentById(@Param("lawboard_id") int lawboard_id);
 
-    @Insert("INSERT INTO LawBoard_comment(boardParent_id, comment, comment_time, comment_username) VALUES(#{boardParent_id}, #{comment}, CURRENT_TIMESTAMP, #{comment_username})")
+    @Insert("INSERT INTO LawBoard_comment(boardParent_id, comment, comment_time, comment_username) " +
+            "VALUES(#{boardParent_id}, #{comment}, CURRENT_TIMESTAMP, #{comment_username})")
     void insertComment(LawBoardComment lawBoardComment);
+
+    @Insert("INSERT INTO LawBoard(lawBoard_username, lawBoard_category, lawBoard_title, lawBoard_mainComment, lawBoard_time)" +
+            "VALUES(#{lawBoard_username}, #{lawBoard_category}, #{lawBoard_title}, #{lawBoard_mainComment}, CURRENT_TIMESTAMP)")
+    void createThread(LawBoard lawBoard);
 }

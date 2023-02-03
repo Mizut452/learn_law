@@ -47,35 +47,22 @@
 
 <div class="layoutMain">
   <main class="center">
-      ゆるく掲示板
-    <table border="1">
-      <thead>
-        <tr>
-            <th>名前</th>
-            <th>作成者名</th>
-            <th>カテゴリー</th>
-            <th>作成日</th>
-        </tr>
-      </thead>
+    <div>スレッドを作成する</div>
 
-      <tbody>
-        <tr th:each="lawboard :${LawBoard}">
-            <td><a th:href="@{/lawboard/{lawboard_id}/(lawboard_id = ${lawboard.lawBoard_id})}"><p th:text="${lawboard.lawBoard_title}"></p></a></td>
-            <td th:text="${lawboard.lawBoard_username}"></td>
-            <td th:text="${lawboard.lawBoard_category}"></td>
-            <td th:text="${lawboard.lawBoard_time}"></td>
-            <span sec:authorize="hasRole('ADMIN')">
-                <td><a th:href="@{/lawboard/{lawboard_id}/update/(lawboard_id = ${lawboard.lawBoard_id})}">編集</a></td>
-                <td><a th:href="@{/lawboard/{lawboard_id}/delete/(lawboard_id = ${lawboard.lawBoard_id})}">削除</a></td>
-            </span>
-        </tr>
-      </tbody>
-    </table>
+    <form th:action="@{/lawboard/create}" th:method="@{post}">
+      <label>スレッドタイトル</label>
+      <input type="text" name="lawBoard_title" />
+      <label>カテゴリー</label>
+      <input type="text" name="lawBoard_category" />
+      <label>コメント</label>
+      <input type="text" name="lawBoard_mainComment" />
+      <input type="submit" value="作成" />
+    </form>
   </main>
 
   <div class="left-side">
-      <a th:href="@{/lawboard}">掲示板トップへ</a><br>
-      <a th:href="@{/lawboard/create_thread}">作成する</a>
+    <a th:href="@{/lawboard}">掲示板トップへ</a><br>
+    <a th:href="@{/lawboard/create_thread}">作成する</a>
   </div>
 
   <aside class="right-side">

@@ -4,6 +4,7 @@ import Mizut452.learn_law.Mapper.LawBoardMapper;
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoard;
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoardComment;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
+import Mizut452.learn_law.Service.LawBoardCreateService;
 import Mizut452.learn_law.Service.LawBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,6 +20,9 @@ public class LawBoardController {
 
     @Autowired
     LawBoardService lawBoardService;
+
+    @Autowired
+    LawBoardCreateService lawBoardCreateService;
 
     @RequestMapping("/lawboard")
     public String LawBoardPage(@AuthenticationPrincipal LoginUser loginUser,
@@ -48,5 +52,21 @@ public class LawBoardController {
 
 
             return "redirect:/lawboard/" + lawboard_id + "/";
+    }
+
+    @GetMapping("/lawboard/create_thread")
+    public String create_threadPage(@AuthenticationPrincipal LoginUser loginUser,
+                                    Model model) {
+        lawBoardService.addLoginUserMenu(loginUser, model);
+
+        return "/LawBoard/createTopic";
+    }
+
+    @PostMapping("/lawboard/create")
+    public String create(@AuthenticationPrincipal LoginUser loginUser,
+                         @ModelAttribute LawBoard lawBoard) {
+        lawBoardCreateService.create_threadService(loginUser, lawBoard);
+
+        return "redirect:/lawboard";
     }
 }
