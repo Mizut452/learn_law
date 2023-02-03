@@ -75,10 +75,12 @@
                     <td th:text="${quizList.quizAuthor}"></td>
                     <span th:if="${Username == quizList.quizAuthor}">
                         <td><a th:href="@{/quiz/questionList/{quizId}/update/(quizId = ${quizList.quizId})}">更新</a></td>
+                        <td><a th:href="@{/quiz/questionList/{quizId}/delete/(quizId = ${quizList.quizId})}">削除</a></td>
                     </span>
                     <span th:if="${Username != quizList.quizAuthor}">
                         <span sec:authorize="hasRole('ADMIN')">
                             <td><a th:href="@{/quiz/questionList/{quizId}/update/(quizId = ${quizList.quizId})}">更新</a></td>
+                            <td><a th:href="@{/quiz/questionList/{quizId}/delete/(quizId = ${quizList.quizId})}">削除</a></td>
                         </span>
 
                     </span>

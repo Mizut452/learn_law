@@ -217,8 +217,29 @@ public class QuizQuestionService {
 
         }
 
+        public void quizDelete(int quizId,
+                               Model model) {
+            List<Quiz> quizList = quizMapper.selectQuizAllByQuizId(quizId);
+            Quiz quiz = quizList.get(0);
+
+            QuizUpdateReq quizUpdateReq = new QuizUpdateReq();
+            quizUpdateReq.setQuizId(quiz.getQuizId());
+            quizUpdateReq.setQuizQuestionSent(quiz.getQuizQuestionSent());
+            quizUpdateReq.setQuizRightOrBad(quiz.getQuizRightOrBad());
+            quizUpdateReq.setQuizCommentary(quiz.getQuizCommentary());
+            quizUpdateReq.setQuizCategory(quiz.getQuizCategory());
+            quizUpdateReq.setQuizAuthor(quiz.getQuizAuthor());
+
+            model.addAttribute("QuizList", quizUpdateReq);
+            model.addAttribute("QuizId", quizId);
+        }
+
         public void doQuizUpdate(QuizUpdateReq quizUpdateReq) {
             quizMapper.update(quizUpdateReq);
+        }
+
+        public void doQuizDelete(QuizUpdateReq quizUpdateReq) {
+            quizMapper.delete(quizUpdateReq);
         }
 
     }

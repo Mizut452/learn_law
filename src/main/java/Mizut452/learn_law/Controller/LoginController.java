@@ -2,8 +2,10 @@ package Mizut452.learn_law.Controller;
 
 import Mizut452.learn_law.Mapper.LoginUserMapper;
 import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
+import Mizut452.learn_law.Model.Entity.Login.Book;
 import Mizut452.learn_law.Service.CreateAccountService;
 import Mizut452.learn_law.Service.LoginService;
+import Mizut452.learn_law.Service.bookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,6 +21,9 @@ public class LoginController {
 
     @Autowired
     LoginService loginService;
+
+    @Autowired
+    bookService bookService;
 
     @RequestMapping("/login")
     public String Login() {
@@ -45,4 +50,27 @@ public class LoginController {
 
         return "Login/Complete";
     }
+
+    @RequestMapping("/toroku")
+    public String torokuPage() {
+
+        return "/ex/toroku";
+    }
+
+    @PostMapping("/toroku/create")
+    public String toroku(Book book) {
+        //後で設定するサービスクラス
+        bookService.insertBookService(book);
+
+        return "redirect:/toroku";
+    }
+
+    @GetMapping("/toroku/bookList")
+    public String bookListPage(Model model) {
+        //後で設定するサービスクラス
+        bookService.selectBookService(model);
+
+        return "/Login/BookList";
+    }
 }
+

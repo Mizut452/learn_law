@@ -3,10 +3,8 @@ package Mizut452.learn_law.Mapper;
 
 import Mizut452.learn_law.Model.Entity.Quiz.Quiz;
 import Mizut452.learn_law.Model.Entity.Quiz.QuizUpdateReq;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import lombok.Data;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -31,4 +29,7 @@ public interface QuizMapper {
     @Update("UPDATE quiz SET quizQuestionSent = #{quizQuestionSent}, quizRightOrBad = #{quizRightOrBad}," +
             "quizCommentary = #{quizCommentary}, quizCategory = #{quizCategory} WHERE quizId = #{quizId}")
     void update(QuizUpdateReq quizUpdateReq);
+
+    @Delete("DELETE FROM quiz WHERE quizId = #{quizId}")
+    void delete(QuizUpdateReq quizUpdateReq);
 }

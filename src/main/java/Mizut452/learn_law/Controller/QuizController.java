@@ -9,6 +9,7 @@ import Mizut452.learn_law.Model.Entity.Quiz.UserQuizHistory;
 import Mizut452.learn_law.Service.QuizQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -91,6 +92,15 @@ public class QuizController {
     public String quizUpdate(@PathVariable int quizId,
                              @ModelAttribute QuizUpdateReq quizUpdateReq) {
         quizQuestionService.doQuizUpdate(quizUpdateReq);
+
+        return "redirect:/quiz/questionList";
+    }
+
+    @PostMapping("/quiz/delete/{quizId}/")
+    public String quizDelete(@PathVariable int quizId,
+                             @ModelAttribute QuizUpdateReq quizUpdateReq) {
+        quizQuestionService.doQuizDelete(quizUpdateReq);
+
         return "redirect:/quiz/questionList";
     }
 
@@ -110,5 +120,14 @@ public class QuizController {
                              Model model) {
         quizQuestionService.quizUpdate(quizId, model);
         return "Quiz/quizUpdate";
+    }
+
+    @GetMapping("/quiz/questionList/{quizId}/delete/")
+    public String quizDeletePage(@PathVariable int quizId,
+                                 @ModelAttribute QuizUpdateReq quizUpdateReq,
+                                 Model model) {
+        quizQuestionService.quizDelete(quizId, model);
+
+        return "Quiz/quizDelete";
     }
 }
