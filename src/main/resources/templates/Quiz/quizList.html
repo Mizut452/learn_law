@@ -64,12 +64,23 @@
             <tbody>
                 <tr th:each="quizList : ${QuizList}">
                     <td th:text="${quizList.quizQuestionSent}"></td>
-                    <td th:text="${quizList.quizRightOrBad}"></td>
+                    <span th:if="${QuizRightOrBad == quizList.quizRightOrBad}">
+                        <td>〇</td>
+                    </span>
+                    <span th:if="${QuizRightOrBad != quizList.quizRightOrBad}">
+                        <td>×</td>
+                    </span>
                     <td th:text="${quizList.quizCategory}"></td>
                     <td th:text="${quizList.quizCommentary}"></td>
                     <td th:text="${quizList.quizAuthor}"></td>
                     <span th:if="${Username == quizList.quizAuthor}">
                         <td><a th:href="@{/quiz/questionList/{quizId}/update/(quizId = ${quizList.quizId})}">更新</a></td>
+                    </span>
+                    <span th:if="${Username != quizList.quizAuthor}">
+                        <span sec:authorize="hasRole('ADMIN')">
+                            <td><a th:href="@{/quiz/questionList/{quizId}/update/(quizId = ${quizList.quizId})}">更新</a></td>
+                        </span>
+
                     </span>
                 </tr>
             </tbody>

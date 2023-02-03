@@ -194,6 +194,7 @@ public class QuizQuestionService {
 
             model.addAttribute("QuizAuthor", quizAuthor);
             model.addAttribute("QuizList", quizList);
+            model.addAttribute("QuizRightOrBad", quiz.getQuizRightOrBad());
             if(loginUser != null) {
                 model.addAttribute("Username", loginUser.getUsername());
             }
