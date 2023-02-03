@@ -54,7 +54,13 @@
       <input type="hidden" th:field="*{quizId}">
       <label>クイズ問題文：</label><span th:text="*{quizQuestionSent}"></span>
       <input type="hidden" th:field="*{quizQuestionSent}"><br>
-      <label>クイズ正解：</label><span th:text="*{quizRightOrBad}"></span>
+      <label>クイズ正解：</label>
+      <span th:if="*{quizRightOrBad == 1}">
+        <span>〇</span>
+      </span>
+      <span th:if="*{quizRightOrBad == 2}">
+        <span>×</span>
+      </span>
       <input type="hidden" th:field="*{quizRightOrBad}"><br>
       <label>クイズ解説文：</label><span th:text="*{quizCommentary}"></span>
       <input type="hidden" th:field="*{quizCommentary}"><br>
