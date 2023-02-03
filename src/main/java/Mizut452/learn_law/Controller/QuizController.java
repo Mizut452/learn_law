@@ -20,27 +20,10 @@ public class QuizController {
     QuizMapper quizMapper;
 
     @Autowired
-    UserQuizHistoryMapper userQuizHistoryMapper;
-
-    @Autowired
     QuizQuestionService quizQuestionService;
 
-    private List<Integer> listQuestionId = new ArrayList<>();
-    //問題数
-    private int questionLength = 0;
     //問題番号
     private int questionNumber = 0;
-    private int quizId = 0;
-    //ユーザーの正解数
-    private int userPoint = 0;
-    //ユーザーの民法問題正解数
-    private int userCivilPoint = 0;
-    //ユーザーの刑法問題正解数
-    private int userCriminalPoint = 0;
-    //挑戦した民法問題数
-    private int civilQuestionNo = 0;
-    //挑戦した刑法問題数
-    private int criminalQuestionNo = 0;
     private int questionAnswer = 0;
     private int rightOrBad = 0;
 

@@ -4,6 +4,7 @@ import Mizut452.learn_law.Mapper.LawBoardMapper;
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoard;
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoardComment;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
+import Mizut452.learn_law.Service.LawBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -16,17 +17,14 @@ import java.util.List;
 @Controller
 public class LawBoardController {
 
+    @Autowired
+    LawBoardService lawBoardService;
+
     @RequestMapping("/lawboard")
     public String LawBoardPage(@AuthenticationPrincipal LoginUser loginUser,
                                Model model) {
-        if (loginUser != null) {
-            //ログイン中は別のメニューが表示される
-            model.addAttribute("UserId", loginUser.getUserId());
-        }
-
-        LawBoard lawBoard = lawBoardMapper.lawBoardAll();
-
-        model.addAttribute("LawBoard", lawBoard);
+        lawBoardService.addLoginUserMenu(loginUser, model);
+        lawBoardService.LawBoardAll(model);
 
         return "LawBoard/lawboard";
     }
@@ -35,21 +33,8 @@ public class LawBoardController {
     public String LawBoardThreadPage(@PathVariable int lawboard_id,
                                      @AuthenticationPrincipal LoginUser loginUser,
                                      Model model) {
-        LawBoard lawBoard = lawBoardMapper.lawBoardById(lawboard_id);
-        List<LawBoardComment> commentList = lawBoardMapper.lawBoardCommentById(lawboard_id);
-
-        if (loginUser != null) {
-            //ログイン中は別のメニューが表示される
-            model.addAttribute("UserId", loginUser.getUserId());
-        }
-
-        model.addAttribute("LawTitle", lawBoard.getLawBoard_title());
-        model.addAttribute("LawCategory", lawBoard.getLawBoard_category());
-        model.addAttribute("LawMainComment", lawBoard.getLawBoard_mainComment());
-        model.addAttribute("LawUsername", lawBoard.getLawBoard_username());
-        model.addAttribute("LawTime", lawBoard.getLawBoard_time());
-        model.addAttribute("LawComment", commentList);
-        model.addAttribute("LawBoard_ID", lawboard_id);
+        lawBoardService.addLoginUserMenu(loginUser, model);
+        lawBoardService.ThreadPage(lawboard_id, model);
 
         return "LawBoard/lawboard_thread";
     }
@@ -58,19 +43,10 @@ public class LawBoardController {
     public String createComment(@PathVariable int lawboard_id,
                                 @AuthenticationPrincipal LoginUser loginUser,
                                 @ModelAttribute LawBoardComment lawBoardComment) {
-        System.out.println(loginUser.getUsername());
-        System.out.println(lawboard_id);
 
-        lawBoardComment.setBoardParent_id(lawboard_id);
-        lawBoardComment.setComment_username(loginUser.getUsername());
-        lawBoardComment.setComment(lawBoardComment.getComment());
-
-        lawBoardMapper.insertComment(lawBoardComment);
+            lawBoardService.createCommentService(lawboard_id, loginUser, lawBoardComment);
 
 
-        return "redirect:/lawboard/" + lawboard_id + "/";
+            return "redirect:/lawboard/" + lawboard_id + "/";
     }
-
-    @Autowired
-    LawBoardMapper lawBoardMapper;
 }
