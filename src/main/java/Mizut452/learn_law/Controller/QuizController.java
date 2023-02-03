@@ -87,6 +87,13 @@ public class QuizController {
         }
     }
 
+    @PostMapping("/quiz/update/{quizId}/")
+    public String quizUpdate(@PathVariable int quizId,
+                             @ModelAttribute QuizUpdateReq quizUpdateReq) {
+        quizQuestionService.doQuizUpdate(quizUpdateReq);
+        return "redirect:/quiz/questionList";
+    }
+
     @GetMapping("/quiz/questionList")
     public String quizList(@AuthenticationPrincipal LoginUser loginUser,
                            Model model) {
@@ -96,11 +103,11 @@ public class QuizController {
         return "Quiz/quizList";
     }
 
-    @RequestMapping("/quiz/questionList/{quizId}/update/")
-    public String quizUpdate(@PathVariable int quizId,
+    @GetMapping("/quiz/questionList/{quizId}/update/")
+    public String quizUpdatePage(@PathVariable int quizId,
                              @ModelAttribute QuizUpdateReq quizUpdateReq,
                              Model model) {
-        quizQuestionService.quizUpdate(quizId, quizUpdateReq, model);
+        quizQuestionService.quizUpdate(quizId, model);
         return "Quiz/quizUpdate";
     }
 }

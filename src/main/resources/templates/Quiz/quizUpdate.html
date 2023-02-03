@@ -50,11 +50,12 @@
   <main class="center">
     <div>クイズ更新</div>
 
-    <form th:action="@{/quiz/update}" th:method="@{post}" th:object="${QuizList}">
+    <form th:action="@{/quiz/update/{quizId}/(quizId = ${quizId})}" th:method="@{post}" th:object="${QuizList}">
+      <input type="hidden" th:field="*{quizId}">
       <label>クイズ問題文</label>
       <input type="text" th:field="*{quizQuestionSent}"><br>
       <label>クイズ正解</label>
-      <select name="quizRightOrBad">
+      <select th:field="*{quizRightOrBad}">
         <option value="1">〇</option>
         <option value="2">×</option>
       </select><br>
