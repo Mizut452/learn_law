@@ -85,4 +85,13 @@ public class QuizController {
             return "Quiz/quizBadPage";
         }
     }
+
+    @GetMapping("/quiz/questionList")
+    public String quizList(@AuthenticationPrincipal LoginUser loginUser,
+                           Model model) {
+        quizQuestionService.addLoginUserMenu(loginUser, model);
+        quizQuestionService.quizList(loginUser, model);
+
+        return "Quiz/quizList";
+    }
 }

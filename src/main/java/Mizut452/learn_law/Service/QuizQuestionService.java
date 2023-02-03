@@ -99,7 +99,7 @@ public class QuizQuestionService {
 
     public void getQuizQuestionSent(int quizId,
                                     Model model) {
-        List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
+        List<Quiz> quizAllByQuizId = quizMapper.selectQuizAllByQuizId(quizId);
         Quiz quizList = quizAllByQuizId.get(0);
         String quizSentence = quizList.getQuizQuestionSent();
         model.addAttribute("QuestionSentence", quizSentence);
@@ -140,7 +140,7 @@ public class QuizQuestionService {
                                    Model model,
                                    @ModelAttribute Quiz quiz) {
         //クイズの答えの確認
-        List<Quiz> quizAllByQuizId = quizMapper.selectQuizAll(quizId);
+        List<Quiz> quizAllByQuizId = quizMapper.selectQuizAllByQuizId(quizId);
 
         Quiz quizList = quizAllByQuizId.get(0);
         questionAnswer = quizList.getQuizRightOrBad();
@@ -183,6 +183,17 @@ public class QuizQuestionService {
             if(quizMapper.selectCategory(quizId).equals("刑法")) {
                 criminalQuestionNo++;
             }
+        }
+
+        public void quizList(@AuthenticationPrincipal LoginUser loginUser,
+                             Model model) {
+            List<Quiz> quizList = quizMapper.selectQuizAll();
+            Quiz quiz = quizList.get(0);
+            String quizAuthor = quiz.getQuizAuthor();
+
+            model.addAttribute("QuizAuthor", quizAuthor);
+            model.addAttribute("QuizList", quizList);
+            model.addAttribute("Username", loginUser.getUsername());
         }
 
     }

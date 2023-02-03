@@ -11,4 +11,5 @@ public class Quiz {
     private String quizCommentary;
     private int quizUsersAnswer;
     private String quizCategory;
+    private String quizAuthor;
 }
