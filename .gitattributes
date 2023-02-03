@@ -1,0 +1,3 @@
+special-vendored-path/* linguist-vendored
+project-docs/* linguist-documentation
+src/doc/* linguist-documentation
