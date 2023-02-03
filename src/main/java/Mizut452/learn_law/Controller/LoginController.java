@@ -3,6 +3,7 @@ package Mizut452.learn_law.Controller;
 import Mizut452.learn_law.Mapper.LoginUserMapper;
 import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Service.CreateAccountService;
+import Mizut452.learn_law.Service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
+    @Autowired
+    LoginService loginService;
+
     @RequestMapping("/login")
     public String Login() {
         return "Login/login";
@@ -24,8 +28,9 @@ public class LoginController {
     @GetMapping("/userlist")
     public String userListPage(Model model,
                                @AuthenticationPrincipal LoginUser loginUser) {
-        model.addAttribute("UserList", loginUserMapper.selectAll());
-        model.addAttribute("UserId", loginUser.getUserId());
+        loginService.selectAll(model);
+        loginService.addLoginUserMenu(loginUser, model);
+
         return "Login/userList";
     }
 
@@ -36,29 +41,8 @@ public class LoginController {
 
     @PostMapping("/createaccount/create")
     public String createMethod(@ModelAttribute LoginUser loginUser) {
-        //SQLに登録
-        loginUser.setEmail(loginUser.getEmail());
-        loginUser.setUsername(loginUser.getUsername());
-        loginUser.setPassword(loginUser.getPassword());
-        loginUser.setRoleName(loginUser.getRoleName());
-
-        createAccountService.createAccount(loginUser);
-
-        //成績用のSQL登録
-        loginUser = loginUserMapper.findByUsername(loginUser.getUsername());
-        userQuizHistoryMapper.insertNewUserQuizHistory(loginUser.getUserId(), loginUser.getUsername());
+        loginService.createMethodService(loginUser);
 
         return "Login/Complete";
     }
-
-
-    @Autowired
-    CreateAccountService createAccountService;
-
-    @Autowired
-    LoginUserMapper loginUserMapper;
-
-    @Autowired
-    UserQuizHistoryMapper userQuizHistoryMapper;
-
 }
