@@ -99,6 +99,7 @@ public class QuizController {
                            Model model) {
         quizQuestionService.addLoginUserMenu(loginUser, model);
         quizQuestionService.quizList(loginUser, model);
+        quizQuestionService.quizRanking(model);
 
         return "Quiz/quizList";
     }
