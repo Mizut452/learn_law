@@ -4,6 +4,7 @@ import Mizut452.learn_law.Mapper.LoginUserMapper;
 import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import Mizut452.learn_law.Model.Entity.Quiz.UserQuizHistory;
+import Mizut452.learn_law.Service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -16,18 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 
     @Autowired
-    UserQuizHistoryMapper userQuizHistoryMapper;
-
-    @Autowired
-    LoginUserMapper loginUserMapper;
+    HomeService homeService;
 
     @RequestMapping("/")
     public String homePage(Model model,
                            @AuthenticationPrincipal LoginUser loginUser) {
-        if (loginUser != null) {
-            //ログイン中は別のメニューが表示される
-            model.addAttribute("UserId", loginUser.getUserId());
-        }
+        homeService.addLoginUserMenu(loginUser, model);
+
         return "Home/home";
     }
 
@@ -35,32 +31,8 @@ public class HomeController {
     public String myPage(Model model,
                          @PathVariable int history_userId,
                          @AuthenticationPrincipal LoginUser loginUser) {
-        //ユーザーの検索
-        LoginUser findByUserId = loginUserMapper.findByUserId(history_userId);
-
-        //存在しないユーザーIDが入力された場合の処理
-        if(findByUserId == null) {
-            return "Home/error";
-        }
-
-        String username = findByUserId.getUsername();
-        //成績の反映
-        UserQuizHistory userQuizHistory = userQuizHistoryMapper.usersQuizHistoryList(history_userId);
-        int pointAll = userQuizHistory.getPointAll();
-        int questionAll = userQuizHistory.getQuestionAll();
-        int civilQuestionAll = userQuizHistory.getCivilQuestionAll();
-        int criminalQuestionAll = userQuizHistory.getCriminalQuestionAll();
-        int pointCriminal = userQuizHistory.getPointCriminalLaw();
-        int pointCivil = userQuizHistory.getPointCivilLaw();
-
-        model.addAttribute("username", username);
-        model.addAttribute("pointAll", pointAll);
-        model.addAttribute("questionAll", questionAll);
-        model.addAttribute("civilQuestionAll", civilQuestionAll);
-        model.addAttribute("criminalQuestionAll", criminalQuestionAll);
-        model.addAttribute("pointCriminal", pointCriminal);
-        model.addAttribute("pointCivil", pointCivil);
-        model.addAttribute("UserId", loginUser.getUserId());
+        homeService.addLoginUserMenu(loginUser, model);
+        homeService.myPageService(history_userId, model, loginUser);
 
         return "Home/myPage";
     }
