@@ -108,24 +108,31 @@ public class QuizController {
     public String quizList(@AuthenticationPrincipal LoginUser loginUser,
                            Model model) {
         quizQuestionService.addLoginUserMenu(loginUser, model);
-        quizQuestionService.quizList(loginUser, model);
         quizQuestionService.quizRanking(model);
+        quizQuestionService.quizList(loginUser, model);
 
         return "Quiz/quizList";
     }
 
     @GetMapping("/quiz/questionList/{quizId}/update/")
     public String quizUpdatePage(@PathVariable int quizId,
-                             @ModelAttribute QuizUpdateReq quizUpdateReq,
-                             Model model) {
+                                 @ModelAttribute QuizUpdateReq quizUpdateReq,
+                                 @AuthenticationPrincipal LoginUser loginUser,
+                                 Model model) {
         quizQuestionService.quizUpdate(quizId, model);
+        quizQuestionService.addLoginUserMenu(loginUser, model);
+        quizQuestionService.quizRanking(model);
+
         return "Quiz/quizUpdate";
     }
 
     @GetMapping("/quiz/questionList/{quizId}/delete/")
     public String quizDeletePage(@PathVariable int quizId,
                                  @ModelAttribute QuizUpdateReq quizUpdateReq,
+                                 @AuthenticationPrincipal LoginUser loginUser,
                                  Model model) {
+        quizQuestionService.addLoginUserMenu(loginUser, model);
+        quizQuestionService.quizRanking(model);
         quizQuestionService.quizDelete(quizId, model);
 
         return "Quiz/quizDelete";

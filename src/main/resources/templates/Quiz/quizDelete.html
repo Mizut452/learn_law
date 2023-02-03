@@ -52,14 +52,14 @@
 
     <form th:action="@{/quiz/delete/{quizId}/(quizId = ${quizId})}" th:method="@{post}" th:object="${QuizList}">
       <input type="hidden" th:field="*{quizId}">
-      <label>クイズ問題文</label><p th:text="${quizId}"></p>
+      <label>クイズ問題文：</label><span th:text="*{quizQuestionSent}"></span>
       <input type="hidden" th:field="*{quizQuestionSent}"><br>
-      <label>クイズ正解</label><p th:text="${quizRightOrBad}"></p>
+      <label>クイズ正解：</label><span th:text="*{quizRightOrBad}"></span>
       <input type="hidden" th:field="*{quizRightOrBad}"><br>
-      <label>クイズ解説文</label><p th:text="${quizCommentary}"></p>
+      <label>クイズ解説文：</label><span th:text="*{quizCommentary}"></span>
       <input type="hidden" th:field="*{quizCommentary}"><br>
-      <label>クイズカテゴリー</label><p th:text="${quizCategory}"></p>
-      <input type="hidden" th:field="*{quizCategory}"><br>
+      <label>クイズカテゴリー：</label><span th:text="*{quizCategory}"></span>
+      <input type="hidden" th:field="*{quizCategory}"><br><br>
       <input type="submit" value="削除" />
     </form>
   </main>
