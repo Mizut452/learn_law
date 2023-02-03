@@ -59,14 +59,21 @@
       </thead>
 
       <tbody>
-        <tr th:each="lawboard :${LawBoard}">
+        <tr th:each="lawboard : ${LawBoard}">
             <td><a th:href="@{/lawboard/{lawboard_id}/(lawboard_id = ${lawboard.lawBoard_id})}"><p th:text="${lawboard.lawBoard_title}"></p></a></td>
             <td th:text="${lawboard.lawBoard_username}"></td>
             <td th:text="${lawboard.lawBoard_category}"></td>
             <td th:text="${lawboard.lawBoard_time}"></td>
+            <span th:if="${Username == lawboard.lawBoard_username}">
+            <td><a th:href="@{/lawboard/{lawboard_id}/update/(lawboard_id = ${lawboard.lawBoard_id})}">編集</a></td>
+            <td><a th:href="@{/lawboard/{lawboard_id}/delete/(lawboard_id = ${lawboard.lawBoard_id})}">削除</a></td>
+            </span>
+
+            <span th:if="${Username != lawboard.lawBoard_username}">
             <span sec:authorize="hasRole('ADMIN')">
                 <td><a th:href="@{/lawboard/{lawboard_id}/update/(lawboard_id = ${lawboard.lawBoard_id})}">編集</a></td>
                 <td><a th:href="@{/lawboard/{lawboard_id}/delete/(lawboard_id = ${lawboard.lawBoard_id})}">削除</a></td>
+            </span>
             </span>
         </tr>
       </tbody>

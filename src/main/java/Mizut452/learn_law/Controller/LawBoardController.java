@@ -1,19 +1,16 @@
 package Mizut452.learn_law.Controller;
 
-import Mizut452.learn_law.Mapper.LawBoardMapper;
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoard;
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoardComment;
+import Mizut452.learn_law.Model.Entity.LawBoard.LawBoardUpdateReq;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
-import Mizut452.learn_law.Service.LawBoardCreateService;
+import Mizut452.learn_law.Service.LawBoardCRUDService;
 import Mizut452.learn_law.Service.LawBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.*;
-import java.util.List;
 
 @Controller
 public class LawBoardController {
@@ -22,7 +19,7 @@ public class LawBoardController {
     LawBoardService lawBoardService;
 
     @Autowired
-    LawBoardCreateService lawBoardCreateService;
+    LawBoardCRUDService lawBoardCRUDService;
 
     @RequestMapping("/lawboard")
     public String LawBoardPage(@AuthenticationPrincipal LoginUser loginUser,
@@ -65,8 +62,47 @@ public class LawBoardController {
     @PostMapping("/lawboard/create")
     public String create(@AuthenticationPrincipal LoginUser loginUser,
                          @ModelAttribute LawBoard lawBoard) {
-        lawBoardCreateService.create_threadService(loginUser, lawBoard);
+        lawBoardCRUDService.create_threadService(loginUser, lawBoard);
 
         return "redirect:/lawboard";
     }
+
+    @GetMapping("/lawboard/{lawBoard_id}/update/")
+    public String lawBoardUpdatePage(@PathVariable int lawBoard_id,
+                                     @ModelAttribute LawBoardUpdateReq lawBoardUpdateReq,
+                                     @AuthenticationPrincipal LoginUser loginUser,
+                                     Model model) {
+        lawBoardService.addLoginUserMenu(loginUser, model);
+        lawBoardCRUDService.lawBoardUpdate(lawBoard_id, model);
+
+        return "/LawBoard/lawBoardUpdate";
+    }
+
+    @GetMapping("/lawboard/{lawBoard_id}/delete/")
+    public String lawBoardDeletePage(@PathVariable int lawBoard_id,
+                                     @ModelAttribute LawBoardUpdateReq lawBoardUpdateReq,
+                                     @AuthenticationPrincipal LoginUser loginUser,
+                                     Model model) {
+        lawBoardService.addLoginUserMenu(loginUser, model);
+        lawBoardCRUDService.lawBoardDelete(lawBoard_id, model);
+
+        return "/LawBoard/lawBoardDelete";
+    }
+
+    @PostMapping("lawboard/update/{lawBoard_id}/")
+    public String lawBoardUpdate(@PathVariable int lawBoard_id,
+                                 @ModelAttribute LawBoardUpdateReq lawBoardUpdateReq) {
+        lawBoardCRUDService.doLawBoardUpdate(lawBoardUpdateReq);
+
+        return "redirect:/lawboard";
+    }
+
+    @PostMapping("/lawboard/delete/{lawBoard_id}/")
+    public String lawBoardDelete(@PathVariable int lawBoard_id,
+                                 @ModelAttribute LawBoardUpdateReq lawBoardUpdateReq) {
+        lawBoardCRUDService.doLawBoardDelete(lawBoardUpdateReq);
+
+        return "redirect:/lawboard";
+    }
+
 }

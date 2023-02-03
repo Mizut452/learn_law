@@ -2,10 +2,10 @@ package Mizut452.learn_law.Mapper;
 
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoard;
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoardComment;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import Mizut452.learn_law.Model.Entity.LawBoard.LawBoardUpdateReq;
+import Mizut452.learn_law.Model.Entity.Quiz.QuizUpdateReq;
+import lombok.Data;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -28,4 +28,11 @@ public interface LawBoardMapper {
     @Insert("INSERT INTO LawBoard(lawBoard_username, lawBoard_category, lawBoard_title, lawBoard_mainComment, lawBoard_time)" +
             "VALUES(#{lawBoard_username}, #{lawBoard_category}, #{lawBoard_title}, #{lawBoard_mainComment}, CURRENT_TIMESTAMP)")
     void createThread(LawBoard lawBoard);
+
+    @Update("UPDATE LawBoard SET lawBoard_title = #{lawBoard_title}, lawBoard_category = #{lawBoard_category}" +
+            "WHERE lawBoard_id = #{lawBoard_id}")
+    void update(LawBoardUpdateReq lawBoardUpdateReq);
+
+    @Delete("DELETE FROM LawBoard WHERE lawBoard_id = #{lawBoard_id}")
+    void delete(LawBoardUpdateReq lawBoardUpdateReq);
 }
