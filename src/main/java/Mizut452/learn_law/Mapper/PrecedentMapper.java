@@ -33,6 +33,9 @@ public interface PrecedentMapper {
     @Select("SELECT precedent_id, precedent_title, precedent_subtitle, precedent_number, precedent_category FROM precedent")
     List<Precedent> precedentList();
 
+    @Select("SELECT * FROM Precedent")
+    List<Precedent> precedentAllList();
+
     @Insert("INSERT INTO precedent(precedent_title, precedent_category, precedent_number, " +
             "precedent_subtitle, precedent_overview," +
             " precedent_claim, precedent_judgement) " +
@@ -49,4 +52,7 @@ public interface PrecedentMapper {
             "precedent_judgement = #{precedent_judgement}" +
             "WHERE precedent_id = #{precedent_id}")
     void updatePrecedent(PrecedentUpdate precedentUpdate);
+
+    @Delete("DELETE FROM precedent WHERE precedent_id = #{precedent_id}")
+    void delete(PrecedentUpdate precedentUpdate);
 }

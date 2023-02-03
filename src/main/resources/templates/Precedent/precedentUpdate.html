@@ -47,37 +47,27 @@
 
 <div class="layoutMain">
   <main class="center">
-    <div>判例一覧</div>
-    <table border="1">
-      <thead>
-        <tr>
-          <th class="id">ID</th>
-          <th>判例タイトル</th>
-          <th>概要</th>
-          <th>事件番号</th>
-          <th>カテゴリー</th>
-          <span sec:authorize="hasRole('ADMIN')">
-              <td><span>編集</span></td>
-              <td><span>削除</span></td>
-          </span>
-        </tr>
-      </thead>
+    <div>判例を更新する</div>
 
-      <tbody>
-          <tr th:each="precedent : ${PrecedentList}">
-            <td><a th:href="@{/precedent/{precedent_id}/(precedent_id = ${precedent.precedent_id})}"><p th:text="${precedent.precedent_title}"></p></a></td>
-            <td th:text="${precedent.precedent_title}"></td>
-            <td th:text="${precedent.precedent_subtitle}"></td>
-            <td th:text="${precedent.precedent_number}"></td>
-            <td th:text="${precedent.precedent_category}"></td>
-            <span sec:authorize="hasRole('ADMIN')">
-                <td><a th:href="@{/lawboard/{precedent_id}/update/(precedent_id = ${precedent.precedent_id})}">編集</a></td>
-                <td><a th:href="@{/lawboard/{precedent_id}/delete/(precedent_id = ${precedent.precedent_id})}">削除</a></td>
-            </span>
-            </span>
-          </tr>
-      </tbody>
-    </table>
+    <form th:action="@{/precedent/update/{precedent_id}/(precedent_id = ${Precedent_Id})}" th:method="@{post}" th:object="${PrecedentList}">
+      <input type="hidden" th:field="*{precedent_id}">
+      <label>事件名：</label>
+      <input type="text" th:field="*{precedent_title}">
+      <label>小タイトル：</label>
+      <input type="text" th:field="*{precedent_subtitle}">
+      <label>カテゴリー：</label>
+      <input type="text" th:field="*{precedent_category}">
+      <label>事件番号：</label>
+      <input type="text" th:field="*{precedent_number}">
+      <label>事実の概要：</label>
+      <input type="text" th:field="*{precedent_overview}">
+      <label>両者の主張：</label>
+      <input type="text" th:field="*{precedent_claim}">
+      <label>裁判所の判断 ：</label>
+      <input type="text" th:field="*{precedent_judgement}">
+      <input type="submit" value="更新" />
+    </form>
+
   </main>
 
   <div class="left-side">

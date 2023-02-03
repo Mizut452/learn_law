@@ -3,6 +3,8 @@ package Mizut452.learn_law.Controller;
 import Mizut452.learn_law.Mapper.PrecedentMapper;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import Mizut452.learn_law.Model.Entity.Precedent.Precedent;
+import Mizut452.learn_law.Model.Entity.Precedent.PrecedentUpdate;
+import Mizut452.learn_law.Service.PrecedentCRUDService;
 import Mizut452.learn_law.Service.PrecedentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,6 +19,9 @@ public class PrecedentController {
 
     @Autowired
     PrecedentService precedentService;
+
+    @Autowired
+    PrecedentCRUDService precedentCRUDService;
 
     @RequestMapping("/precedent")
     public String precedentHome(@AuthenticationPrincipal LoginUser loginUser,
@@ -83,5 +88,42 @@ public class PrecedentController {
         precedentService.createPrecedent(precedent);
 
         return "Precedent/createComplete";
+    }
+
+    @PostMapping("/precedent/update/{precedent_id}/")
+    public String precedentUpdate(@PathVariable int precedent_id,
+                                  @ModelAttribute PrecedentUpdate precedentUpdate){
+        precedentCRUDService.doPrecedentUpdate(precedentUpdate);
+
+        return "redirect:/precedent/all";
+    }
+
+    @PostMapping("/precedent/delete/{precedent_id}/")
+    public String precedentDelete(@PathVariable int precedent_id,
+                                  @ModelAttribute PrecedentUpdate precedentUpdate){
+        precedentCRUDService.doPrecedentDelete(precedentUpdate);
+
+        return "redirect:/precedent/all";
+    }
+
+
+    @GetMapping("/precedent/update/{precedent_id}")
+    public String precedentUpdatePage(@PathVariable int precedent_id,
+                                      @AuthenticationPrincipal LoginUser loginUser,
+                                      Model model) {
+        precedentService.addLoginUserMenu(loginUser, model);
+        precedentCRUDService.precedentUpdateDelete(precedent_id, model);
+
+        return "Precedent/precedentUpdate";
+    }
+
+    @GetMapping("/precedent/delete/{precedent_id}")
+    public String precedentDeletePage(@PathVariable int precedent_id,
+                                      @AuthenticationPrincipal LoginUser loginUser,
+                                      Model model) {
+        precedentService.addLoginUserMenu(loginUser, model);
+        precedentCRUDService.precedentUpdateDelete(precedent_id, model);
+
+        return "Precedent/precedentDelete";
     }
 }
