@@ -58,9 +58,6 @@
                     <th>カテゴリー</th>
                     <th>解説文</th>
                     <th>クイズ作成者</th>
-                    <span th:if="${Username.equals(${QuizAuthor})}">
-                        <th>編集</th>
-                    </span>
                 </tr>
             </thead>
 
@@ -71,8 +68,8 @@
                     <td th:text="${quizList.quizCategory}"></td>
                     <td th:text="${quizList.quizCommentary}"></td>
                     <td th:text="${quizList.quizAuthor}"></td>
-                    <span>
-                        <td></td>
+                    <span th:if="${Username == quizList.quizAuthor}">
+                        <td><a th:href="@{/quiz/questionList/{quizId}/update/(quizId = ${quizList.quizId})}">更新</a></td>
                     </span>
                 </tr>
             </tbody>

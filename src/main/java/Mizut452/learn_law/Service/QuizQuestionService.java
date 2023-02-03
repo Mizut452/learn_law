@@ -4,6 +4,7 @@ import Mizut452.learn_law.Mapper.QuizMapper;
 import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import Mizut452.learn_law.Model.Entity.Quiz.Quiz;
+import Mizut452.learn_law.Model.Entity.Quiz.QuizUpdateReq;
 import Mizut452.learn_law.Model.Entity.Quiz.UserQuizHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -193,7 +194,25 @@ public class QuizQuestionService {
 
             model.addAttribute("QuizAuthor", quizAuthor);
             model.addAttribute("QuizList", quizList);
-            model.addAttribute("Username", loginUser.getUsername());
+            if(loginUser != null) {
+                model.addAttribute("Username", loginUser.getUsername());
+            }
+        }
+
+        public void quizUpdate(int quizId,
+                               @ModelAttribute QuizUpdateReq quizUpdateReq,
+                               Model model) {
+            List<Quiz> quizList = quizMapper.selectQuizAllByQuizId(quizId);
+            Quiz quiz = quizList.get(0);
+            quizUpdateReq.setQuizId(quiz.getQuizId());
+            quizUpdateReq.setQuizQuestionSent(quiz.getQuizQuestionSent());
+            quizUpdateReq.setQuizRightOrBad(quiz.getQuizRightOrBad());
+            quizUpdateReq.setQuizCommentary(quiz.getQuizCommentary());
+            quizUpdateReq.setQuizCategory(quiz.getQuizAuthor());
+            quizUpdateReq.setQuizAuthor(quiz.getQuizAuthor());
+
+            model.addAttribute("QuizList", quizUpdateReq);
+
         }
 
     }

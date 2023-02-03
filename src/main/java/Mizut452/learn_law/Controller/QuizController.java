@@ -4,6 +4,7 @@ import Mizut452.learn_law.Mapper.QuizMapper;
 import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import Mizut452.learn_law.Model.Entity.Quiz.Quiz;
+import Mizut452.learn_law.Model.Entity.Quiz.QuizUpdateReq;
 import Mizut452.learn_law.Model.Entity.Quiz.UserQuizHistory;
 import Mizut452.learn_law.Service.QuizQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,5 +94,13 @@ public class QuizController {
         quizQuestionService.quizList(loginUser, model);
 
         return "Quiz/quizList";
+    }
+
+    @RequestMapping("/quiz/questionList/{quizId}/update/")
+    public String quizUpdate(@PathVariable int quizId,
+                             @ModelAttribute QuizUpdateReq quizUpdateReq,
+                             Model model) {
+        quizQuestionService.quizUpdate(quizId, quizUpdateReq, model);
+        return "Quiz/quizUpdate";
     }
 }
