@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -19,12 +21,18 @@ public class LoginCRUDController {
     LoginCRUDService loginCRUDService;
 
     @RequestMapping("/createaccount")
-    public String createAccount() {
+    public String createAccount(@ModelAttribute LoginUser loginUser) {
         return "Login/createAccount";
     }
 
     @PostMapping("/createaccount/create")
-    public String createMethod(@ModelAttribute LoginUser loginUser) {
+    public String createMethod(@Validated
+                               @ModelAttribute LoginUser loginUser,
+                               BindingResult result) {
+        if(result.hasErrors()) {
+            return "Login/createAccount";
+        }
+
         loginService.createMethodService(loginUser);
 
         return "Login/Complete";
