@@ -56,7 +56,8 @@
         <th>メールアドレス</th>
         <th>ユーザーネーム</th>
         <th>パスワード</th>
-        <th>役割</th>
+        <th colspan="2">役割</th>
+        <th>削除</th>
       </tr>
       </thead>
 
@@ -67,6 +68,17 @@
         <td th:text="${user.username}"></td>
         <td th:text="${user.password}"></td>
         <td th:text="${user.roleName}"></td>
+        <td><form th:action="@{/userlist/{userId}/changeRole/(userId = ${user.userId})}" th:method="@{post}">
+                <select name="roleName">
+                    <option value="ROLE_ADMIN">管理者</option>
+                    <option value="ROLE_GENERAL">一般</option>
+                </select>
+                <input type="submit" value="変更" />
+            </form>
+        </td>
+        <td><a th:href="@{/userlist/delete/{userId}/(userId = ${user.userId})}">削除</a></td>
+        </td>
+
       </tr>
       </tbody>
     </table>

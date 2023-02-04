@@ -1,10 +1,7 @@
 package Mizut452.learn_law.Mapper;
 
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -21,4 +18,10 @@ public interface LoginUserMapper {
 
     @Insert("INSERT INTO userList (email, username, password, roleName) VALUES(#{email}, #{username}, #{password}, 'ROLE_GENERAL')")
     void create(LoginUser loginUser);
+
+    @Update("UPDATE userList SET email = #{email}, username = #{username}, password = #{password} WHERE userId = #{userId}")
+    void update(int userId);
+
+    @Update("UPDATE userList SET roleName = #{roleName} WHERE userId = #{userId}")
+    void updateUserRole(String roleName, int userId);
 }

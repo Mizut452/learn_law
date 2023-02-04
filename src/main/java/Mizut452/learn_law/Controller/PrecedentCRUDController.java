@@ -11,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Objects;
-
 @Controller
 public class PrecedentCRUDController {
 
@@ -81,14 +79,11 @@ public class PrecedentCRUDController {
                                       Model model) {
         precedentService.addLoginUserMenu(loginUser, model);
 
-        if(category.equals("all")) {
-            precedentService.findPrecedentList(model);
-        } else if(category.equals("civil")) {
-            precedentCRUDService.changePrecedentCivilList(model);
-        } else if (category.equals("criminal")) {
-            precedentCRUDService.changePrecedentCriminalList(model);
-        } else {
-            precedentCRUDService.changePrecedentCopyrightList(model);
+        switch (category) {
+            case "all" -> precedentService.findPrecedentList(model);
+            case "civil" -> precedentCRUDService.changePrecedentCivilList(model);
+            case "criminal" -> precedentCRUDService.changePrecedentCriminalList(model);
+            default -> precedentCRUDService.changePrecedentCopyrightList(model);
         }
 
 
