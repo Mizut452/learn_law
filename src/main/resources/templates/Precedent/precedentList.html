@@ -48,6 +48,15 @@
 <div class="layoutMain">
   <main class="center">
     <div>判例一覧</div>
+      <form th:action="@{/precedent/all/changeList/}" th:method="@{get}">
+        <select name="category">
+            <option value="">カテゴリーを選ぶ</option>
+            <option value="civil">民法</option>
+            <option value="criminal">刑法</option>
+            <option value="copyright">著作権法</option>
+            <input type="submit" value="並べ替え" />
+        </select>
+      </form>
     <table border="1">
       <thead>
         <tr>
@@ -73,7 +82,6 @@
             <span sec:authorize="hasRole('ADMIN')">
                 <td><a th:href="@{/lawboard/{precedent_id}/update/(precedent_id = ${precedent.precedent_id})}">編集</a></td>
                 <td><a th:href="@{/lawboard/{precedent_id}/delete/(precedent_id = ${precedent.precedent_id})}">削除</a></td>
-            </span>
             </span>
           </tr>
       </tbody>

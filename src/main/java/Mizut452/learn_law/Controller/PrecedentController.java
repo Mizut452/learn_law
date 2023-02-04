@@ -1,10 +1,6 @@
 package Mizut452.learn_law.Controller;
 
-import Mizut452.learn_law.Mapper.PrecedentMapper;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
-import Mizut452.learn_law.Model.Entity.Precedent.Precedent;
-import Mizut452.learn_law.Model.Entity.Precedent.PrecedentUpdate;
-import Mizut452.learn_law.Service.PrecedentCRUDService;
 import Mizut452.learn_law.Service.PrecedentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -12,16 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
 public class PrecedentController {
 
     @Autowired
     PrecedentService precedentService;
-
-    @Autowired
-    PrecedentCRUDService precedentCRUDService;
 
     @RequestMapping("/precedent")
     public String precedentHome(@AuthenticationPrincipal LoginUser loginUser,

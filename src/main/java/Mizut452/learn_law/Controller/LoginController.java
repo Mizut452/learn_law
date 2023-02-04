@@ -30,17 +30,5 @@ public class LoginController {
 
         return "Login/userList";
     }
-
-    @RequestMapping("/createaccount")
-    public String createAccount() {
-        return "Login/createAccount";
-    }
-
-    @PostMapping("/createaccount/create")
-    public String createMethod(@ModelAttribute LoginUser loginUser) {
-        loginService.createMethodService(loginUser);
-
-        return "Login/Complete";
-    }
 }
 

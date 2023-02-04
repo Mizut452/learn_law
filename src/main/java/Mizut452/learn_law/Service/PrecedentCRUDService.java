@@ -41,4 +41,19 @@ public class PrecedentCRUDService {
     public void doPrecedentDelete(PrecedentUpdate precedentUpdate) {
         precedentMapper.delete(precedentUpdate);
     }
+
+    public void changePrecedentCivilList(Model model) {
+        precedentMapper.precedentCivilList();
+        model.addAttribute("PrecedentList", precedentMapper.precedentCivilList());
+    }
+
+    public void changePrecedentCriminalList(Model model) {
+        precedentMapper.precedentCriminalList();
+        model.addAttribute("PrecedentList", precedentMapper.precedentCriminalList());
+    }
+
+    public void changePrecedentCopyrightList(Model model) {
+        model.addAttribute("PrecedentList", precedentMapper.precedentCopyrightList());
+    }
 }
+

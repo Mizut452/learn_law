@@ -1,20 +1,14 @@
 package Mizut452.learn_law.Controller;
 
 import Mizut452.learn_law.Mapper.QuizMapper;
-import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import Mizut452.learn_law.Model.Entity.Quiz.Quiz;
-import Mizut452.learn_law.Model.Entity.Quiz.QuizUpdateReq;
-import Mizut452.learn_law.Model.Entity.Quiz.UserQuizHistory;
 import Mizut452.learn_law.Service.QuizQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.*;
 
 @Controller
 public class QuizController {
@@ -26,8 +20,6 @@ public class QuizController {
 
     //問題番号
     private int questionNumber = 0;
-    private int questionAnswer = 0;
-    private int rightOrBad = 0;
 
 
     @RequestMapping("/quiz")
@@ -75,9 +67,9 @@ public class QuizController {
         questionNumber++;
         quizQuestionService.addLoginUserMenu(loginUser, model);
         quizQuestionService.verificationAnswer(quizId, model, quiz);
-        rightOrBad = quiz.getQuizUsersAnswer();
+        int rightOrBad = quiz.getQuizUsersAnswer();
         quiz = quizMapper.selectQuizByQuizId(quizId);
-        questionAnswer = quiz.getQuizRightOrBad();
+        int questionAnswer = quiz.getQuizRightOrBad();
 
         if(questionAnswer == rightOrBad) {
             quizQuestionService.trueQuestion(quizId);

@@ -1,10 +1,7 @@
 package Mizut452.learn_law.Controller;
 
-import Mizut452.learn_law.Model.Entity.LawBoard.LawBoard;
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoardComment;
-import Mizut452.learn_law.Model.Entity.LawBoard.LawBoardUpdateReq;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
-import Mizut452.learn_law.Service.LawBoardCRUDService;
 import Mizut452.learn_law.Service.LawBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -35,17 +32,6 @@ public class LawBoardController {
         lawBoardService.ThreadPage(lawboard_id, model);
 
         return "LawBoard/lawboard_thread";
-    }
-
-    @PostMapping("/lawboard/{lawboard_id}/createcomment/")
-    public String createComment(@PathVariable int lawboard_id,
-                                @AuthenticationPrincipal LoginUser loginUser,
-                                @ModelAttribute LawBoardComment lawBoardComment) {
-
-            lawBoardService.createCommentService(lawboard_id, loginUser, lawBoardComment);
-
-
-            return "redirect:/lawboard/" + lawboard_id + "/";
     }
 
 }

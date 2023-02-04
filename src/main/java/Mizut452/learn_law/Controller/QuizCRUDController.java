@@ -1,6 +1,5 @@
 package Mizut452.learn_law.Controller;
 
-import Mizut452.learn_law.Mapper.QuizMapper;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import Mizut452.learn_law.Model.Entity.Quiz.QuizUpdateReq;
 import Mizut452.learn_law.Service.QuizQuestionService;

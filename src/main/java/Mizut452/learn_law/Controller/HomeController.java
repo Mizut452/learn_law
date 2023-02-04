@@ -1,9 +1,6 @@
 package Mizut452.learn_law.Controller;
 
-import Mizut452.learn_law.Mapper.LoginUserMapper;
-import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
-import Mizut452.learn_law.Model.Entity.Quiz.UserQuizHistory;
 import Mizut452.learn_law.Service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

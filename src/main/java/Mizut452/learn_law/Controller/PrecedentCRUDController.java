@@ -9,10 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Objects;
 
 @Controller
 public class PrecedentCRUDController {
@@ -74,5 +73,22 @@ public class PrecedentCRUDController {
         precedentCRUDService.precedentUpdateDelete(precedent_id, model);
 
         return "Precedent/precedentDelete";
+    }
+
+    @GetMapping("/precedent/all/changeList/")
+    public String precedentListChange(@AuthenticationPrincipal LoginUser loginUser,
+                                      @RequestParam("category") String category,
+                                      Model model) {
+        precedentService.addLoginUserMenu(loginUser, model);
+        if(category.equals("civil")) {
+            precedentCRUDService.changePrecedentCivilList(model);
+        } else if (category.equals("criminal")) {
+            precedentCRUDService.changePrecedentCriminalList(model);
+        } else {
+            precedentCRUDService.changePrecedentCopyrightList(model);
+        }
+
+
+        return "Precedent/precedentList";
     }
 }

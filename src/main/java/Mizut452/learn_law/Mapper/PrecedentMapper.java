@@ -2,20 +2,19 @@ package Mizut452.learn_law.Mapper;
 
 import Mizut452.learn_law.Model.Entity.Precedent.Precedent;
 import Mizut452.learn_law.Model.Entity.Precedent.PrecedentUpdate;
-import Mizut452.learn_law.Model.Entity.Precedent.SubLongPrecedent;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface PrecedentMapper {
-    @Select("SELECT * FROM precedent WHERE category = criminal")
+    @Select("SELECT * FROM precedent WHERE precedent_category = '刑法'")
     List<Precedent> precedentCriminalList();
 
-    @Select("SELECT * FROM precedent WHERE category = civil")
+    @Select("SELECT * FROM precedent WHERE precedent_category = '民法'")
     List<Precedent> precedentCivilList();
 
-    @Select("SELECT * FROM precedent WHERE category = copyright")
+    @Select("SELECT * FROM precedent WHERE precedent_category = '著作権法'")
     List<Precedent> precedentCopyrightList();
 
     @Select("SELECT * FROM precedent WHERE precedent_id = #{precedent_id}")
@@ -42,9 +41,6 @@ public interface PrecedentMapper {
             "VALUES(#{precedent_title}, #{precedent_category}, #{precedent_number}, " +
             "#{precedent_subtitle}, #{precedent_overview}, #{precedent_claim}, #{precedent_judgement})")
     void createPrecedent(Precedent precedent);
-
-    @Update("UPDATE precedent SET precedent_overview = #{precedent_overview}, precedent_claim = #{precedent_claim}, precedent_judgement = #{precedent_judgement} where precedent_id = #{precedent_id}")
-    void subLongPrecedent(SubLongPrecedent subLongPrecedent);
 
     @Update("UPDATE precedent SET precedent_title = #{precedent_title}, precedent_category = #{precedent_category}," +
             "precedent_number = #{precedent_number}, precedent_subtitle = #{precedent_subtitle}," +

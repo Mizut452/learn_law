@@ -3,8 +3,6 @@ package Mizut452.learn_law.Mapper;
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoard;
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoardComment;
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoardUpdateReq;
-import Mizut452.learn_law.Model.Entity.Quiz.QuizUpdateReq;
-import lombok.Data;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
