@@ -18,9 +18,6 @@ public class LawBoardController {
     @Autowired
     LawBoardService lawBoardService;
 
-    @Autowired
-    LawBoardCRUDService lawBoardCRUDService;
-
     @RequestMapping("/lawboard")
     public String LawBoardPage(@AuthenticationPrincipal LoginUser loginUser,
                                Model model) {
@@ -49,60 +46,6 @@ public class LawBoardController {
 
 
             return "redirect:/lawboard/" + lawboard_id + "/";
-    }
-
-    @GetMapping("/lawboard/create_thread")
-    public String create_threadPage(@AuthenticationPrincipal LoginUser loginUser,
-                                    Model model) {
-        lawBoardService.addLoginUserMenu(loginUser, model);
-
-        return "/LawBoard/createTopic";
-    }
-
-    @PostMapping("/lawboard/create")
-    public String create(@AuthenticationPrincipal LoginUser loginUser,
-                         @ModelAttribute LawBoard lawBoard) {
-        lawBoardCRUDService.create_threadService(loginUser, lawBoard);
-
-        return "redirect:/lawboard";
-    }
-
-    @GetMapping("/lawboard/{lawBoard_id}/update/")
-    public String lawBoardUpdatePage(@PathVariable int lawBoard_id,
-                                     @ModelAttribute LawBoardUpdateReq lawBoardUpdateReq,
-                                     @AuthenticationPrincipal LoginUser loginUser,
-                                     Model model) {
-        lawBoardService.addLoginUserMenu(loginUser, model);
-        lawBoardCRUDService.lawBoardUpdate(lawBoard_id, model);
-
-        return "/LawBoard/lawBoardUpdate";
-    }
-
-    @GetMapping("/lawboard/{lawBoard_id}/delete/")
-    public String lawBoardDeletePage(@PathVariable int lawBoard_id,
-                                     @ModelAttribute LawBoardUpdateReq lawBoardUpdateReq,
-                                     @AuthenticationPrincipal LoginUser loginUser,
-                                     Model model) {
-        lawBoardService.addLoginUserMenu(loginUser, model);
-        lawBoardCRUDService.lawBoardDelete(lawBoard_id, model);
-
-        return "/LawBoard/lawBoardDelete";
-    }
-
-    @PostMapping("lawboard/update/{lawBoard_id}/")
-    public String lawBoardUpdate(@PathVariable int lawBoard_id,
-                                 @ModelAttribute LawBoardUpdateReq lawBoardUpdateReq) {
-        lawBoardCRUDService.doLawBoardUpdate(lawBoardUpdateReq);
-
-        return "redirect:/lawboard";
-    }
-
-    @PostMapping("/lawboard/delete/{lawBoard_id}/")
-    public String lawBoardDelete(@PathVariable int lawBoard_id,
-                                 @ModelAttribute LawBoardUpdateReq lawBoardUpdateReq) {
-        lawBoardCRUDService.doLawBoardDelete(lawBoardUpdateReq);
-
-        return "redirect:/lawboard";
     }
 
 }
