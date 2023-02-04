@@ -16,16 +16,16 @@ public class LoginUser implements UserDetails {
 
     private int userId;
 
-    @NotBlank(message = "必須だよ")
-    @Email
+    @NotBlank(message = "必須項目です")
+    @Email(message = "メールの形式で入力してください。")
     private String email;
 
-    @NotBlank
-    @Length(max=10)
+    @NotBlank(message = "必須項目です")
+    @Length(max=20, message = "20文字以内でお願いします。")
     private String username;
 
-    @NotBlank
-    @Length(max=30)
+    @NotBlank(message = "必須項目です")
+    @Length(max=20, message = "20文字以内でお願いします。")
     private String password;
 
     private String roleName;

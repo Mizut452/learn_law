@@ -50,13 +50,13 @@
 <form th:action="@{/createaccount/create}" th:object="${loginUser}" th:method="@{post}" novalidate>
   <label>メールアドレス：</label>
   <input type="email" th:field="*{email}" />
-  <span th:errors="*{email}"></span><br>
+  <span class="errorStr" th:errors="*{email}"></span><br>
   <label>ユーザー名：</label>
-  <input type="text" th:field="*{username}" />
-  <span th:errors="*{username}"></span><br>
+  <input type="text" th:field="*{username}" placeholder="20文字以内" />
+  <span class="errorStr" th:errors="*{username}"></span><br>
   <label>パスワード：</label>
-  <input type="password" th:field="*{password}" />
-  <span th:errors="*{password}"></span><br>
+  <input type="password" th:field="*{password}" placeholder="20文字以内" />
+  <span class="errorStr" th:errors="*{password}"></span><br>
   <button type="submit">登録</button>
 </form>
 </body>
