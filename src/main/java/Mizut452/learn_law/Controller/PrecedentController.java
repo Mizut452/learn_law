@@ -22,33 +22,6 @@ public class PrecedentController {
         return "Precedent/precedentTop";
     }
 
-    @GetMapping("/precedent/criminal/top")
-    public String precedentCriminalTop(@AuthenticationPrincipal LoginUser loginUser,
-                                       Model model) {
-        precedentService.addLoginUserMenu(loginUser, model);
-        precedentService.findPrecedentCriminalService(model);
-
-        return "Precedent/precedentCriminal";
-    }
-
-    @GetMapping("/precedent/civil/top")
-    public String precedentCivilTop(Model model,
-                                    @AuthenticationPrincipal LoginUser loginUser) {
-        precedentService.addLoginUserMenu(loginUser, model);
-        precedentService.findPrecedentCivilService(model);
-
-        return "Precedent/precedentCivil";
-    }
-
-    @GetMapping("/precedent/copyright/top")
-    public String precedentCopyright(@AuthenticationPrincipal LoginUser loginUser,
-                                     Model model) {
-        precedentService.addLoginUserMenu(loginUser, model);
-        precedentService.findPrecedentCopyright(model);
-
-        return "Precedent/precedentCopyright";
-    }
-
     @GetMapping("/precedent/{precedent_id}/")
     public String precedentCivil(@PathVariable int precedent_id,
                                  @AuthenticationPrincipal LoginUser loginUser,

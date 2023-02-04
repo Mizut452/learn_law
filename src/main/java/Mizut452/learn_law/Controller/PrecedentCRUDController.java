@@ -80,7 +80,10 @@ public class PrecedentCRUDController {
                                       @RequestParam("category") String category,
                                       Model model) {
         precedentService.addLoginUserMenu(loginUser, model);
-        if(category.equals("civil")) {
+
+        if(category.equals("all")) {
+            precedentService.findPrecedentList(model);
+        } else if(category.equals("civil")) {
             precedentCRUDService.changePrecedentCivilList(model);
         } else if (category.equals("criminal")) {
             precedentCRUDService.changePrecedentCriminalList(model);

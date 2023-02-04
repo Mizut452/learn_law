@@ -55,12 +55,6 @@
     this is left side!
     <a th:href="@{/precedent}">判例とは？</a><br>
     <a th:href="@{/precedent/all}">判例一覧</a>
-    <div>刑法</div>
-    <a th:href="@{/precedent/criminal/top}">刑法の判例を読む</a>
-    <div>民法</div>
-    <a th:href="@{/precedent/civil/top}">民法の判例を読む</a>
-    <div>著作権法</div>
-    <a th:href="@{/precedent/copyright/top}">著作権についての判例を読む</a><br>
     <div sec:authorize="hasRole('ADMIN')">
       <a th:href="@{/precedent/writeprecedent}">判例を書く</a>
     </div>
