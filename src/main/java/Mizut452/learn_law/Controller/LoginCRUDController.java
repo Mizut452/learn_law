@@ -29,6 +29,7 @@ public class LoginCRUDController {
     public String createMethod(@Validated
                                @ModelAttribute LoginUser loginUser,
                                BindingResult result) {
+
         if(result.hasErrors()) {
             return "Login/createAccount";
         }

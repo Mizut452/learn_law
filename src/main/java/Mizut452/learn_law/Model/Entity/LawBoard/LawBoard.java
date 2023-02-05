@@ -1,6 +1,5 @@
 package Mizut452.learn_law.Model.Entity.LawBoard;
 
-import jakarta.validation.constraints.Max;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -12,10 +11,10 @@ public class LawBoard {
 
     private String lawBoard_category;
 
-    @Length(max=50)
+    @Length(max=50, message = "50文字以内で入力してください")
     private String lawBoard_title;
 
-    @Length(max=300)
+    @Length(max=300, message = "300文字以内で入力してください")
     private String lawBoard_mainComment;
 
     private String lawBoard_comment;
