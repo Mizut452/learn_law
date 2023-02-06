@@ -17,7 +17,8 @@ public class LoginController {
     LoginService loginService;
 
     @RequestMapping("/login")
-    public String Login(@ModelAttribute LoginUser loginUser) {
+    public String Login(@ModelAttribute LoginUser loginUser,
+                        Model model) {
 
         return "Login/login";
     }

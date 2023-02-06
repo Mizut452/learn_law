@@ -45,4 +45,8 @@ public class LoginService {
         loginUser = loginUserMapper.findByUsername(loginUser.getUsername());
         userQuizHistoryMapper.insertNewUserQuizHistory(loginUser.getUserId(), loginUser.getUsername());
     }
+
+    public void loginMiss(Model model) {
+        model.addAttribute("LoginMiss", "ログインに失敗しました");
+    }
 }
