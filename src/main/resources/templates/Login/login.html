@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>ログイン</title>
     <link rel="stylesheet" th:href="@{/css/Home/homeLayout.css}">
+    <style type="text/css">
+        .errorStr { color: red; }
+    </style>
 </head>
 <header>
     <span id="Learn_Law"><a th:href="@{/}"><img id="title_pic" th:src="@{/images/title.png}"></a></span>
@@ -44,9 +47,13 @@
 </header>
 <body>
     <h2>ログイン</h2>
-    <form action="/" th:action="@{/login}" th:method="@{post}">
-        ユーザー名:<input type="text" name="username"><br>
-        パスワード:<input type="password" name="password"><br>
+    <span th:errors="ログインに失敗しました"></span><br>
+
+    <form action="/" th:action="@{/login}" th:object="${loginUser}" th:method="@{post}" novalidate>
+        ユーザー名:<input type="text" th:field="*{username}" name="username"><br>
+        <span class="errorStr" th:errors="*{username}"></span><br>
+        パスワード:<input type="password" th:field="*{password}" name="password"><br>
+        <span class="errorStr" th:errors="*{password}"></span><br>
         <button type="submit">ログイン</button>
     </form>
 </body>
