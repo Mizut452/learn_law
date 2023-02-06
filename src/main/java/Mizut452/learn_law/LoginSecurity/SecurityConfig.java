@@ -21,7 +21,7 @@ public class SecurityConfig {
                 .loginProcessingUrl("/login")
                 .loginPage("/login")
                 .defaultSuccessUrl("/")
-                .failureUrl("/login?error")
+                .failureUrl("/login/error")
                 .permitAll()
         ).logout(logout -> logout
                 .logoutSuccessUrl("/")
@@ -30,6 +30,9 @@ public class SecurityConfig {
                 .requestMatchers("/").permitAll()
                 .anyRequest().permitAll()
         );
+
+
+
         http.csrf().disable();
         return http.build();
     }

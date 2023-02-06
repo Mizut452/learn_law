@@ -46,6 +46,10 @@ public class LoginService {
         userQuizHistoryMapper.insertNewUserQuizHistory(loginUser.getUserId(), loginUser.getUsername());
     }
 
+    public void subMiss(Model model) {
+        model.addAttribute("SubMiss", "登録に失敗しました。");
+    }
+
     public void loginMiss(Model model) {
         model.addAttribute("LoginMiss", "ログインに失敗しました");
     }

@@ -47,6 +47,10 @@
 </header>
 <body>
 <p>新規会員登録</p>
+    <span th:if="${SubMiss}">
+        <p th:text="${SubMiss}"></p>
+    </span>
+
 <form th:action="@{/createaccount/create}" th:object="${loginUser}" th:method="@{post}" novalidate>
   <label>メールアドレス：</label>
   <input type="email" th:field="*{email}" />

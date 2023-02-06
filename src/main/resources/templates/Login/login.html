@@ -47,7 +47,9 @@
 </header>
 <body>
     <h2>ログイン</h2>
-    <span th:errors="${LoginMiss}"></span><br>
+    <span th:if="${LoginMiss}">
+        <p th:text="${LoginMiss}"></p>
+    </span>
 
     <form action="/" th:action="@{/login}" th:object="${loginUser}" th:method="@{post}" novalidate>
         ユーザー名:<input type="text" th:field="*{username}" name="username"><br>

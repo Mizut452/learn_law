@@ -29,7 +29,7 @@ public class LoginUser implements UserDetails {
 
     @NotBlank(message = "必須項目です")
     @Length(max=20, message = "20文字以内でお願いします")
-    @Pattern(regexp = "^(\\w|\\s|\0)+$", message = "英数字でお願いします")
+    @Pattern(regexp = "^(\\w|\\s)+$", message = "英数字でお願いします")
     private String password;
 
     private String roleName;

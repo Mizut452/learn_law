@@ -21,16 +21,24 @@ public class LoginCRUDController {
     LoginCRUDService loginCRUDService;
 
     @RequestMapping("/createaccount")
-    public String createAccount(@ModelAttribute LoginUser loginUser) {
+    public String createAccount(@ModelAttribute LoginUser loginUser,
+                                BindingResult result,
+                                Model model) {
+        if(result.hasErrors()) {
+            loginService.subMiss(model);
+            return "Login/createAccount";
+        }
         return "Login/createAccount";
     }
 
     @PostMapping("/createaccount/create")
     public String createMethod(@Validated
                                @ModelAttribute LoginUser loginUser,
-                               BindingResult result) {
+                               BindingResult result,
+                               Model model) {
 
         if(result.hasErrors()) {
+            loginService.subMiss(model);
             return "Login/createAccount";
         }
 
