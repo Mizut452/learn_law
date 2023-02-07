@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8">
+        <title>quiz</title>
+        <link rel="stylesheet" th:href="@{/css/Quiz/Quiz.css}">
+        <link rel="stylesheet" th:href="@{/css/Quiz/QuizStart.css}">
+    </head>
+
+    <body>
+    <header>
+        <span id="Learn_Law"><a th:href="@{/}"><img id="title_pic" th:src="@{/images/title.png}"></a></span>
+
+        <nav>
+        <span sec:authorize="isAnonymous()">
+            <a th:href="@{/login}">ログイン</a>　　
+            <a th:href="@{/createaccount}">新規登録</a>
+        </span>
+
+            <span sec:authorize="hasRole('GENERAL')">
+            <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
+            <a th:href="@{/logout}">ログアウト</a>
+        </span>
+            <span sec:authorize="hasRole('ADMIN')">
+            <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
+            <a th:href="@{/logout}">ログアウト</a>
+            <a th:href="@{/userlist}">ユーザーリスト</a>
+        </span>
+        </nav>
+
+        <div>
+            <ul class="menu">
+                <li class="menu-list">
+                    <a th:href="@{/}" class="menuList-content">ホーム</a>
+                </li>
+                <li class="menu-list">
+                    <a th:href="@{/quiz}" class="menuList-content">クイズ</a>
+                </li>
+                <li class="menu-list">
+                    <a th:href="@{/precedent}" class="menuList-content">判例</a>
+                </li>
+                <li>
+                    <a th:href="@{/lawboard}">掲示板</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+        <div class="layoutMain">
+            <main class="center">
+                <div class="quizTitle">クイズタイトル</div>
+
+
+
+
+
+
+                <div class="quizStartButton">
+                    <a th:href="@{/quiz/question}">はじめる</a>
+                </div>
+
+
+            </main>
+
+            <div class="left-side">
+                <div>クイズランキング</div>
+                <table border="1">
+                    <thead>
+                    <tr>
+                        <th>順位</th>
+                        <th>ユーザー名</th>
+                        <th>正解数</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="quizRank: ${QuizRank}">
+                        <td th:text="${quizRankStat.count}"></td>
+                         <td th:text="${quizRank.history_username}"></td>
+                         <td th:text="${quizRank.pointAll}"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <br>
+
+                <div><a th:href="@{/quiz/questionList}">クイズ一覧表</a></div>
+            </div>
+            
+            <aside class="right-side">
+
+            </aside>
+        </div>
+    </body>
+
+</html>
