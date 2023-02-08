@@ -30,8 +30,11 @@ public class PrecedentCRUDController {
     }
 
     @PostMapping("/precedent/create")
-    public String precedentCreate(@ModelAttribute Precedent precedent) {
+    public String precedentCreate(@ModelAttribute Precedent precedent,
+                                  @AuthenticationPrincipal LoginUser loginUser,
+                                  Model model) {
         precedentService.createPrecedent(precedent);
+        precedentService.addLoginUserMenu(loginUser, model);
 
         return "Precedent/createComplete";
     }

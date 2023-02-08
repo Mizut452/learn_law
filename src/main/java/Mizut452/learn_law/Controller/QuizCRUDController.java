@@ -2,6 +2,7 @@ package Mizut452.learn_law.Controller;
 
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import Mizut452.learn_law.Model.Entity.Quiz.QuizUpdateReq;
+import Mizut452.learn_law.Service.QuizCRUDService;
 import Mizut452.learn_law.Service.QuizQuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,11 +19,14 @@ public class QuizCRUDController {
     @Autowired
     QuizQuestionService quizQuestionService;
 
+    @Autowired
+    QuizCRUDService quizCRUDService;
+
 
     @PostMapping("/quiz/update/{quizId}/")
     public String quizUpdate(@PathVariable int quizId,
                              @ModelAttribute QuizUpdateReq quizUpdateReq) {
-        quizQuestionService.doQuizUpdate(quizUpdateReq);
+        quizCRUDService.doQuizUpdate(quizUpdateReq);
 
         return "redirect:/quiz/questionList";
     }
@@ -30,7 +34,7 @@ public class QuizCRUDController {
     @PostMapping("/quiz/delete/{quizId}/")
     public String quizDelete(@PathVariable int quizId,
                              @ModelAttribute QuizUpdateReq quizUpdateReq) {
-        quizQuestionService.doQuizDelete(quizUpdateReq);
+        quizCRUDService.doQuizDelete(quizUpdateReq);
 
         return "redirect:/quiz/questionList";
     }
@@ -50,7 +54,7 @@ public class QuizCRUDController {
                                  @ModelAttribute QuizUpdateReq quizUpdateReq,
                                  @AuthenticationPrincipal LoginUser loginUser,
                                  Model model) {
-        quizQuestionService.quizUpdate(quizId, model);
+        quizCRUDService.quizUpdate(quizId, model);
         quizQuestionService.addLoginUserMenu(loginUser, model);
         quizQuestionService.quizRanking(model);
 
@@ -64,7 +68,7 @@ public class QuizCRUDController {
                                  Model model) {
         quizQuestionService.addLoginUserMenu(loginUser, model);
         quizQuestionService.quizRanking(model);
-        quizQuestionService.quizDelete(quizId, model);
+        quizCRUDService.quizDelete(quizId, model);
 
         return "Quiz/quizDelete";
     }
