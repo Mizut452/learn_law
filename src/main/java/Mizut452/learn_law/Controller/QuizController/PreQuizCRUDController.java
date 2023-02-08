@@ -1,5 +1,6 @@
 package Mizut452.learn_law.Controller.QuizController;
 
+import Mizut452.learn_law.Mapper.QuizMapper;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import Mizut452.learn_law.Model.Entity.Quiz.Quiz;
 import Mizut452.learn_law.Service.PreQuizService;
@@ -23,6 +24,9 @@ public class PreQuizCRUDController {
 
     @Autowired
     QuizQuestionService quizQuestionService;
+
+    @Autowired
+    QuizMapper quizMapper;
 
     @GetMapping("/quiz/preQuiz/good/{quizId}/")
     public String quizPreGood(@PathVariable int quizId) {
@@ -57,6 +61,13 @@ public class PreQuizCRUDController {
         String username = loginUser.getUsername();
         preQuizService.quizPreInsert(quiz, username);
         quizQuestionService.quizRanking(model);
+
+        return "redirect:/quiz/preQuiz";
+    }
+
+    @PostMapping("/quiz/preQuiz/insert/{quizId}")
+    public String quizPreInsert(@PathVariable int quizId) {
+        preQuizService.insertPreQuizToQuiz(quizId);
 
         return "redirect:/quiz/preQuiz";
     }

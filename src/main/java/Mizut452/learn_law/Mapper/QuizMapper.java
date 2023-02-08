@@ -32,4 +32,7 @@ public interface QuizMapper {
 
     @Delete("DELETE FROM quiz WHERE quizId = #{quizId}")
     void delete(QuizUpdateReq quizUpdateReq);
+
+    @Insert("INSERT INTO() VALUES()")
+    void preQuizToQuiz(Quiz quiz);
 }
