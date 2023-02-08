@@ -7,6 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface PreQuizMapper {
+
+    @Select("SELECT SETVAL('PreQuiz_quizId_seq', (SELECT MAX(quizId) FROM PreQuiz))")
+    Quiz PREQUIZ_SYNC();
     @Select("SELECT * FROM PreQuiz WHERE quizId = #{quizId}")
     Quiz selectPreQuizById(int quizId);
 

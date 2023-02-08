@@ -26,6 +26,9 @@ INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizC
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (14, '一夫一妻制は日本の文化的なものであることから、しようと思えば複数の人と婚姻関係になることができる。', 2, '正解は×。　民法732条において複数の人と重ねて婚姻をすることが禁止されている。', '民法', 'top');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (15, '逃亡中の犯人をかくまうと犯罪となるが、その犯人と家族の関係にあればその刑は免除される。', 1, '正解は〇。　刑法105条は犯人の親族にある者が犯人をかくまっても無罪としている。', '刑法', 'top');
 
+--クイズ申請の問題文と答え
+INSERT INTO PreQuiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (1, '運転中、急に子どもが突っ込んできたので急ハンドルを切った。その侵攻先に郵便ポストがあり、それを壊してしまった。この時、罪は免除されることはない。', 2, '正解は×。　刑法37条において、自分や他人の生命などの現在の危機を避けるためにした行為によってなんらかの害が起きた時、刑を減軽、又は免除すると規定されている。', '刑法', 'second');
+
 --掲示板表題
 INSERT INTO LawBoard(lawBoard_id, lawBoard_username, lawBoard_category, lawBoard_title, lawBoard_mainComment, lawBoard_time) VALUES (1, 'top', '刑法', '殺人罪について教えてください！', '殺人罪について教えていただきたいです！', '2023-02-01 13:00');
 

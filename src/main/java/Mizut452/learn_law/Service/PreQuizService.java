@@ -28,12 +28,14 @@ public class PreQuizService {
     }
 
     public void insertPreQuizToQuiz(int quizId){
+        quizMapper.QUIZ_SYNC();
         Quiz quiz = preQuizMapper.selectPreQuizById(quizId);
         quizMapper.preQuizToQuiz(quiz);
     }
 
     public void quizPreInsert(@ModelAttribute Quiz quiz,
                               String username) {
+        preQuizMapper.PREQUIZ_SYNC();
         preQuizMapper.insertPreQuiz(quiz, username);
     }
 

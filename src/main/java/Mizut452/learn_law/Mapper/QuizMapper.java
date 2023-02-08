@@ -11,6 +11,9 @@ import java.util.List;
 @Mapper
 public interface QuizMapper {
 
+    @Select("SELECT SETVAL('Quiz_quizId_seq', (SELECT MAX(quizId) FROM Quiz))")
+    Quiz QUIZ_SYNC();
+
     @Select("SELECT * FROM quiz")
     List<Quiz> selectQuizAll();
 
@@ -33,6 +36,7 @@ public interface QuizMapper {
     @Delete("DELETE FROM quiz WHERE quizId = #{quizId}")
     void delete(QuizUpdateReq quizUpdateReq);
 
-    @Insert("INSERT INTO() VALUES()")
+    @Insert("INSERT INTO Quiz(quizQuestionSent, quizRightOrBad, quizCommentary," +
+            " quizCategory, quizAuthor) VALUES (#{quizQuestionSent}, #{quizRightOrBad}, #{quizCommentary}, #{quizCategory}, #{quizAuthor})")
     void preQuizToQuiz(Quiz quiz);
 }
