@@ -67,7 +67,6 @@
 
       <tbody>
       <tr th:each="quiz : ${preQuiz}">
-          <td th:text="${quiz.quizId}"></td>
           <td th:text="${quiz.quizQuestionSent}"></td>
           <td th:text="${quiz.quizRightOrBad}"></td>
           <td th:text="${quiz.quizCommentary}"></td>
@@ -80,7 +79,8 @@
              </a>：<span th:text="${quiz.quizGood}"></span>
           </td>
           <span th:if="${role} == 'ROLE_ADMIN'">
-          <td></td>
+              <td><a th:href="@{/quiz/preQuiz/insert}"></a></td>
+              <td><a th:href="@{/quiz/preQuiz/delete}"></a></td>
           <span>
             <td></td>
             <td></td>

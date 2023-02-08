@@ -1,4 +1,4 @@
-package Mizut452.learn_law.Controller;
+package Mizut452.learn_law.Controller.QuizController;
 
 import Mizut452.learn_law.Mapper.QuizMapper;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
