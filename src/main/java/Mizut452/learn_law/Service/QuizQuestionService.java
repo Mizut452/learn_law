@@ -66,8 +66,10 @@ public class QuizQuestionService {
         userPoint = 0;
         userCriminalPoint = 0;
         userCivilPoint = 0;
+        userCopyrightPoint = 0;
         civilQuestionNo = 0;
         criminalQuestionNo = 0;
+        copyrightQuestionNo = 0;
         quizId = 0;
 
         //出題する問題を選ぶ（questionIdを生成する）
@@ -118,18 +120,22 @@ public class QuizQuestionService {
                 UserQuizHistory userQuizHistory = userQuizHistoryMapper.quizHistoryMapperList(loginUser.getUserId());
 
                 //プレイヤーが挑戦した問題数と正解数を足す
+                //過去に挑戦した問題数と正解した数を出す
                 int pointAll = userQuizHistory.getPointAll();
                 int questionAll = userQuizHistory.getQuestionAll();
                 int questionCivilAll = userQuizHistory.getCivilQuestionAll();
                 int questionCriminalAll = userQuizHistory.getCriminalQuestionAll();
+                int questionCopyrightAll = userQuizHistory.getCopyrightQuestionAll();
                 int pointCivilLaw = userQuizHistory.getPointCivilLaw();
                 int pointCriminalLaw = userQuizHistory.getPointCriminalLaw();
                 int pointCopyrightLaw = userQuizHistory.getPointCopyrightLaw();
 
+                //過去に挑戦した問題数と正解した数と今回の問題数と正解数を足す
                 userQuizHistory.setPointAll(pointAll + userPoint);
                 userQuizHistory.setQuestionAll(questionAll + questionNumber);
                 userQuizHistory.setCivilQuestionAll(questionCivilAll + civilQuestionNo);
                 userQuizHistory.setCriminalQuestionAll(questionCriminalAll + criminalQuestionNo);
+                userQuizHistory.setCopyrightQuestionAll(questionCopyrightAll + copyrightQuestionNo);
                 userQuizHistory.setPointCivilLaw(pointCivilLaw + userCivilPoint);
                 userQuizHistory.setPointCriminalLaw(pointCriminalLaw + userCriminalPoint);
                 userQuizHistory.setPointCopyrightLaw(pointCopyrightLaw + userCopyrightPoint);
