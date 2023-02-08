@@ -11,7 +11,7 @@ public interface LoginUserMapper {
     LoginUser findByUsername(@Param("username") String username);
 
     //プライマリーキーと自動採番を同期させる
-    @Select("SELECT setval('userList.userId', (SELECT MAX(userId) FROM userList))")
+    @Select("SELECT SETVAL('userlist_userId_seq', (SELECT MAX(userId) FROM userList))")
     LoginUser primaryKeySync();
 
     @Select("SELECT * FROM userList WHERE userId = #{userId}")

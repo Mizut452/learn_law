@@ -35,7 +35,7 @@ public class LoginService {
 
     public void createMethodService(@ModelAttribute LoginUser loginUser) {
         //SQLに登録
-        //loginUserMapper.primaryKeySync();
+        loginUserMapper.primaryKeySync();
         loginUser.setPassword(passwordEncoder.encode(loginUser.getPassword()));
         loginUserMapper.create(loginUser);
         //成績用のSQL登録
