@@ -124,6 +124,7 @@ public class QuizQuestionService {
                 int questionCriminalAll = userQuizHistory.getCriminalQuestionAll();
                 int pointCivilLaw = userQuizHistory.getPointCivilLaw();
                 int pointCriminalLaw = userQuizHistory.getPointCriminalLaw();
+                int pointCopyrightLaw = userQuizHistory.getPointCopyrightLaw();
 
                 userQuizHistory.setPointAll(pointAll + userPoint);
                 userQuizHistory.setQuestionAll(questionAll + questionNumber);
@@ -131,6 +132,7 @@ public class QuizQuestionService {
                 userQuizHistory.setCriminalQuestionAll(questionCriminalAll + criminalQuestionNo);
                 userQuizHistory.setPointCivilLaw(pointCivilLaw + userCivilPoint);
                 userQuizHistory.setPointCriminalLaw(pointCriminalLaw + userCriminalPoint);
+                userQuizHistory.setPointCopyrightLaw(pointCopyrightLaw + userCopyrightPoint);
                 //insert文
                 userQuizHistoryMapper.updateUserQuizHistory(userQuizHistory);
             }
@@ -170,12 +172,16 @@ public class QuizQuestionService {
                 userPoint++;
                 userCivilPoint++;
                 civilQuestionNo++;
-                System.out.println("民ぽ"+userPoint);
+
             } if (quizMapper.selectCategory(quizId).equals("刑法")) {
                 userPoint++;
                 userCriminalPoint++;
                 criminalQuestionNo++;
-                System.out.println("刑法"+userPoint);
+
+            } if (quizMapper.selectCategory(quizId).equals("著作権法")) {
+                userPoint++;
+                userCopyrightPoint++;
+                copyrightQuestionNo++;
             }
         }
 
