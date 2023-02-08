@@ -39,6 +39,10 @@ public class PreQuizService {
         preQuizMapper.insertPreQuiz(quiz, username);
     }
 
+    public void deletePreQuiz(int quizId) {
+        preQuizMapper.deletePreQuiz(quizId);
+    }
+
     public void subMiss(Model model) {
         model.addAttribute("SubMiss", "登録に失敗しました");
     }

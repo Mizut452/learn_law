@@ -23,4 +23,7 @@ public interface PreQuizMapper {
     @Insert("INSERT INTO PreQuiz(quizQuestionSent, quizRightOrBad, quizCommentary," +
             "quizCategory, quizAuthor) VALUES (#{quiz.quizQuestionSent}, #{quiz.quizRightOrBad}, #{quiz.quizCommentary}, #{quiz.quizCategory}, #{username})")
     void insertPreQuiz(@Param("quiz") Quiz quiz, @Param("username") String username);
+
+    @Delete("DELETE FROM PreQuiz WHERE quizId = #{quizId}")
+    void deletePreQuiz(int quizId);
 }

@@ -68,6 +68,7 @@ public class PreQuizCRUDController {
     @GetMapping("/quiz/preQuiz/insert/{quizId}/")
     public String quizPreInsert(@PathVariable int quizId) {
         preQuizService.insertPreQuizToQuiz(quizId);
+        preQuizService.deletePreQuiz(quizId);
 
         return "redirect:/quiz/preQuiz";
     }
