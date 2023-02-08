@@ -35,6 +35,7 @@ public class LoginService {
 
     public void createMethodService(@ModelAttribute LoginUser loginUser) {
         //SQLに登録
+        //プライマリーキーと自動採番を同期させる
         loginUserMapper.primaryKeySync();
         loginUser.setPassword(passwordEncoder.encode(loginUser.getPassword()));
         loginUserMapper.create(loginUser);

@@ -10,11 +10,19 @@ import java.util.List;
 @Mapper
 public interface LawBoardMapper {
 
+    //プライマリーキーと自動採番を同期させる
+    @Select("SELECT SETVAL('LawBoard_lawboard_id_seq', (SELECT MAX(lawboard_id) FROM LawBoard))")
+    LawBoard LAW_BOARD_Sync();
+
     @Select("SELECT * FROM LawBoard")
     List<LawBoard> lawBoardAll();
 
     @Select("SELECT * FROM LawBoard where lawboard_id = #{lawboard_id}")
     LawBoard lawBoardById(@Param("lawboard_id") int lawboard_id);
+
+    //コメントプライマリーキーと自動採番を同期させる
+    @Select("SELECT SETVAL('LawBoard_comment_comment_id_seq', (SELECT MAX(comment_id) FROM LawBoard_comment))")
+    LawBoardComment LAW_BOARD_COMMENT_Sync();
 
     @Select("SELECT * FROM LawBoard_comment WHERE boardParent_id = #{lawboard_id}")
     List<LawBoardComment> lawBoardCommentById(@Param("lawboard_id") int lawboard_id);

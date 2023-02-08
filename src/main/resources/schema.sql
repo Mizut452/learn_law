@@ -29,9 +29,11 @@ CREATE TABLE IF NOT EXISTS userQuizHistory (
         questionAll INTEGER default 0,
         civilQuestionAll INTEGER default 0,
         criminalQuestionAll INTEGER default 0,
+        copyrightQuestionAll INTEGER default 0,
         pointAll INTEGER default 0,
         pointCivilLaw INTEGER default 0,
-        pointCriminalLaw INTEGER default 0
+        pointCriminalLaw INTEGER default 0,
+        pointCopyrightLaw INTEGER default 0
 );
 
 CREATE TABLE IF NOT EXISTS precedent (

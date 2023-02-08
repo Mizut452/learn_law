@@ -64,10 +64,10 @@
             <tbody>
                 <tr th:each="quizList : ${QuizList}">
                     <td th:text="${quizList.quizQuestionSent}"></td>
-                    <span th:if="${QuizRightOrBad == quizList.quizRightOrBad}">
+                    <span th:if="${quizList.quizRightOrBad == 1}">
                         <td>〇</td>
                     </span>
-                    <span th:if="${QuizRightOrBad != quizList.quizRightOrBad}">
+                    <span th:if="${quizList.quizRightOrBad == 2}">
                         <td>×</td>
                     </span>
                     <td th:text="${quizList.quizCategory}"></td>

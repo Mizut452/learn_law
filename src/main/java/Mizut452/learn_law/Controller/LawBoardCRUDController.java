@@ -30,7 +30,7 @@ public class LawBoardCRUDController {
                                 @AuthenticationPrincipal LoginUser loginUser,
                                 @ModelAttribute LawBoardComment lawBoardComment) {
 
-        lawBoardService.createCommentService(lawboard_id, loginUser, lawBoardComment);
+        lawBoardCRUDService.createCommentService(lawboard_id, loginUser, lawBoardComment);
 
 
         return "redirect:/lawboard/" + lawboard_id + "/";

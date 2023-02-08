@@ -37,10 +37,14 @@ public class QuizQuestionService {
     private int userCivilPoint = 0;
     //ユーザーの刑法問題正解数
     private int userCriminalPoint = 0;
+    //ユーザーの著作権法問題正解数
+    private int userCopyrightPoint = 0;
     //挑戦した民法問題数
     private int civilQuestionNo = 0;
     //挑戦した刑法問題数
     private int criminalQuestionNo = 0;
+    //挑戦した著作権法問題数
+    private int copyrightQuestionNo = 0;
     private int questionAnswer = 0;
     private int rightOrBad = 0;
 
@@ -183,6 +187,9 @@ public class QuizQuestionService {
             //正解ポイントは加算せず、刑法問題ポイントのみを加算
             if(quizMapper.selectCategory(quizId).equals("刑法")) {
                 criminalQuestionNo++;
+            }
+            if(quizMapper.selectCategory(quizId).equals("著作権法")) {
+                copyrightQuestionNo++;
             }
         }
 

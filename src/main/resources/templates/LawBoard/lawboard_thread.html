@@ -47,14 +47,24 @@
 
 <div class="layoutMain">
   <main class="center">
-      <span th:text="${LawTitle}"></span>　　カテゴリー：<span th:text="${LawCategory}"></span>　　時間：<span th:text="${LawTime}"></span><br>
-      ユーザー名：<span th:text="${LawUsername}"></span><br>
-      <p th:text="${LawMainComment}"></p>
-      <div th:each="comment : ${LawComment}">
-          <p th:text="${comment.comment_username}"></p>
-          <p th:text="${comment.comment_time}"></p>
-          <p th:text="${comment.comment}"></p>
-      </div>
+      <span th:each="lawBoard : ${lawBoard}">
+        No.0　<span th:text="${lawBoard.lawBoard_title}"></span>　　カテゴリー：<span th:text="${lawBoard.lawBoard_category}"></span>　　時間：<span th:text="${lawBoard.lawBoard_time}"></span><br>
+        ユーザー名：<span th:text="${lawBoard.lawBoard_username}"></span><br>
+        <p th:text="${lawBoard.lawBoard_mainComment}"></p><br>
+
+
+        <div th:each="comment : ${LawComment}">
+            <span th:if="${comment.comment_id} % 2 == 0">
+              No.<span th:text="${comment.comment_id}"></span>　ユーザー名：<span th:text="${comment.comment_username}"></span>　　時間：<span th:text="${comment.comment_time}"></span>
+              <br><br><span th:text="${comment.comment}"></span><br>
+            </span>
+
+            <span th:if="${comment.comment_id} % 2 == 1">
+              No.<span th:text="${comment.comment_id}"></span>　ユーザー名：<span th:text="${comment.comment_username}"></span>　　時間：<span th:text="${comment.comment_time}"></span>
+              <br><br><span th:text="${comment.comment}"></span><br><br>
+            </span>
+        </div>
+      </span>
 
       <div sec:authorize="hasRole('ADMIN') or hasRole('GENERAL')">
       コメントを書く

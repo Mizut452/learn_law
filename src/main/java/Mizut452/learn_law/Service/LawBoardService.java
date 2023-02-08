@@ -34,23 +34,8 @@ public class LawBoardService {
                            Model model) {
         LawBoard lawBoard = lawBoardMapper.lawBoardById(lawboard_id);
         List<LawBoardComment> commentList = lawBoardMapper.lawBoardCommentById(lawboard_id);
-        model.addAttribute("LawTitle", lawBoard.getLawBoard_title());
-        model.addAttribute("LawCategory", lawBoard.getLawBoard_category());
-        model.addAttribute("LawMainComment", lawBoard.getLawBoard_mainComment());
-        model.addAttribute("LawUsername", lawBoard.getLawBoard_username());
-        model.addAttribute("LawTime", lawBoard.getLawBoard_time());
+        model.addAttribute("lawBoard", lawBoard);
         model.addAttribute("LawComment", commentList);
         model.addAttribute("LawBoard_ID", lawboard_id);
-    }
-
-    public void createCommentService(int lawboard_id,
-                                     @AuthenticationPrincipal LoginUser loginUser,
-                                     @ModelAttribute LawBoardComment lawBoardComment) {
-        lawBoardComment.setBoardParent_id(lawboard_id);
-        lawBoardComment.setComment_username(loginUser.getUsername());
-        lawBoardComment.setComment(lawBoardComment.getComment());
-
-        lawBoardMapper.insertComment(lawBoardComment);
-
     }
 }
