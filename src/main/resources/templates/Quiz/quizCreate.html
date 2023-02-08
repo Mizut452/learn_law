@@ -5,6 +5,9 @@
     <title>quiz</title>
     <link rel="stylesheet" th:href="@{/css/Quiz/Quiz.css}">
     <link rel="stylesheet" th:href="@{/css/Quiz/QuizStart.css}">
+    <style>
+        .errorStr { color: red; }
+    </style>
 </head>
 
 <body>
@@ -48,7 +51,31 @@
 
 <div class="layoutMain">
     <main class="center">
+        <div>クイズを作成する</div>
+        <span th:if="${SubMiss}">
+            <p th:text="${SubMiss}"></p>
+        </span>
 
+        <form th:action="@{/quiz/preQuiz/create}" th:object="${quiz}" th:method="@{post}">
+            <label>クイズの問題文</label><br>
+            <textarea th:field="*{quizQuestionSent}"></textarea>
+            <span class="errorStr" th:errors="*{quizQuestionSent}"></span><br>
+            <label>クイズの答え：</label><select th:field="*{quizRightOrBad}">
+                                        <option value="1">〇</option>
+                                        <option value="2">×</option>
+                                       </select>
+            <span class="errorStr" th:errors="*{quizRightOrBad}"></span><br>
+            <label>クイズ解説文</label><br>
+            <textarea th:field="*{quizCommentary}"></textarea>
+            <span class="errorStr" th:errors="*{quizCommentary}"></span><br>
+            <label>カテゴリー：</label><select th:field="*{quizCategory}">
+                                        <option value="民法">民法</option>
+                                        <option value="刑法">刑法</option>
+                                        <option value="著作権法">著作権法</option>
+                                     </select>
+            <span class="errorStr" th:errors="*{quizCategory}"></span><br>
+            <button type="submit">送信</button>
+        </form>
     </main>
 
     <div class="left-side">

@@ -11,17 +11,18 @@ public class Quiz {
     @NotBlank(message = "必須項目です")
     private String quizQuestionSent;
 
-    @NotBlank(message = "必須項目です")
     private int quizRightOrBad;
 
     @NotBlank(message = "必須項目です")
     private String quizCommentary;
 
-    @NotBlank(message = "必須項目です")
     private int quizUsersAnswer;
 
     @NotBlank(message = "必須項目です")
     private String quizCategory;
 
     private String quizAuthor;
+
+    private int quizGood;
+    private int quizBad;
 }

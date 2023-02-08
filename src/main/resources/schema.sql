@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS Book;
+DROP TABLE IF EXISTS PreQuiz;
 DROP TABLE IF EXISTS LawBoard_comment;
 DROP TABLE IF EXISTS LawBoard;
 DROP TABLE IF EXISTS precedent;
@@ -65,8 +65,12 @@ CREATE TABLE IF NOT EXISTS LawBoard_comment (
         comment_username VARCHAR(20)
 );
 
-CREATE TABLE Book (
-        bookId SERIAL PRIMARY KEY,
-        book_name VARCHAR(255),
-        publisher VARCHAR(255)
+CREATE TABLE IF NOT EXISTS PreQuiz (
+        quizId SERIAL PRIMARY KEY,
+        quizQuestionSent VARCHAR(2550),
+        quizRightOrBad INTEGER,
+        quizCommentary VARCHAR(2550),
+        quizCategory VARCHAR(30),
+        quizAuthor VARCHAR(30),
+        quizGood INTEGER default 0
 );

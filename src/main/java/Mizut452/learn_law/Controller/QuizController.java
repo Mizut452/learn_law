@@ -30,7 +30,7 @@ public class QuizController {
 
         //クイズランキング上位5位の取得
         quizQuestionService.quizRanking(model);
-                return "Quiz/quizStartPage";
+                return "Quiz/QuizGame/quizStartPage";
             }
 
 
@@ -55,7 +55,7 @@ public class QuizController {
         quizQuestionService.getQuizQuestionSent(quizId, model);
         quizQuestionService.plusUserPandQNumber(model);
 
-        return "Quiz/quizQuestionPage";
+        return "Quiz/QuizGame/quizQuestionPage";
 
     }
 
@@ -73,10 +73,10 @@ public class QuizController {
 
         if(questionAnswer == rightOrBad) {
             quizQuestionService.trueQuestion(quizId);
-            return "Quiz/quizRightPage";
+            return "Quiz/QuizGame/quizRightPage";
         } else {
             quizQuestionService.falseQuestion(quizId);
-            return "Quiz/quizBadPage";
+            return "Quiz/QuizGame/quizBadPage";
         }
     }
 }
