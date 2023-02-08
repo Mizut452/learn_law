@@ -51,18 +51,18 @@
     <span th:text="${username}"></span>さんようこそ！<br><br>
 
     <span th:text="${username}"></span>さんの成績<br>
-    全問題：<span th:text="${questionAll}"></span>問中<span th:text="${pointAll}"></span>問正解!<br>
-    民法問題：<span th:text="${civilQuestionAll}"></span>問中<span th:text="${pointCivil}"></span>問正解!<br>
-    刑法問題：<span th:text="${criminalQuestionAll}"></span>問中<span th:text="${pointCriminal}"></span>問正解!<br>
-    著作権法問題：<span th:text="${copyrightQuestionAll}"></span>問中<span th:text="${pointCopyright}"></span>問正解!
+        <span th:each="uQH : ${userQuizHistory}">
+            全問題：<span th:text="${uQH.questionAll}"></span>問中<span th:text="${uQH.pointAll}"></span>問正解!<br>
+            民法問題：<span th:text="${uQH.civilQuestionAll}"></span>問中<span th:text="${uQH.pointCivilLaw}"></span>問正解!<br>
+            刑法問題：<span th:text="${uQH.criminalQuestionAll}"></span>問中<span th:text="${uQH.pointCriminalLaw}"></span>問正解!<br>
+            著作権法問題：<span th:text="${uQH.copyrightQuestionAll}"></span>問中<span th:text="${uQH.pointCopyrightLaw}"></span>問正解!
+        </span>
     </main>
 
   <div class="left-side">
-    this is right side!
   </div>
 
   <aside class="right-side">
-    this is right side!
   </aside>
 </div>
 </body>

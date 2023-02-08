@@ -48,20 +48,21 @@
 
 <div class="layoutMain">
   <main class="center">
-    <span>事件名：</span><span th:text="${Pre_title}"></span> <span>事件番号：</span><span th:text="${Pre_number}"></span> <span>カテゴリー：</span><span th:text="${Pre_category}"></span><br>
-    ＜<span th:text="${Pre_subtitle}"></span>＞<br><br>
+   <span th:each="pre : ${precedent}">
+    <span>事件名：</span><span th:text="${pre.precedent_title}"></span> <span>事件番号：</span><span th:text="${pre.precedent_number}"></span> <span>カテゴリー：</span><span th:text="${pre.precedent_category}"></span><br>
+    ＜<span th:text="${pre.precedent_subtitle}"></span>＞<br><br>
 
     <span>事実の概要</span><br>
-    <th:block th:if="${Pre_overview}">
-      <th:block th:each="str, stat : ${Pre_overview.split('\r\n|\r|\n', -1)}">
+    <th:block th:if="${pre.precedent_overview}">
+      <th:block th:each="str, stat : ${pre.precedent_overview.split('\r\n|\r|\n', -1)}">
         <th:block th:text="${str}"/>
         <br th:if="${!stat.last}"/>
       </th:block>
     </th:block>
     <br><br>
     <span>両者の主張</span><br>
-    <th:block th:if="${Pre_claim}">
-      <th:block th:each="str, stat : ${Pre_claim.split('\r\n|\r|\n', -1)}">
+    <th:block th:if="${pre.precedent_claim}">
+      <th:block th:each="str, stat : ${pre.precedent_claim.split('\r\n|\r|\n', -1)}">
         <th:block th:text="${str}"/>
         <br th:if="${!stat.last}"/>
       </th:block>
@@ -69,12 +70,13 @@
     <br><br>
 
     <span>裁判所の判断</span><br>
-    <th:block th:if="${Pre_judgement}">
-      <th:block th:each="str, stat : ${Pre_judgement.split('\r\n|\r|\n', -1)}">
+    <th:block th:if="${pre.precedent_judgement}">
+      <th:block th:each="str, stat : ${pre.precedent_judgement.split('\r\n|\r|\n', -1)}">
         <th:block th:text="${str}"/>
         <br th:if="${!stat.last}"/>
       </th:block>
     </th:block>
+   </span>
   </main>
 
   <div class="left-side">

@@ -8,6 +8,10 @@ import java.util.List;
 
 @Mapper
 public interface PrecedentMapper {
+
+    @Select("SELECT SETVAL('Precedent_precedent_id_seq', (SELECT MAX(precedent_id) FROM Precedent))")
+    Precedent PRECEDENT_SYNC();
+
     @Select("SELECT * FROM precedent WHERE precedent_category = '刑法'")
     List<Precedent> precedentCriminalList();
 

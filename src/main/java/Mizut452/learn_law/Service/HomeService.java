@@ -35,25 +35,9 @@ public class HomeService {
         String username = findByUserId.getUsername();
         //成績の反映
         UserQuizHistory userQuizHistory = userQuizHistoryMapper.usersQuizHistoryList(history_userId);
-        int pointAll = userQuizHistory.getPointAll();
-        int questionAll = userQuizHistory.getQuestionAll();
-        int civilQuestionAll = userQuizHistory.getCivilQuestionAll();
-        int criminalQuestionAll = userQuizHistory.getCriminalQuestionAll();
-        int copyrightQuestionAll = userQuizHistory.getCopyrightQuestionAll();
-
-        int pointCriminal = userQuizHistory.getPointCriminalLaw();
-        int pointCivil = userQuizHistory.getPointCivilLaw();
-        int pointCopyright = userQuizHistory.getPointCopyrightLaw();
 
         model.addAttribute("username", username);
-        model.addAttribute("pointAll", pointAll);
-        model.addAttribute("questionAll", questionAll);
-        model.addAttribute("civilQuestionAll", civilQuestionAll);
-        model.addAttribute("criminalQuestionAll", criminalQuestionAll);
-        model.addAttribute("copyrightQuestionAll", copyrightQuestionAll);
-        model.addAttribute("pointCriminal", pointCriminal);
-        model.addAttribute("pointCivil", pointCivil);
-        model.addAttribute("pointCopyright", pointCopyright);
+        model.addAttribute("userQuizHistory", userQuizHistory);
         model.addAttribute("UserId", loginUser.getUserId());
     }
 }

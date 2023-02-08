@@ -24,33 +24,11 @@ public class PrecedentService {
         }
     }
 
-    public void findPrecedentCriminalService(Model model) {
-        List<Precedent> precedentList = precedentMapper.findCriminal();
-        model.addAttribute("PrecedentList", precedentList);
-    }
-
-    public void findPrecedentCivilService(Model model) {
-        List<Precedent> precedentList = precedentMapper.findCivil();
-        model.addAttribute("PrecedentList", precedentList);
-    }
-
-    public void findPrecedentCopyright(Model model) {
-        List<Precedent> precedentList = precedentMapper.findCopyright();
-        model.addAttribute("PrecedentList", precedentList);
-    }
-
     public void findPrecedentByPrecedentId(int precedent_id,
                                            Model model) {
         Precedent precedent = precedentMapper.findByPrecedentId(precedent_id);
 
-        model.addAttribute("Pre_title", precedent.getPrecedent_title());
-        model.addAttribute("Pre_category", precedent.getPrecedent_category());
-        model.addAttribute("Pre_number", precedent.getPrecedent_number());
-        model.addAttribute("Pre_subtitle", precedent.getPrecedent_subtitle());
-        model.addAttribute("Pre_overview", precedent.getPrecedent_overview());
-        model.addAttribute("Pre_claim", precedent.getPrecedent_claim());
-        model.addAttribute("Pre_judgement", precedent.getPrecedent_judgement());
-        model.addAttribute("precedent_id", precedent_id);
+        model.addAttribute("precedent", precedent);
     }
 
     public void findPrecedentList(Model model) {
@@ -58,14 +36,7 @@ public class PrecedentService {
     }
 
     public void createPrecedent(@ModelAttribute Precedent precedent) {
-        precedent.setPrecedent_title(precedent.getPrecedent_title());
-        precedent.setPrecedent_category(precedent.getPrecedent_category());
-        precedent.setPrecedent_number(precedent.getPrecedent_number());
-        precedent.setPrecedent_subtitle(precedent.getPrecedent_subtitle());
-        precedent.setPrecedent_overview(precedent.getPrecedent_overview());
-        precedent.setPrecedent_claim(precedent.getPrecedent_claim());
-        precedent.setPrecedent_judgement(precedent.getPrecedent_judgement());
-
+        precedentMapper.PRECEDENT_SYNC();
         precedentMapper.createPrecedent(precedent);
     }
 
