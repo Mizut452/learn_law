@@ -5,6 +5,7 @@ import Mizut452.learn_law.Mapper.UserQuizHistoryMapper;
 import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,7 +17,7 @@ public class LoginService {
     LoginUserMapper loginUserMapper;
 
     @Autowired
-    CreateAccountService createAccountService;
+    PasswordEncoder passwordEncoder;
 
     @Autowired
     UserQuizHistoryMapper userQuizHistoryMapper;
@@ -34,13 +35,9 @@ public class LoginService {
 
     public void createMethodService(@ModelAttribute LoginUser loginUser) {
         //SQLに登録
-        loginUser.setEmail(loginUser.getEmail());
-        loginUser.setUsername(loginUser.getUsername());
-        loginUser.setPassword(loginUser.getPassword());
-        loginUser.setRoleName(loginUser.getRoleName());
-
-        createAccountService.createAccount(loginUser);
-
+        //loginUserMapper.primaryKeySync();
+        loginUser.setPassword(passwordEncoder.encode(loginUser.getPassword()));
+        loginUserMapper.create(loginUser);
         //成績用のSQL登録
         loginUser = loginUserMapper.findByUsername(loginUser.getUsername());
         userQuizHistoryMapper.insertNewUserQuizHistory(loginUser.getUserId(), loginUser.getUsername());

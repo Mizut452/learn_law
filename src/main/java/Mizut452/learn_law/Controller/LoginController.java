@@ -17,20 +17,14 @@ public class LoginController {
     LoginService loginService;
 
     @RequestMapping("/login")
-    public String Login(@ModelAttribute LoginUser loginUser,
+    public String Login(LoginUser loginUser,
                         BindingResult result,
                         Model model) {
-        if("a".equals("B")) {
-            loginService.loginMiss(model);
-            return "Login/login";
-        }
-
         return "Login/login";
     }
 
     @GetMapping("/login/error")
-    public String LoginError(@Validated
-                             @ModelAttribute LoginUser loginUser,
+    public String LoginError(@Validated LoginUser loginUser,
                              BindingResult result,
                              Model model) {
         if(result.hasErrors()) {

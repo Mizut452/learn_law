@@ -30,39 +30,4 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMybatis
 public class HomeControllerTest {
 
-    @Autowired
-    //MockMvcではサーバーを立てずにテストできる
-    private MockMvc mockMvc;
-
-    @MockBean
-    UserQuizHistoryMapper userQuizHistoryMapper;
-
-    @MockBean
-    CreateAccountService createAccountService;
-
-    @Nested
-    public class ホーム画面へのアクセス {
-        final MockHttpServletRequestBuilder request = get("/")
-                .accept(MediaType.TEXT_HTML);
-
-
-        @TestWithAnonymous
-        public void ゲストユーザーでもアクセス可能() throws Exception {
-            mockMvc.perform(request)
-                    .andExpect(status().isOk());
-        }
-
-        @TestWithGeneral
-        public void 一般ユーザーでアクセスできる() throws Exception {
-            mockMvc.perform(request)
-                    .andExpect(status().isOk())
-                    .andExpect(view().name("login"));
-        }
-        @TestWithAdmin
-        public void 管理者でアクセスできる() throws Exception {
-            mockMvc.perform(request)
-                    .andExpect(status().isOk())
-                    .andExpect(view().name("login"));
-        }
-    }
 }

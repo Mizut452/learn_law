@@ -53,8 +53,8 @@ INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precede
 INSERT INTO precedent(precedent_id, precedent_title, precedent_category, precedent_number,
                       precedent_subtitle, precedent_overview,
                       precedent_claim, precedent_judgement)
-                      VALUES(2, '民法', '民法', '昭和３５（う）９２７号'
-                             , '民法が成立する条件とは？',
+                      VALUES(2, 'いいねが侮辱に？', '民法', '令４（ネ）１９２２号'
+                             , 'いいねが侮辱にあたる理由',
                              '',
                              '',
                              '');

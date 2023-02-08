@@ -18,17 +18,16 @@ public class LoginUser implements UserDetails {
     private int userId;
 
     @NotBlank(message = "必須項目です")
-    @Email(message = "メールの形式で入力してください")
-    @Pattern(regexp = "^\\w+$", message = "英数字でお願いします")
+    @Pattern(regexp = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$", message = "メールの形式で入力してください")
     private String email;
 
     @NotBlank(message = "必須項目です")
-    @Length(max=20, message = "20文字以内でお願いします")
+    @Length(min=6, max=20, message = "6文字以上20文字以内でお願いします")
     @Pattern(regexp = "^\\w+$", message = "英数字でお願いします")
     private String username;
 
     @NotBlank(message = "必須項目です")
-    @Length(max=20, message = "20文字以内でお願いします")
+    @Length(min=6, max=20, message = "6文字以上20文字以内でお願いします")
     @Pattern(regexp = "^(\\w|\\s)+$", message = "英数字でお願いします")
     private String password;
 

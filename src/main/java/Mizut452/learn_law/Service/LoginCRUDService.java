@@ -1,7 +1,6 @@
 package Mizut452.learn_law.Service;
 
 import Mizut452.learn_law.Mapper.LoginUserMapper;
-import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
