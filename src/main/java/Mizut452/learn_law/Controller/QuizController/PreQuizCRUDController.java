@@ -72,4 +72,11 @@ public class PreQuizCRUDController {
 
         return "redirect:/quiz/preQuiz";
     }
+
+    @GetMapping("/quiz/preQuiz/delete/{quizId}/")
+    public String quizPreDelete(@PathVariable int quizId) {
+        preQuizService.deletePreQuiz(quizId);
+
+        return "redirect:/quiz/preQuiz";
+    }
 }
