@@ -35,8 +35,7 @@ public interface LawBoardMapper {
             "VALUES(#{lawBoard_username}, #{lawBoard_category}, #{lawBoard_title}, #{lawBoard_mainComment}, CURRENT_TIMESTAMP)")
     void createThread(LawBoard lawBoard);
 
-    @Update("UPDATE LawBoard SET lawBoard_title = #{lawBoard_title}, lawBoard_category = #{lawBoard_category}" +
-            "WHERE lawBoard_id = #{lawBoard_id}")
+    @Update("UPDATE LawBoard SET lawBoard_title = #{lawBoard_title}, lawBoard_category = #{lawBoard_category} WHERE lawBoard_id = #{lawBoard_id}")
     void update(LawBoardUpdateReq lawBoardUpdateReq);
 
     @Delete("DELETE FROM LawBoard WHERE lawBoard_id = #{lawBoard_id}")

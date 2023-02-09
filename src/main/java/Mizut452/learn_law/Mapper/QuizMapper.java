@@ -29,14 +29,12 @@ public interface QuizMapper {
     @Select("SELECT * FROM quiz WHERE quizId = #{quizId}")
     Quiz selectQuizByQuizId(@Param("quizId") int quizId);
 
-    @Update("UPDATE quiz SET quizQuestionSent = #{quizQuestionSent}, quizRightOrBad = #{quizRightOrBad}," +
-            "quizCommentary = #{quizCommentary}, quizCategory = #{quizCategory} WHERE quizId = #{quizId}")
+    @Update("UPDATE quiz SET quizQuestionSent = #{quizQuestionSent}, quizRightOrBad = #{quizRightOrBad}, quizCommentary = #{quizCommentary}, quizCategory = #{quizCategory} WHERE quizId = #{quizId}")
     void update(QuizUpdateReq quizUpdateReq);
 
     @Delete("DELETE FROM quiz WHERE quizId = #{quizId}")
     void delete(QuizUpdateReq quizUpdateReq);
 
-    @Insert("INSERT INTO Quiz(quizQuestionSent, quizRightOrBad, quizCommentary," +
-            " quizCategory, quizAuthor) VALUES (#{quizQuestionSent}, #{quizRightOrBad}, #{quizCommentary}, #{quizCategory}, #{quizAuthor})")
+    @Insert("INSERT INTO Quiz(quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (#{quizQuestionSent}, #{quizRightOrBad}, #{quizCommentary}, #{quizCategory}, #{quizAuthor})")
     void preQuizToQuiz(Quiz quiz);
 }

@@ -18,11 +18,15 @@
 
         <span sec:authorize="hasRole('GENERAL')">
             <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
-            <a th:href="@{/logout}">ログアウト</a>
+            <form th:action="@{/logout}" name="logout" th:method="@{post}">
+                <a href="javascript:logout.submit()">ログアウト</a>
+            </form>
         </span>
         <span sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
-            <a th:href="@{/logout}">ログアウト</a>
+            <form th:action="@{/logout}" name="logout" th:method="@{post}">
+                <a href="javascript:logout.submit()">ログアウト</a>
+            </form>
             <a th:href="@{/userlist}">ユーザーリスト</a>
         </span>
     </nav>

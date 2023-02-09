@@ -18,11 +18,15 @@
 
     <span sec:authorize="hasRole('GENERAL')">
             <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
-            <a th:href="@{/logout}">ログアウト</a>
+            <form th:action="@{/logout}" name="logout" th:method="@{post}">
+                <a href="javascript:logout.submit()">ログアウト</a>
+            </form>
         </span>
     <span sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
-            <a th:href="@{/logout}">ログアウト</a>
+            <form th:action="@{/logout}" name="logout" th:method="@{post}">
+                <a href="javascript:logout.submit()">ログアウト</a>
+            </form>
             <a th:href="@{/userlist}">ユーザーリスト</a>
         </span>
   </nav>
@@ -49,7 +53,7 @@
   <main class="center">
     <div>判例を更新する</div>
 
-    <form th:action="@{/precedent/update/{precedent_id}/(precedent_id = ${Precedent_Id})}" th:method="@{post}" th:object="${PrecedentList}">
+    <form th:action="@{/precedent/update/{precedent_id}/(precedent_id = ${Precedent_Id})}" th:method="@{post}" th:object="${precedentList}">
       <input type="hidden" th:field="*{precedent_id}">
       <label>事件名：</label>
       <input type="text" th:field="*{precedent_title}">

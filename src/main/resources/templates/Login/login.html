@@ -16,16 +16,6 @@
             <a th:href="@{/login}">ログイン</a>　　
             <a th:href="@{/createaccount}">新規登録</a>
         </span>
-
-        <span sec:authorize="hasRole('GENERAL')">
-            <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
-            <a th:href="@{/logout}">ログアウト</a>
-        </span>
-        <span sec:authorize="hasRole('ADMIN')">
-            <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
-            <a th:href="@{/logout}">ログアウト</a>
-            <a th:href="@{/userlist}">ユーザーリスト</a>
-        </span>
     </nav>
 
     <div>

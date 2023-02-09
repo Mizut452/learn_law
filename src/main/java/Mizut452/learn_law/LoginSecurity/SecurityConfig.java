@@ -24,6 +24,7 @@ public class SecurityConfig {
                 .failureUrl("/login/error")
                 .permitAll()
         ).logout(logout -> logout
+                .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
         ).authorizeHttpRequests(authz -> authz
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()

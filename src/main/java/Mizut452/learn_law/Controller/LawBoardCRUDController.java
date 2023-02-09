@@ -60,7 +60,7 @@ public class LawBoardCRUDController {
         lawBoardService.addLoginUserMenu(loginUser, model);
         lawBoardCRUDService.lawBoardUpdate(lawBoard_id, model);
 
-        return "/LawBoard/lawBoardUpdate";
+        return "LawBoard/lawBoardUpdate";
     }
 
     @GetMapping("/lawboard/{lawBoard_id}/delete/")
@@ -71,7 +71,7 @@ public class LawBoardCRUDController {
         lawBoardService.addLoginUserMenu(loginUser, model);
         lawBoardCRUDService.lawBoardDelete(lawBoard_id, model);
 
-        return "/LawBoard/lawBoardDelete";
+        return "LawBoard/lawBoardDelete";
     }
 
     @PostMapping("lawboard/update/{lawBoard_id}/")

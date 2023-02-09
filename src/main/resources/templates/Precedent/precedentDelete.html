@@ -18,11 +18,15 @@
 
         <span sec:authorize="hasRole('GENERAL')">
             <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
-            <a th:href="@{/logout}">ログアウト</a>
+            <form th:action="@{/logout}" name="logout" th:method="@{post}">
+                <a href="javascript:logout.submit()">ログアウト</a>
+            </form>
         </span>
         <span sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
-            <a th:href="@{/logout}">ログアウト</a>
+            <form th:action="@{/logout}" name="logout" th:method="@{post}">
+                <a href="javascript:logout.submit()">ログアウト</a>
+            </form>
             <a th:href="@{/userlist}">ユーザーリスト</a>
         </span>
     </nav>
@@ -49,22 +53,16 @@
     <main class="center">
         <div>判例を削除する</div>
 
-        <form th:action="@{/precedent/delete/{precedent_id}/(precedent_id = ${Precedent_Id})}" th:method="@{post}" th:object="${PrecedentList}">
-            <input type="hidden" th:field="*{precedent_id}">
-            <label>事件名：</label><span th:text="*{precedent_title}"></span>
-            <input type="hidden" th:field="*{precedent_title}">
-            <label>小タイトル：</label><span th:text="*{precedent_subtitle}"></span>
-            <input type="hidden" th:field="*{precedent_subtitle}">
-            <label>カテゴリー：</label><span th:text="*{precedent_category}"></span>
-            <input type="hidden" th:field="*{precedent_category}">
-            <label>事件番号：</label><span th:text="*{precedent_number}"></span>
-            <input type="hidden" th:field="*{precedent_number}">
-            <label>事実の概要：</label><span th:text="*{precedent_overview}"></span>
-            <input type="hidden" th:field="*{precedent_overview}">
-            <label>両者の主張：</label><span th:text="*{precedent_claim}"></span>
-            <input type="hidden" th:field="*{precedent_claim}">
-            <label>裁判所の判断 ：</label><span th:text="*{precedent_judgement}"></span>
-            <input type="hidden" th:field="*{precedent_judgement}">
+        <form th:action="@{/precedent/delete/{precedent_id}/(precedent_id = ${Precedent_Id})}" th:method="@{post}">
+            <span th:each="pre : ${PrecedentList}">
+            <label>事件名：</label><span th:text="${pre.precedent_title}"></span><br><br>
+            <label>小タイトル：</label><span th:text="${pre.precedent_subtitle}"></span><br><br>
+            <label>カテゴリー：</label><span th:text="${pre.precedent_category}"></span><br><br>
+            <label>事件番号：</label><span th:text="${pre.precedent_number}"></span><br><br>
+            <label>事実の概要：</label><span th:text="${pre.precedent_overview}"></span><br><br>
+            <label>両者の主張：</label><span th:text="${pre.precedent_claim}"></span><br><br>
+            <label>裁判所の判断 ：</label><span th:text="${pre.precedent_judgement}"></span><br>
+            </span>
             <input type="submit" value="削除" />
         </form>
     </main>

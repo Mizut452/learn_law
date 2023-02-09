@@ -40,5 +40,8 @@ public class PrecedentService {
         precedentMapper.createPrecedent(precedent);
     }
 
+    public void subMiss(Model model) {
+        model.addAttribute("SubMiss", "登録に失敗しました");
+    }
 
 }

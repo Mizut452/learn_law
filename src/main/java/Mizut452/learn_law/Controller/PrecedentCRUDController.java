@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -23,6 +24,8 @@ public class PrecedentCRUDController {
 
     @GetMapping("/precedent/writeprecedent")
     public String writePrecedentPage(@AuthenticationPrincipal LoginUser loginUser,
+                                     Precedent precedent,
+                                     BindingResult result,
                                      Model model) {
         precedentService.addLoginUserMenu(loginUser, model);
 
@@ -30,11 +33,17 @@ public class PrecedentCRUDController {
     }
 
     @PostMapping("/precedent/create")
-    public String precedentCreate(@ModelAttribute Precedent precedent,
-                                  @AuthenticationPrincipal LoginUser loginUser,
+    public String precedentCreate(@AuthenticationPrincipal LoginUser loginUser,
+                                  @ModelAttribute Precedent precedent,
+                                  BindingResult result,
                                   Model model) {
-        precedentService.createPrecedent(precedent);
         precedentService.addLoginUserMenu(loginUser, model);
+        precedentService.createPrecedent(precedent);
+
+        if (result.hasErrors()) {
+            precedentService.subMiss(model);
+            return "Precedent/writePrecedent";
+        }
 
         return "Precedent/createComplete";
     }
@@ -48,25 +57,25 @@ public class PrecedentCRUDController {
     }
 
     @PostMapping("/precedent/delete/{precedent_id}/")
-    public String precedentDelete(@PathVariable int precedent_id,
-                                  @ModelAttribute PrecedentUpdate precedentUpdate){
-        precedentCRUDService.doPrecedentDelete(precedentUpdate);
+    public String precedentDelete(@PathVariable int precedent_id){
+        precedentCRUDService.doPrecedentDelete(precedent_id);
 
         return "redirect:/precedent/all";
     }
 
 
-    @GetMapping("/precedent/update/{precedent_id}")
+    @GetMapping("/precedent/{precedent_id}/update/")
     public String precedentUpdatePage(@PathVariable int precedent_id,
+                                      @ModelAttribute PrecedentUpdate precedentUpdate,
                                       @AuthenticationPrincipal LoginUser loginUser,
                                       Model model) {
         precedentService.addLoginUserMenu(loginUser, model);
-        precedentCRUDService.precedentUpdateDelete(precedent_id, model);
+        precedentCRUDService.precedentUpdate(precedent_id, model);
 
         return "Precedent/precedentUpdate";
     }
 
-    @GetMapping("/precedent/delete/{precedent_id}")
+    @GetMapping("/precedent/{precedent_id}/delete/")
     public String precedentDeletePage(@PathVariable int precedent_id,
                                       @AuthenticationPrincipal LoginUser loginUser,
                                       Model model) {

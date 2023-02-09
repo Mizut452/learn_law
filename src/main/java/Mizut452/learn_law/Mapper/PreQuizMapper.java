@@ -16,12 +16,10 @@ public interface PreQuizMapper {
     @Select("SELECT * FROM PreQuiz")
     List<Quiz> selectPreQuiz();
 
-    @Update("UPDATE PreQuiz SET quizGood = #{quizGood} " +
-            "WHERE quizId = #{quizId}")
+    @Update("UPDATE PreQuiz SET quizGood = #{quizGood} WHERE quizId = #{quizId}")
     void addGood(@Param("quizGood") int quizGood, @Param("quizId")int quizId);
 
-    @Insert("INSERT INTO PreQuiz(quizQuestionSent, quizRightOrBad, quizCommentary," +
-            "quizCategory, quizAuthor) VALUES (#{quiz.quizQuestionSent}, #{quiz.quizRightOrBad}, #{quiz.quizCommentary}, #{quiz.quizCategory}, #{username})")
+    @Insert("INSERT INTO PreQuiz(quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (#{quiz.quizQuestionSent}, #{quiz.quizRightOrBad}, #{quiz.quizCommentary}, #{quiz.quizCategory}, #{username})")
     void insertPreQuiz(@Param("quiz") Quiz quiz, @Param("username") String username);
 
     @Delete("DELETE FROM PreQuiz WHERE quizId = #{quizId}")

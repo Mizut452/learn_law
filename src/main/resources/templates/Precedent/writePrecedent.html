@@ -4,6 +4,9 @@
   <meta charset="utf-8">
   <title>quiz</title>
   <link rel="stylesheet" th:href="@{/css/Home/homeLayout.css}">
+  <style>
+    .errorStr { color: red; }
+  </style>
 </head>
 
 <body>
@@ -18,11 +21,15 @@
 
     <span sec:authorize="hasRole('GENERAL')">
             <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
-            <a th:href="@{/logout}">ログアウト</a>
+            <form th:action="@{/logout}" name="logout" th:method="@{post}">
+                <a href="javascript:logout.submit()">ログアウト</a>
+            </form>
         </span>
     <span sec:authorize="hasRole('ADMIN')">
             <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
-            <a th:href="@{/logout}">ログアウト</a>
+            <form th:action="@{/logout}" name="logout" th:method="@{post}">
+                <a href="javascript:logout.submit()">ログアウト</a>
+            </form>
             <a th:href="@{/userlist}">ユーザーリスト</a>
         </span>
   </nav>
@@ -48,6 +55,10 @@
 <div class="layoutMain">
   <main class="center">
     <h3>判例を書く</h3>
+    <span th:if="${SubMiss}">
+      <div class="errorStr" th:text="${SubMiss}"></div>
+    </span>
+
       <form th:action="@{/precedent/create}" th:method="@{post}">
       <label>事件名：</label>
       <input type="text" name="precedent_title"><br>

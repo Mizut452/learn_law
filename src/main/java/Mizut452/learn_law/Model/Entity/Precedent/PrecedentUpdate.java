@@ -7,26 +7,26 @@ import lombok.Data;
 public class PrecedentUpdate {
 
     @NotBlank(message = "必須項目です")
-    private int PreUpdate_id;
+    private int precedent_id;
 
     @NotBlank(message = "必須項目です")
-    private String PreUpdate_title;
+    private String precedent_title;
 
     @NotBlank(message = "必須項目です")
-    private String PreUpdate_category;
+    private String precedent_category;
 
     @NotBlank(message = "必須項目です")
-    private String PreUpdate_number;
+    private String precedent_number;
 
     @NotBlank(message = "必須項目です")
-    private String PreUpdate_subtitle;
+    private String precedent_subtitle;
 
     @NotBlank(message = "必須項目です")
-    private String PreUpdate_overview;
+    private String precedent_overview;
 
     @NotBlank(message = "必須項目です")
-    private String PreUpdate_claim;
+    private String precedent_claim;
 
     @NotBlank(message = "必須項目です")
-    private String PreUpdate_judgement;
+    private String precedent_judgement;
 }
