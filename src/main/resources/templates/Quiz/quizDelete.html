@@ -93,10 +93,10 @@
     </table>
     <br>
     <div><a th:href="@{/quiz/questionList}">クイズ一覧表</a></div>
-    <div th:href="@{/quiz/PreQuiz}">申請されているクイズ一覧</div>
+    <div><a th:href="@{/quiz/preQuiz}">申請されているクイズ一覧</a></div>
     <span sec:authorize="hasRole('ADMIN') or hasRole('GENERAL')">
-                    <div th:href="@{/quiz/preQuiz/createQuiz}">クイズを作る</div>
-                </span>
+                    <div><a th:href="@{/quiz/preQuiz/createQuiz}">クイズを作る</a></div>
+        </span>
   </div>
 
   <aside class="right-side">
