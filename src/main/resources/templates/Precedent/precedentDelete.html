@@ -49,7 +49,7 @@
     <main class="center">
         <div>判例を削除する</div>
 
-        <form th:action="@{/precedent/update/{precedent_id}/(precedent_id = ${Precedent_Id})}" th:method="@{post}" th:object="${PrecedentList}">
+        <form th:action="@{/precedent/delete/{precedent_id}/(precedent_id = ${Precedent_Id})}" th:method="@{post}" th:object="${PrecedentList}">
             <input type="hidden" th:field="*{precedent_id}">
             <label>事件名：</label><span th:text="*{precedent_title}"></span>
             <input type="hidden" th:field="*{precedent_title}">

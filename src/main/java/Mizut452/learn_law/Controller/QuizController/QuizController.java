@@ -60,7 +60,6 @@ public class QuizController {
         quizQuestionService.plusUserPandQNumber(model);
 
         return "Quiz/QuizGame/quizQuestionPage";
-
     }
 
     @PostMapping("/quiz/question/{quizId}/judge/")

@@ -80,8 +80,8 @@
             <td th:text="${precedent.precedent_number}"></td>
             <td th:text="${precedent.precedent_category}"></td>
             <span sec:authorize="hasRole('ADMIN')">
-                <td><a th:href="@{/lawboard/{precedent_id}/update/(precedent_id = ${precedent.precedent_id})}">編集</a></td>
-                <td><a th:href="@{/lawboard/{precedent_id}/delete/(precedent_id = ${precedent.precedent_id})}">削除</a></td>
+                <td><a th:href="@{/precedent/{precedent_id}/update/(precedent_id = ${precedent.precedent_id})}">編集</a></td>
+                <td><a th:href="@{/precedent/{precedent_id}/delete/(precedent_id = ${precedent.precedent_id})}">削除</a></td>
             </span>
           </tr>
       </tbody>
