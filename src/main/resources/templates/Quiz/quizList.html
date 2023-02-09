@@ -75,12 +75,29 @@
                     <td th:text="${quizList.quizAuthor}"></td>
                     <span th:if="${Username == quizList.quizAuthor}">
                         <td><a th:href="@{/quiz/questionList/{quizId}/update/(quizId = ${quizList.quizId})}">更新</a></td>
-                        <td><a th:href="@{/quiz/questionList/{quizId}/delete/(quizId = ${quizList.quizId})}">削除</a></td>
+                        <td><button id="delete_AuthorButton">削除</button></td>
+
+                                                    <dialog id="deleteDialog">
+                                <form th:action="@{/quiz/questionList/{quizId}/delete/(quizId = ${quizList.quizId})}">
+                                    <p th:each="quiz : ${QuizList}">
+                                        <label>クイズを削除する</label>
+                                        <label>クイズの問題文：</label><span th:text="${quiz.quizQuestionSent}"></span>
+                                        <label>クイズの正解</label><span th:text="${quiz.quizRightOrBad}"></span>
+                                        <label>クイズの解説文</label><span th:text="${quiz.quizCommentary}"></span>
+                                        <label>クイズのカテゴリー</label><span th:text="${quiz.quizCategory}"></span>
+                                        <label>クイズの作成者</label><span th:text="${quiz.quizAuthor}"></span>
+                                    </p>
+                                    <menu>
+                                        <button th:attr="onClick='location.href=\''+@{/quiz/questionList/{quizId}/delete/(quizId = ${quizList.quizId}})'">削除する</button>
+                                        <button id="deleteCloseButton">キャンセル</button>
+                                    </menu>
+                                </form>
+                            </dialog>
                     </span>
                     <span th:if="${Username != quizList.quizAuthor}">
                         <span sec:authorize="hasRole('ADMIN')">
                             <td><a th:href="@{/quiz/questionList/{quizId}/update/(quizId = ${quizList.quizId})}">更新</a></td>
-                            <td><a th:href="@{/quiz/questionList/{quizId}/delete/(quizId = ${quizList.quizId})}">削除</a></td>
+                            <td><button id="deleteButton">削除</button></td>
                         </span>
 
                     </span>
@@ -119,6 +136,7 @@
 
     </aside>
 </div>
-</body>
 
+<script th:src="@{/js/DeleteDialog.js}"></script>
+</body>
 </html>

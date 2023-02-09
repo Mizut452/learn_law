@@ -56,10 +56,6 @@ public class QuizCRUDService {
         model.addAttribute("QuizId", quizId);
     }
 
-    public void quizPreList() {
-
-    }
-
     public void doQuizUpdate(QuizUpdateReq quizUpdateReq) {
         quizMapper.update(quizUpdateReq);
     }
