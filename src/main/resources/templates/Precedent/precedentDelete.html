@@ -54,7 +54,7 @@
         <div>判例を削除する</div>
 
         <form th:action="@{/precedent/delete/{precedent_id}/(precedent_id = ${Precedent_Id})}" th:method="@{post}">
-            <span th:each="pre : ${PrecedentList}">
+            <span th:each="pre : ${precedent}">
             <label>事件名：</label><span th:text="${pre.precedent_title}"></span><br><br>
             <label>小タイトル：</label><span th:text="${pre.precedent_subtitle}"></span><br><br>
             <label>カテゴリー：</label><span th:text="${pre.precedent_category}"></span><br><br>

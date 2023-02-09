@@ -80,7 +80,7 @@ public class PrecedentCRUDController {
                                       @AuthenticationPrincipal LoginUser loginUser,
                                       Model model) {
         precedentService.addLoginUserMenu(loginUser, model);
-        precedentCRUDService.precedentUpdateDelete(precedent_id, model);
+        precedentCRUDService.precedentDelete(precedent_id, model);
 
         return "Precedent/precedentDelete";
     }

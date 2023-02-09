@@ -16,7 +16,7 @@ public class PrecedentCRUDService {
     @Autowired
     PrecedentMapper precedentMapper;
 
-    public void precedentUpdateDelete(int precedent_id,
+    public void precedentDelete(int precedent_id,
                                 Model model) {
        Precedent precedent = precedentMapper.findByPrecedentId(precedent_id);
 
