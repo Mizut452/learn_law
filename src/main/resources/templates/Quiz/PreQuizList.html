@@ -58,7 +58,7 @@
         <th>カテゴリー</th>
         <th>解説文</th>
         <th>クイズ作成者</th>
-        <th colspan="2">いいね</th>
+        <th colspan="1">いいね</th>
         <span th:if="${role} == 'ROLE_ADMIN'">
             <th colspan="2">登録・削除</th>
         </span>
@@ -80,12 +80,8 @@
           </td>
           <span th:if="${role} == 'ROLE_ADMIN'">
               <td><a th:href="@{/quiz/preQuiz/insert/{quizId}/(quizId = ${quiz.quizId})}">登録</a></td>
-              <td><a th:href="@{/quiz/preQuiz/delete}">削除</a></td>
+              <td><a th:href="@{/quiz/preQuiz/delete/{quizId}/(quizId = ${quiz.quizId})}">削除</a></td>
           <span>
-            <td></td>
-            <td></td>
-          </span>
-          </span>
       </tr>
       </tbody>
     </table>
