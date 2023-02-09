@@ -2,11 +2,15 @@ package Mizut452.learn_law.Mapper;
 
 import Mizut452.learn_law.Model.Entity.Quiz.UserQuizHistory;
 import org.apache.ibatis.annotations.*;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.List;
 
 @Mapper
 public interface UserQuizHistoryMapper {
+
+    @Select("SELECT SETVAL('userQuizHistory_history_userId_seq', (SELECT MAX() FROM userQuizHistory))")
+    UserQuizHistory USER_QUIZ_HISTORY_SYNC();
 
     @Select("SELECT * FROM userQuizHistory WHERE history_userId = #{history_userId}")
     UserQuizHistory quizHistoryMapperList(@Param("history_userId") int history_userId);

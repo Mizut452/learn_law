@@ -74,6 +74,11 @@
               <button type="submit">送信</button>
           </form>
       </div>
+      <br>
+      <br>
+      <div sec:authorize="isAnonymous()">
+          コメントを書くには会員登録が必要です。
+      </div>
   </main>
 
   <div class="left-side">

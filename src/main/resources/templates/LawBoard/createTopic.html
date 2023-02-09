@@ -62,7 +62,9 @@
 
   <div class="left-side">
     <a th:href="@{/lawboard}">掲示板トップへ</a><br>
-    <a th:href="@{/lawboard/create_thread}">作成する</a>
+      <span sec:authorize="hasRole('ADMIN') or hasRole('GENERAL')">
+            <a th:href="@{/lawboard/create_thread}">作成する</a>
+      </span>
   </div>
 
   <aside class="right-side">

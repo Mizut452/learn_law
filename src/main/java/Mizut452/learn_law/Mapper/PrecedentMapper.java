@@ -24,15 +24,6 @@ public interface PrecedentMapper {
     @Select("SELECT * FROM precedent WHERE precedent_id = #{precedent_id}")
     Precedent findByPrecedentId(@Param("precedent_id") int precedent_id);
 
-    @Select("SELECT * FROM precedent WHERE precedent_category = '刑法'")
-    List<Precedent> findCriminal();
-
-    @Select("SELECT * FROM precedent WHERE precedent_category = '民法'")
-    List<Precedent> findCivil();
-
-    @Select("SELECT * FROM precedent WHERE precedent_category = '著作権法'")
-    List<Precedent> findCopyright();
-
     @Select("SELECT precedent_id, precedent_title, precedent_subtitle, precedent_number, precedent_category FROM precedent")
     List<Precedent> precedentList();
 

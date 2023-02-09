@@ -27,9 +27,6 @@ public class QuizCRUDController {
     @Autowired
     QuizCRUDService quizCRUDService;
 
-    @Autowired
-    PreQuizService preQuizService;
-
 
     @PostMapping("/quiz/update/{quizId}/")
     public String quizUpdate(@PathVariable int quizId,

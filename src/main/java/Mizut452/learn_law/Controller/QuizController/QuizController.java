@@ -49,8 +49,10 @@ public class QuizController {
                                Model model) {
         quizQuestionService.addLoginUserMenu(loginUser, model);
         if(questionNumber == 10) {
-            quizQuestionService.goFinishQuiz(loginUser, model);
-            return "Quiz/quizResult";
+            if (loginUser!= null) {
+                quizQuestionService.goFinishQuiz(loginUser, model);
+                return "Quiz/quizResult";
+            }
         }
         quizQuestionService.getQuizQuestionSent(quizId, model);
         quizQuestionService.plusUserPandQNumber(model);

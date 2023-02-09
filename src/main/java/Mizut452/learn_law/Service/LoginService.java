@@ -41,6 +41,7 @@ public class LoginService {
         loginUserMapper.create(loginUser);
         //成績用のSQL登録
         loginUser = loginUserMapper.findByUsername(loginUser.getUsername());
+        userQuizHistoryMapper.USER_QUIZ_HISTORY_SYNC();
         userQuizHistoryMapper.insertNewUserQuizHistory(loginUser.getUserId(), loginUser.getUsername());
     }
 

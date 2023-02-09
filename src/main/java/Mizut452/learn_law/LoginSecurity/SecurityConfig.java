@@ -28,12 +28,24 @@ public class SecurityConfig {
         ).authorizeHttpRequests(authz -> authz
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .requestMatchers("/").permitAll()
-                .anyRequest().permitAll()
+                .requestMatchers("/quiz").permitAll()
+                .requestMatchers("/quiz/questionList").permitAll()
+                .requestMatchers("/quiz/preQuiz").permitAll()
+                .requestMatchers("/quiz/preQuiz/good/{quizId}/").permitAll()
+                .requestMatchers("/quiz/question").permitAll()
+                .requestMatchers("/quiz/question/{quizId}/").permitAll()
+                .requestMatchers("/quiz/question/{quizId}/judge/").permitAll()
+                .requestMatchers("/quiz/").permitAll()
+                .requestMatchers("/lawboard").permitAll()
+                .requestMatchers("/lawboard/{lawboard_id}/").permitAll()
+                .requestMatchers("/createaccount").permitAll()
+                .requestMatchers("/createaccount/create").permitAll()
+                .requestMatchers("/precedent").permitAll()
+                .requestMatchers("/precedent/{precedent_id}/").permitAll()
+                .requestMatchers("/precedent/all").permitAll()
+                .requestMatchers("/precedent/all/changeList").permitAll()
+                .anyRequest().authenticated()
         );
-
-
-
-        http.csrf().disable();
         return http.build();
     }
 
