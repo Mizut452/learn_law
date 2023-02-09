@@ -219,5 +219,10 @@ public class QuizQuestionService {
             }
         }
 
+        public void anonymousPoint(Model model) {
+            model.addAttribute("QuestionNumber", questionNumber);
+            model.addAttribute("userPoint", userPoint);
+        }
+
     }
 

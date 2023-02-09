@@ -11,11 +11,6 @@
   <span id="Learn_Law"><a th:href="@{/}"><img id="title_pic" th:src="@{/images/title.png}"></a></span>
 
   <nav>
-        <span sec:authorize="isAnonymous()">
-            <a th:href="@{/login}">ログイン</a>　　
-            <a th:href="@{/createaccount}">新規登録</a>
-        </span>
-
     <span sec:authorize="hasRole('GENERAL')">
             <a th:href="@{/mypage/{userId}/(userId = ${UserId})}">マイページ</a>
             <a th:href="@{/logout}">ログアウト</a>

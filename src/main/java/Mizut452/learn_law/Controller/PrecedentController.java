@@ -31,6 +31,7 @@ public class PrecedentController {
 
         return "Precedent/precedent";
     }
+
     @GetMapping("/precedent/all")
     public String precedentList(@AuthenticationPrincipal LoginUser loginUser,
                                 Model model) {

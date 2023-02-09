@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .requestMatchers("/quiz/question").permitAll()
                 .requestMatchers("/quiz/question/{quizId}/").permitAll()
                 .requestMatchers("/quiz/question/{quizId}/judge/").permitAll()
-                .requestMatchers("/quiz/").permitAll()
+                .requestMatchers("/quiz").permitAll()
                 .requestMatchers("/lawboard").permitAll()
                 .requestMatchers("/lawboard/{lawboard_id}/").permitAll()
                 .requestMatchers("/createaccount").permitAll()

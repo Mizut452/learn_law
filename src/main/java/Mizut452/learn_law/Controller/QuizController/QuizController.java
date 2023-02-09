@@ -51,8 +51,10 @@ public class QuizController {
         if(questionNumber == 10) {
             if (loginUser!= null) {
                 quizQuestionService.goFinishQuiz(loginUser, model);
-                return "Quiz/quizResult";
+            } else {
+                quizQuestionService.anonymousPoint(model);
             }
+            return "Quiz/QuizGame/quizResult";
         }
         quizQuestionService.getQuizQuestionSent(quizId, model);
         quizQuestionService.plusUserPandQNumber(model);
