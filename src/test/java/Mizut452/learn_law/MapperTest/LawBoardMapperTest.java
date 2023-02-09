@@ -1,4 +1,4 @@
-package Mizut452.learn_law.ModelTest;
+package Mizut452.learn_law.MapperTest;
 
 import Mizut452.learn_law.Mapper.LawBoardMapper;
 import Mizut452.learn_law.Model.Entity.LawBoard.LawBoard;

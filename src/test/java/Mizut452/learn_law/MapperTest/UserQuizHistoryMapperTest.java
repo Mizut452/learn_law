@@ -1,0 +1,4 @@
+package Mizut452.learn_law.MapperTest;
+
+public class UserQuizHistoryMapperTest {
+}
