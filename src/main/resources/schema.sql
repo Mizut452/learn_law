@@ -53,7 +53,6 @@ CREATE TABLE IF NOT EXISTS LawBoard (
         lawBoard_category VARCHAR(255),
         lawBoard_title VARCHAR(255),
         lawBoard_mainComment VARCHAR(300),
-        lawBoard_comment VARCHAR(300),
         lawBoard_time VARCHAR(30)
 );
 

@@ -17,7 +17,5 @@ public class LawBoard {
     @Length(max=300, message = "300文字以内で入力してください")
     private String lawBoard_mainComment;
 
-    private String lawBoard_comment;
-
     private String lawBoard_time;
 }

@@ -12,6 +12,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 @Test
 @WithUserDetails(userDetailsServiceBeanName = "loginUserDetailsService",
-        value = "general@example.com")
+        value = "second")
 public @interface TestWithGeneral {
 }
