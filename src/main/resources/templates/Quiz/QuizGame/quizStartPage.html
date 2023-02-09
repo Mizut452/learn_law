@@ -86,6 +86,10 @@
                 <br>
 
                 <div><a th:href="@{/quiz/questionList}">クイズ一覧表</a></div>
+                <div th:href="@{/quiz/PreQuiz}">申請されているクイズ一覧</div>
+                <span sec:authorize="hasRole('ADMIN') or hasRole('GENERAL')">
+                    <div th:href="@{/quiz/preQuiz/createQuiz}">クイズを作る</div>
+                </span>
             </div>
             
             <aside class="right-side">
