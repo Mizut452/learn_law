@@ -56,7 +56,7 @@
     <span>事件名：</span><span th:text="${pre.precedent_title}"></span> <span>事件番号：</span><span th:text="${pre.precedent_number}"></span> <span>カテゴリー：</span><span th:text="${pre.precedent_category}"></span><br>
     ＜<span th:text="${pre.precedent_subtitle}"></span>＞<br><br>
 
-    <span>事実の概要</span><br>
+    <!--事実の概要-->
     <th:block th:if="${pre.precedent_overview}">
       <th:block th:each="str, stat : ${pre.precedent_overview.split('\r\n|\r|\n', -1)}">
         <th:block th:text="${str}"/>
@@ -64,7 +64,8 @@
       </th:block>
     </th:block>
     <br><br>
-    <span>両者の主張</span><br>
+
+       <!--両者の主張-->
     <th:block th:if="${pre.precedent_claim}">
       <th:block th:each="str, stat : ${pre.precedent_claim.split('\r\n|\r|\n', -1)}">
         <th:block th:text="${str}"/>
@@ -73,7 +74,7 @@
     </th:block>
     <br><br>
 
-    <span>裁判所の判断</span><br>
+    <!--裁判所の判断-->
     <th:block th:if="${pre.precedent_judgement}">
       <th:block th:each="str, stat : ${pre.precedent_judgement.split('\r\n|\r|\n', -1)}">
         <th:block th:text="${str}"/>
@@ -88,6 +89,9 @@
     <a th:href="@{/precedent/all}">判例一覧</a><br>
       <div sec:authorize="hasRole('ADMIN') or hasRole('GENERAL')">
           <a th:href="@{/precedent/writeprecedent}">判例を書く</a>
+      </div>
+      <div sec:authorize="isAnonymous()">
+          <div>判例を書くには会員登録が必要です</div>
       </div>
   </div>
 

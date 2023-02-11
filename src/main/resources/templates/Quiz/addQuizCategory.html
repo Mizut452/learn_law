@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <title>quiz</title>
-    <link rel="stylesheet" th:href="@{/css/Home/homeLayout.css}">
+    <link rel="stylesheet" th:href="@{/css/Quiz/Quiz.css}">
+    <link rel="stylesheet" th:href="@{/css/Quiz/QuizStart.css}">
 </head>
 
 <body>
@@ -51,27 +52,47 @@
 
 <div class="layoutMain">
     <main class="center">
-        <span id="explain">・判例とは？</span><br>
-        判例とは過去の裁判の結果が書かれたもので、その中には事件がどのように起きたか、両者の主張、それに対する裁判官等の意見と裁判の結果が書かれたものです。
-        判例を読んでいくと、法律の定義、つまり法律がどのように解釈されているのか、境界線、例えば窃盗罪と横領罪の違いなどを理解することができます。
-        しかし、判例というものはとても長く、文章的にも読みづらいです。このページではそのような判例をわかりやすく紹介するものになっています。
+        クイズのカテゴリーを増やす
+        <form th:action="@{/quiz/category/add}" th:method="@{post}">
+            <label>カテゴリー：</label>
+            <input type="text" name="quizCategory" /><br>
+
+            <button type="submit">追加</button>
+        </form>
     </main>
 
     <div class="left-side">
-        <span id="preMenu">
-        <p>判例とは？</p>
+        <div>クイズランキング</div>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>順位</th>
+                <th>ユーザー名</th>
+                <th>正解数</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr th:each="quizRank: ${QuizRank}">
+                <td th:text="${quizRankStat.count}"></td>
+                <td th:text="${quizRank.history_username}"></td>
+                <td th:text="${quizRank.pointAll}"></td>
+            </tr>
+
+            </tbody>
+        </table>
         <br>
-        <a th:href="@{/precedent/all}">判例一覧</a>
-      <div sec:authorize="hasRole('ADMIN') or hasRole('GENERAL')">
-        <a th:href="@{/precedent/writeprecedent}">判例を書く</a>
-      </div>
-      <div sec:authorize="isAnonymous()">
-          <div>判例を書くには会員登録が必要です</div>
-      </div>
+
+        <div>クイズ一覧表</div>
+        <div><a th:href="@{/quiz/preQuiz}">申請されているクイズ一覧</a></div>
+        <span sec:authorize="hasRole('ADMIN') or hasRole('GENERAL')">
+                    <div><a th:href="@{/quiz/preQuiz/createQuiz}">クイズを作る</a></div>
         </span>
     </div>
 
     <aside class="right-side">
+
     </aside>
 </div>
 </body>

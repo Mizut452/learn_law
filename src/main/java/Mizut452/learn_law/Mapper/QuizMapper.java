@@ -37,4 +37,7 @@ public interface QuizMapper {
 
     @Insert("INSERT INTO Quiz(quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (#{quizQuestionSent}, #{quizRightOrBad}, #{quizCommentary}, #{quizCategory}, #{quizAuthor})")
     void preQuizToQuiz(Quiz quiz);
+
+    @Update("ALTER TABLE userQuizHistory ADD ${quizCategory} VARCHAR(255) default 0")
+    void addQuizCategory(String quizCategory);
 }

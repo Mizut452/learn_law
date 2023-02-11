@@ -55,17 +55,16 @@ public class QuizCRUDService {
         model.addAttribute("QuizList", quizUpdateReq);
         model.addAttribute("QuizId", quizId);
     }
-
-    public void quizPreList() {
-
-    }
-
     public void doQuizUpdate(QuizUpdateReq quizUpdateReq) {
         quizMapper.update(quizUpdateReq);
     }
 
     public void doQuizDelete(QuizUpdateReq quizUpdateReq) {
         quizMapper.delete(quizUpdateReq);
+    }
+
+    public void addQuizCategory(String quizCategory) {
+        quizMapper.addQuizCategory(quizCategory);
     }
 
 }

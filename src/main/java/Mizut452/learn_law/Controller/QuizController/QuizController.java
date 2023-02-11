@@ -43,6 +43,7 @@ public class QuizController {
         return "redirect:/quiz/question/" + quizId + "/";
     }
 
+    //クイズ結果を出す処理と次の問題への画面遷移
     @GetMapping("/quiz/question/{quizId}/")
     public String quizQuestion(@PathVariable int quizId,
                                @AuthenticationPrincipal LoginUser loginUser,
@@ -62,6 +63,7 @@ public class QuizController {
         return "Quiz/QuizGame/quizQuestionPage";
     }
 
+    //クイズ正誤判定の処理
     @PostMapping("/quiz/question/{quizId}/judge/")
     public String quizJudge(Model model,
                             @PathVariable int quizId,

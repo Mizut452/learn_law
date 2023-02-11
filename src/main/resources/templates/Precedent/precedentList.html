@@ -99,6 +99,9 @@
       <div sec:authorize="hasRole('ADMIN') or hasRole('GENERAL')">
         <a th:href="@{/precedent/writeprecedent}">判例を書く</a>
       </div>
+      <div sec:authorize="isAnonymous()">
+         <div>判例を書くには会員登録が必要です</div>
+      </div>
     </span>
   </div>
 

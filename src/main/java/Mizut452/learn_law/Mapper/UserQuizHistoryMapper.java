@@ -13,10 +13,10 @@ public interface UserQuizHistoryMapper {
     UserQuizHistory USER_QUIZ_HISTORY_SYNC();
 
     @Select("SELECT * FROM userQuizHistory WHERE history_userId = #{history_userId}")
-    UserQuizHistory quizHistoryMapperList(@Param("history_userId") int history_userId);
+    UserQuizHistory quizHistoryMapperList(int history_userId);
 
     @Select("SELECT * FROM userQuizHistory WHERE history_userId = #{history_userId}")
-    UserQuizHistory usersQuizHistoryList(@Param("history_userId") int history_userId);
+    UserQuizHistory usersQuizHistoryList(int history_userId);
 
     @Select("SELECT history_username, pointAll FROM userQuizHistory WHERE pointAll > 0 ORDER BY pointAll DESC OFFSET 0 LIMIT 5")
     List<UserQuizHistory> usersQuizRank();

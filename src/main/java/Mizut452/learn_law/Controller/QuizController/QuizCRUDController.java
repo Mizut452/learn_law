@@ -77,4 +77,19 @@ public class QuizCRUDController {
 
         return "Quiz/quizDelete";
     }
+
+    @GetMapping("/quiz/category")
+    public String addQuizCategory(@AuthenticationPrincipal LoginUser loginUser,
+                                  Model model) {
+        quizQuestionService.addLoginUserMenu(loginUser, model);
+
+        return "Quiz/addQuizCategory";
+    }
+
+    @PostMapping("/quiz/category/add")
+    public String addCategory(@RequestParam String quizCategory) {
+        quizCRUDService.addQuizCategory(quizCategory);
+
+        return "redirect:/quiz";
+    }
 }

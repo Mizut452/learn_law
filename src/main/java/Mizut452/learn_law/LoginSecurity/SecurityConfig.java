@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .requestMatchers("/precedent").permitAll()
                 .requestMatchers("/precedent/{precedent_id}/").permitAll()
                 .requestMatchers("/precedent/all").permitAll()
-                .requestMatchers("/precedent/all/changeList").permitAll()
+                .requestMatchers("/precedent/all/changeList/").permitAll()
                 .anyRequest().authenticated()
         );
         return http.build();

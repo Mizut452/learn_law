@@ -28,6 +28,7 @@ public class PreQuizCRUDController {
     @Autowired
     QuizMapper quizMapper;
 
+    //いいねの処理
     @GetMapping("/quiz/preQuiz/good/{quizId}/")
     public String quizPreGood(@PathVariable int quizId) {
         preQuizService.addGoodService(quizId);
@@ -35,6 +36,7 @@ public class PreQuizCRUDController {
         return "redirect:/quiz/preQuiz";
     }
 
+    //プレクイズ作成画面
     @GetMapping("/quiz/preQuiz/createQuiz")
     public String quizPreQuizCreate(@AuthenticationPrincipal LoginUser loginUser,
                                     Quiz quiz,
@@ -46,6 +48,7 @@ public class PreQuizCRUDController {
         return "Quiz/quizCreate";
     }
 
+    //プレクイズ作成の処理
     @PostMapping("/quiz/preQuiz/create")
     public String quizPreCreate(@AuthenticationPrincipal LoginUser loginUser,
                                 @Validated
@@ -65,6 +68,7 @@ public class PreQuizCRUDController {
         return "redirect:/quiz/preQuiz";
     }
 
+    //プレクイズをクイズに採用するときの処理
     @GetMapping("/quiz/preQuiz/insert/{quizId}/")
     public String quizPreInsert(@PathVariable int quizId) {
         preQuizService.insertPreQuizToQuiz(quizId);
@@ -73,6 +77,7 @@ public class PreQuizCRUDController {
         return "redirect:/quiz/preQuiz";
     }
 
+    //プレクイズを却下するときの処理
     @GetMapping("/quiz/preQuiz/delete/{quizId}/")
     public String quizPreDelete(@PathVariable int quizId) {
         preQuizService.deletePreQuiz(quizId);

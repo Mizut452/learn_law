@@ -89,6 +89,9 @@
       <span sec:authorize="hasRole('ADMIN') or hasRole('GENERAL')">
             <a th:href="@{/lawboard/create_thread}">作成する</a>
         </span>
+      <div sec:authorize="isAnonymous()">
+          <div>掲示板を作成するには会員登録が必要です</div>
+      </div>
   </div>
 
   <aside class="right-side">
