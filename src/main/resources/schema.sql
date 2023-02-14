@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS quiz (
 
 CREATE TABLE IF NOT EXISTS userList (
         userId SERIAL PRIMARY KEY,
-        email VARCHAR(255) NOT NULL,
-        username VARCHAR(255) NOT NULL,
+        email VARCHAR(255) UNIQUE,
+        username VARCHAR(255) UNIQUE,
         password VARCHAR(255) NOT NULL,
         roleName VARCHAR(255) NOT NULL
 );

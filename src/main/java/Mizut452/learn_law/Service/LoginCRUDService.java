@@ -13,10 +13,6 @@ public class LoginCRUDService {
         loginUserMapper.update(userId);
     }
 
-    public void deleteUserPageService() {
-
-    }
-
     public void updateUserRole(String roleName,
                                int userId) {
         loginUserMapper.updateUserRole(roleName, userId);
