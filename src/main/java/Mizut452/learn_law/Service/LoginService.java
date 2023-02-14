@@ -46,7 +46,7 @@ public class LoginService {
     }
 
     public void subMiss(Model model) {
-        model.addAttribute("SubMiss", "登録に失敗しました。");
+        model.addAttribute("SubMiss", "登録に失敗しました。登録されているユーザーネーム、メールアドレスが入力された可能性があります。");
     }
 
     public void loginMiss(Model model) {
