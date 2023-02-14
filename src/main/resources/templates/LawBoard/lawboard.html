@@ -54,11 +54,15 @@
       ゆるく掲示板
     <table border="1">
       <thead>
-        <tr>
+        <tr th:each="lawboard : ${LawBoard}">
             <th>名前</th>
             <th>作成者名</th>
             <th>カテゴリー</th>
             <th>作成日</th>
+            <span sec:authorize="hasRole('ADMIN') or hasRole('GENERAL')">
+                     <th colspan="2">編集・削除</th>
+            </span>
+
         </tr>
       </thead>
 

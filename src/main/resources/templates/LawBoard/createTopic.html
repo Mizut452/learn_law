@@ -55,11 +55,11 @@
 
     <form th:action="@{/lawboard/create}" th:method="@{post}">
       <label>スレッドタイトル</label>
-      <input type="text" name="lawBoard_title" />
+      <textarea name="lawBoard_title"></textarea><br>
       <label>カテゴリー</label>
-      <input type="text" name="lawBoard_category" />
+      <input type="text" name="lawBoard_category" /><br>
       <label>コメント</label>
-      <input type="text" name="lawBoard_mainComment" />
+      <textarea name="lawBoard_mainComment"></textarea><br>
       <input type="submit" value="作成" />
     </form>
   </main>
