@@ -41,12 +41,14 @@ public class SecurityConfig {
                 .requestMatchers("/lawboard/{lawboard_id}/").permitAll()
                 .requestMatchers("/createaccount").permitAll()
                 .requestMatchers("/createaccount/create").permitAll()
+                .requestMatchers("").permitAll()
                 .requestMatchers("/precedent").permitAll()
                 .requestMatchers("/precedent/{precedent_id}/").permitAll()
                 .requestMatchers("/precedent/all").permitAll()
                 .requestMatchers("/precedent/all/changeList/").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
         );
+        http.csrf().disable();
         return http.build();
     }
 

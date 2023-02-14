@@ -4,6 +4,7 @@ import Mizut452.learn_law.Model.Entity.Login.LoginUser;
 import Mizut452.learn_law.Service.LoginCRUDService;
 import Mizut452.learn_law.Service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,12 +38,17 @@ public class LoginCRUDController {
                                BindingResult result,
                                Model model) {
 
+
         if(result.hasErrors()) {
             loginService.subMiss(model);
             return "Login/createAccount";
         }
-
-        loginService.createMethodService(loginUser);
+        try {
+            loginService.createMethodService(loginUser);
+        } catch (DuplicateKeyException e) {
+            loginService.duplicateMiss(model);
+            return "Login/createAccount";
+        }
 
         return "Login/Complete";
     }
