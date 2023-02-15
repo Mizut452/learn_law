@@ -1,7 +1,7 @@
 --パスワードは"top"
-INSERT INTO userList(userId, email, username, password, roleName) VALUES(1, 'top@top.com', 'top', '$2a$10$0Jh/VfaS8k9HVfA3/f6lLuviOq8jVG0lGBRQNLUG8Fl69oHA7PmE6', 'ROLE_ADMIN');
+INSERT INTO userList(userId, email, username, password, roleName) VALUES(1, 'top@top.com', 'top', '$2a$10$hyxILT0ZEMbqUnYlIEVu2Osglkwv6FHoKfuNz80gaQripsVkvdOQS', 'ROLE_ADMIN');
 --パスワードは"second"
-INSERT INTO userList(userId, email, username, password, roleName) VALUES (2, 'second@second.com', 'second', '$2a$10$WtleMW4PbahhhxRTpQ0Gyu87FUxQJO0Cw6M.AV518/Cb3cTFeEy7e', 'ROLE_GENERAL');
+INSERT INTO userList(userId, email, username, password, roleName) VALUES (2, 'second@second.com', 'second', '$2a$10$up7a.liqgNOrhy8axY2Dde.r.Mx8aPwwlpGL/UCCJNZK3pfwmjrTy', 'ROLE_GENERAL');
 --SECRET
 INSERT INTO userList(userId, email, username, password, roleName) VALUES(3, 'ssvror444@gmail.com', 'Mizut452', '$2a$10$4dqctMrn.ivlJrYtnpR8B.62omHi4Ptw47N6HTUmdbHKOV4f87vbm', 'ROLE_ADMIN');
 
@@ -18,7 +18,7 @@ INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizC
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (6, '子どもが親の財布からお金を盗んだ時、親が許していたとしても刑法が適用され否が応でも裁判になる。', 2, '正解は×。　刑法244条において家族や同居の親族の間で窃盗などを行ったとしても無罪となると規定されている。ただし、強盗には適用されない。', '刑法', 'top');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (7, '恐喝罪における恐喝とは、相手を怖がらせることであるため、どんなに強い言葉で脅したとしても相手が怖がらなければ恐喝罪は適用されない。', 1, '正解は〇。　問題文の通りである。恐喝罪における恐喝とは相手を怖がらせることである。さらにその恐喝は、財産に関わるもののために行わなければ恐喝罪とはならない。', '刑法', 'top');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (8, '条文（法律の文）には著作権がないが、「意外と知らない法律」のようにみんなが知らない法律を紹介する本などには著作権が認められる', 1, '正解は〇。　問題文の通り、著作権法12条において、著作権が適用されない物でもそれを独自の方法で編集したりしたものは、著作権法の保護の対象となる。', '著作権法', 'top');
-INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (9, '著作権の保護は作成者の死後70年間である。そのため2023年末にミッキーマウスは著作権フリーとなり、誰もが使い放題の素材となる。', 2, '正解は×。　著作権は確かに切れてしまうが、ディズニー社は、ミッキーマウスを商標登録しているため無断で使用すると権利侵害となる。', '著作権法', 'top');
+INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (9, '著作権の保護は作成者の死後70年間である。そのため2036年末にミッキーマウスは著作権フリーとなり、誰もが使い放題の素材となる。', 2, '正解は×。　著作権は確かに切れてしまうが、ディズニー社は、ミッキーマウスを商標登録しているため無断で使用すると権利侵害となる。', '著作権法', 'top');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (10, 'Ａさんはイラストレーターにイラストを書いてもらうように頼み、それを受け取ったが背景が少し気に入らなかったので描きかえた。このＡさんの行為は著作権法違反になる。', 1, '正解は〇。　著作権者には著作物を他人に変えられないという同一性保持権をもつ。そのためＡさんの行った描きかえるという行為は著作権法違反となる。', '著作権法', 'top');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (11, 'ＣＤに入っている曲を自分のスマホに取り入れる行為は著作権法違反となる。', 2, '正解は×。　著作権法30条によって著作物を個人的に使用する場合は、著作物をコピーをすることができる。', '著作権法', 'second');
 INSERT INTO quiz(quizId, quizQuestionSent, quizRightOrBad, quizCommentary, quizCategory, quizAuthor) VALUES (12, '未成年の結婚は親の同意が必要であるため、親が許可しなければ結婚することができない', 2, '正解は×。　結婚は18歳以上しかできないことに加え、2022年の民法改正において成人年齢が18歳に引き下げられたことによって未成年の結婚は不可能となった。', '民法', 'top');
