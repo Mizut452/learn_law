@@ -25,6 +25,13 @@ public class LawBoardService {
         }
     }
 
+    public void addLoginUser(@AuthenticationPrincipal LoginUser loginUser,
+                             Model model) {
+        if(loginUser != null) {
+            model.addAttribute("UserRole", loginUser.getRoleName());
+        }
+    }
+
     public void LawBoardAll(Model model) {
         List<LawBoard> lawBoard = lawBoardMapper.lawBoardAll();
         model.addAttribute("LawBoard", lawBoard);

@@ -59,8 +59,17 @@
             <th>作成者名</th>
             <th>カテゴリー</th>
             <th>作成日</th>
-            <span sec:authorize="hasRole('ADMIN') or hasRole('GENERAL')">
-                     <th colspan="2">編集・削除</th>
+            <span sec:authorize="hasRole('ADMIN')">
+                <span th:if="${Username != lawboard.lawBoard_username}">
+            <td>編集</td>
+            <td>削除</td>
+                </span>
+            </span>
+
+            <span th:if="${UserRole != 'ADMIN' && Username == lawboard.lawBoard_username}">
+            <td>編集</td>
+            <td>削除</td>
+                </span>
             </span>
 
         </tr>
@@ -72,16 +81,17 @@
             <td th:text="${lawboard.lawBoard_username}"></td>
             <td th:text="${lawboard.lawBoard_category}"></td>
             <td th:text="${lawboard.lawBoard_time}"></td>
-            <span th:if="${Username == lawboard.lawBoard_username}">
+            <span sec:authorize="hasRole('ADMIN')">
+                <span th:if="${Username != lawboard.lawBoard_username}">
             <td><a th:href="@{/lawboard/{lawboard_id}/update/(lawboard_id = ${lawboard.lawBoard_id})}">編集</a></td>
             <td><a th:href="@{/lawboard/{lawboard_id}/delete/(lawboard_id = ${lawboard.lawBoard_id})}">削除</a></td>
+                </span>
             </span>
 
-            <span th:if="${Username != lawboard.lawBoard_username}">
-            <span sec:authorize="hasRole('ADMIN')">
-                <td><a th:href="@{/lawboard/{lawboard_id}/update/(lawboard_id = ${lawboard.lawBoard_id})}">編集</a></td>
-                <td><a th:href="@{/lawboard/{lawboard_id}/delete/(lawboard_id = ${lawboard.lawBoard_id})}">削除</a></td>
-            </span>
+            <span th:if="${UserRole != 'ADMIN' && Username == lawboard.lawBoard_username}">
+            <td><a th:href="@{/lawboard/{lawboard_id}/update/(lawboard_id = ${lawboard.lawBoard_id})}">編集</a></td>
+            <td><a th:href="@{/lawboard/{lawboard_id}/delete/(lawboard_id = ${lawboard.lawBoard_id})}">削除</a></td>
+                </span>
             </span>
         </tr>
       </tbody>

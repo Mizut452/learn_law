@@ -23,6 +23,7 @@ public class PreQuizController {
                           Model model) {
         preQuizService.selectPreQuiz(model);
         quizQuestionService.addLoginUserMenu(loginUser, model);
+        quizQuestionService.quizRanking(model);
         if (loginUser != null) {
             model.addAttribute("role", loginUser.getRoleName());
         }

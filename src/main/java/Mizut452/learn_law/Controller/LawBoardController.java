@@ -20,6 +20,7 @@ public class LawBoardController {
                                Model model) {
         lawBoardService.addLoginUserMenu(loginUser, model);
         lawBoardService.LawBoardAll(model);
+        lawBoardService.addLoginUser(loginUser, model);
 
         return "LawBoard/lawboard";
     }
